@@ -1,0 +1,56 @@
+{
+  "name": "bosque-claro-backend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend de RRHH con datos sintéticos de Bosque Claro",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.8"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:create": "node scripts/create-database.js",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:migrate:status": "sequelize-cli db:migrate:status",
+    "db:seed": "sequelize-cli db:seed:all",
+    "db:verify": "node scripts/verify-database.js",
+    "policies:plan": "node scripts/publish-policies.js --plan",
+    "policies:render": "node ../docs/politicas/render-html.cjs && node ../docs/politicas/generate-pdf.cjs && node ../docs/politicas/render-report.cjs",
+    "policies:inspect": "node scripts/publish-policies.js --inspect",
+    "policies:publish": "node scripts/publish-policies.js --apply",
+    "ingest:check": "node scripts/check-ingestion.js",
+    "ingest:sync": "node scripts/ingest-drive.js",
+    "ingest:search": "node scripts/search-policies.js",
+    "ingest:verify": "node scripts/verify-policy-search.js",
+    "report:generate": "node scripts/generate-report.js",
+    "eval:chat": "node scripts/evaluate-chat.js",
+    "test": "node --test --test-isolation=none test/*.test.js",
+    "smoke": "node scripts/smoke-health.js",
+    "test:integration": "node --test --test-concurrency=1 test/integration/*.test.js",
+    "worker": "node scripts/worker.js",
+    "llm:check": "node scripts/check-llm.js",
+    "eval:export": "node scripts/export-chat-evaluation.js"
+  },
+  "dependencies": {
+    "dotenv": "18.0.10",
+    "exceljs": "4.4.0",
+    "express": "5.3.0",
+    "google-auth-library": "11.3.4",
+    "mysql2": "3.24.6",
+    "pdf-parse": "2.4.5",
+    "sequelize": "6.37.8"
+  },
+  "devDependencies": {
+    "sequelize-cli": "6.6.2"
+  },
+  "overrides": {
+    "sequelize": {
+      "uuid": "11.1.1"
+    },
+    "exceljs": {
+      "uuid": "11.1.1"
+    }
+  }
+}

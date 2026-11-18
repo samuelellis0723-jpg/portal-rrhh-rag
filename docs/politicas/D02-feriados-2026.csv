@@ -1,0 +1,21 @@
+﻿Título,Calendario de feriados de Costa Rica 2026
+Versión,0.1
+Responsable,RRHH y Planillas
+Fecha,2026-11-17
+Vigencia propuesta,2026-11-17 (solo simulación; sin adopción empresarial)
+Sección,Vacaciones y feriados
+Estado,Borrador académico no aprobado
+
+fecha,evento,dia_semana,tipo_feriado,nota,fuente_url
+2026-01-01,Año Nuevo,Jueves,obligatorio,No se traslada según calendario MTSS 2026,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-04-02,Jueves Santo,Jueves,obligatorio,Feriado religioso,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-04-03,Viernes Santo,Viernes,obligatorio,Feriado religioso,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-04-11,Día de Juan Santamaría,Sábado,obligatorio,No se traslada según calendario MTSS 2026,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-05-01,Día Internacional del Trabajo,Viernes,obligatorio,,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-07-25,Anexión del Partido de Nicoya,Sábado,obligatorio,La conmemoración y disfrute no se trasladan,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-08-02,Día de la Virgen de los Ángeles,Domingo,no obligatorio,Disfrute en fecha,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-08-15,Día de la Madre y Asunción,Sábado,obligatorio,,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-08-31,Día de la Persona Negra y la Cultura Afrocostarricense,Lunes,no obligatorio,Disfrute en fecha,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-09-15,Día de la Independencia,Martes,obligatorio,,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-12-01,Abolición del Ejército,Martes,no obligatorio,,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf
+2026-12-25,Navidad,Viernes,obligatorio,,https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf

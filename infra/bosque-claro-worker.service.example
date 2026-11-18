@@ -1,0 +1,20 @@
+[Unit]
+Description=Bosque Claro - reportes e ingesta diarios
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adaptar usuario, rutas y binario de Node a la instalación. No contiene secretos.
+User=bosque-claro
+WorkingDirectory=/opt/bosque-claro/backend
+ExecStart=/usr/bin/node /opt/bosque-claro/backend/scripts/worker.js
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=180
+NoNewPrivileges=true
+PrivateTmp=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

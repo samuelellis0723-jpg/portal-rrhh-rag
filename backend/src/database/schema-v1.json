@@ -1,0 +1,976 @@
+{
+  "colaboradores": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "nombre": {
+        "type": "varchar(160)",
+        "allowNull": false
+      },
+      "correo": {
+        "type": "varchar(254)",
+        "allowNull": false
+      },
+      "departamento": {
+        "type": "varchar(100)",
+        "allowNull": false
+      },
+      "puesto": {
+        "type": "varchar(120)",
+        "allowNull": false
+      },
+      "fecha_ingreso": {
+        "type": "date",
+        "allowNull": false
+      },
+      "jefe_id": {
+        "type": "int",
+        "allowNull": true,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "activo",
+          "inactivo"
+        ],
+        "defaultValue": "activo"
+      },
+      "rol": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "colaborador",
+          "rrhh"
+        ],
+        "defaultValue": "colaborador"
+      }
+    },
+    "indexes": [
+      {
+        "name": "colaboradores_correo_uq",
+        "unique": true,
+        "fields": [
+          "correo"
+        ]
+      },
+      {
+        "name": "colaboradores_estado_departamento_idx",
+        "unique": false,
+        "fields": [
+          "estado",
+          "departamento"
+        ]
+      },
+      {
+        "name": "colaboradores_jefe_id_idx",
+        "unique": false,
+        "fields": [
+          "jefe_id"
+        ]
+      }
+    ],
+    "checks": []
+  },
+  "usuarios": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "password_hash": {
+        "type": "varchar(255)",
+        "allowNull": false
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "activo",
+          "bloqueado"
+        ],
+        "defaultValue": "activo"
+      },
+      "creado_en": {
+        "type": "datetime",
+        "allowNull": false
+      }
+    },
+    "indexes": [
+      {
+        "name": "usuarios_colaborador_id_uq",
+        "unique": true,
+        "fields": [
+          "colaborador_id"
+        ]
+      }
+    ],
+    "checks": []
+  },
+  "sesiones": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "usuario_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "usuarios",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "token_hash": {
+        "type": "char(64)",
+        "allowNull": false
+      },
+      "csrf_token_hash": {
+        "type": "char(64)",
+        "allowNull": false
+      },
+      "creada_en": {
+        "type": "datetime",
+        "allowNull": false
+      },
+      "expira_en": {
+        "type": "datetime",
+        "allowNull": false
+      },
+      "revocada_en": {
+        "type": "datetime",
+        "allowNull": true
+      },
+      "ultimo_uso_en": {
+        "type": "datetime",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "sesiones_token_hash_uq",
+        "unique": true,
+        "fields": [
+          "token_hash"
+        ]
+      },
+      {
+        "name": "sesiones_usuario_id_expira_en_idx",
+        "unique": false,
+        "fields": [
+          "usuario_id",
+          "expira_en"
+        ]
+      },
+      {
+        "name": "sesiones_revocada_en_expira_en_idx",
+        "unique": false,
+        "fields": [
+          "revocada_en",
+          "expira_en"
+        ]
+      }
+    ],
+    "checks": [
+      "expira_en > creada_en"
+    ]
+  },
+  "saldos_vacaciones": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "periodo_inicio": {
+        "type": "date",
+        "allowNull": false
+      },
+      "periodo_fin": {
+        "type": "date",
+        "allowNull": false
+      },
+      "dias_asignados": {
+        "type": "decimal(6,2)",
+        "allowNull": false
+      },
+      "dias_tomados": {
+        "type": "decimal(6,2)",
+        "allowNull": false,
+        "defaultValue": 0
+      },
+      "dias_disponibles": {
+        "type": "decimal(6,2)",
+        "allowNull": false
+      }
+    },
+    "indexes": [
+      {
+        "name": "saldos_vacaciones_colaborador_id_periodo_inicio_periodo_fin_uq",
+        "unique": true,
+        "fields": [
+          "colaborador_id",
+          "periodo_inicio",
+          "periodo_fin"
+        ]
+      }
+    ],
+    "checks": [
+      "periodo_fin >= periodo_inicio",
+      "dias_asignados >= 0",
+      "dias_tomados >= 0",
+      "dias_tomados <= dias_asignados",
+      "dias_disponibles >= 0",
+      "dias_disponibles = dias_asignados - dias_tomados"
+    ]
+  },
+  "solicitudes": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "tipo": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "vacaciones",
+          "permiso"
+        ]
+      },
+      "fecha_inicio": {
+        "type": "date",
+        "allowNull": false
+      },
+      "fecha_fin": {
+        "type": "date",
+        "allowNull": false
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "pendiente",
+          "aprobada",
+          "rechazada",
+          "cancelada"
+        ],
+        "defaultValue": "pendiente"
+      },
+      "aprobador_id": {
+        "type": "int",
+        "allowNull": true,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "creada_en": {
+        "type": "datetime",
+        "allowNull": false
+      },
+      "resuelta_en": {
+        "type": "datetime",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "solicitudes_colaborador_id_fecha_inicio_estado_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "fecha_inicio",
+          "estado"
+        ]
+      },
+      {
+        "name": "solicitudes_estado_creada_en_idx",
+        "unique": false,
+        "fields": [
+          "estado",
+          "creada_en"
+        ]
+      }
+    ],
+    "checks": [
+      "fecha_fin >= fecha_inicio"
+    ]
+  },
+  "incapacidades": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "tipo": {
+        "type": "varchar(80)",
+        "allowNull": false
+      },
+      "fecha_inicio": {
+        "type": "date",
+        "allowNull": false
+      },
+      "dias": {
+        "type": "int",
+        "allowNull": false
+      },
+      "entidad": {
+        "type": "varchar(120)",
+        "allowNull": true
+      },
+      "registrada_en": {
+        "type": "datetime",
+        "allowNull": false
+      }
+    },
+    "indexes": [
+      {
+        "name": "incapacidades_colaborador_id_fecha_inicio_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "fecha_inicio"
+        ]
+      },
+      {
+        "name": "incapacidades_fecha_inicio_idx",
+        "unique": false,
+        "fields": [
+          "fecha_inicio"
+        ]
+      }
+    ],
+    "checks": [
+      "dias > 0"
+    ]
+  },
+  "movimientos_personal": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "tipo": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "ingreso",
+          "salida",
+          "ascenso"
+        ]
+      },
+      "fecha": {
+        "type": "date",
+        "allowNull": false
+      },
+      "motivo": {
+        "type": "varchar(500)",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "movimientos_personal_fecha_tipo_idx",
+        "unique": false,
+        "fields": [
+          "fecha",
+          "tipo"
+        ]
+      },
+      {
+        "name": "movimientos_personal_colaborador_id_fecha_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "fecha"
+        ]
+      }
+    ],
+    "checks": []
+  },
+  "pagos": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "tipo": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "salario",
+          "aguinaldo",
+          "otro"
+        ]
+      },
+      "periodo_inicio": {
+        "type": "date",
+        "allowNull": false
+      },
+      "periodo_fin": {
+        "type": "date",
+        "allowNull": false
+      },
+      "fecha_pago": {
+        "type": "date",
+        "allowNull": false
+      },
+      "monto": {
+        "type": "decimal(12,2)",
+        "allowNull": false
+      },
+      "moneda": {
+        "type": "char(3)",
+        "allowNull": false,
+        "defaultValue": "CRC"
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "programado",
+          "confirmado",
+          "pagado",
+          "cancelado"
+        ],
+        "defaultValue": "programado"
+      }
+    },
+    "indexes": [
+      {
+        "name": "pagos_colaborador_id_estado_fecha_pago_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "estado",
+          "fecha_pago"
+        ]
+      },
+      {
+        "name": "pagos_fecha_pago_estado_idx",
+        "unique": false,
+        "fields": [
+          "fecha_pago",
+          "estado"
+        ]
+      }
+    ],
+    "checks": [
+      "periodo_fin >= periodo_inicio",
+      "monto >= 0"
+    ]
+  },
+  "evaluaciones": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "fecha_programada": {
+        "type": "date",
+        "allowNull": false
+      },
+      "tipo": {
+        "type": "varchar(80)",
+        "allowNull": false,
+        "defaultValue": "desempeno"
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "programada",
+          "completada",
+          "cancelada"
+        ],
+        "defaultValue": "programada"
+      },
+      "completada_en": {
+        "type": "datetime",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "evaluaciones_colaborador_id_estado_fecha_programada_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "estado",
+          "fecha_programada"
+        ]
+      }
+    ],
+    "checks": []
+  },
+  "consultas_chat": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "colaborador_id": {
+        "type": "int",
+        "allowNull": false,
+        "references": {
+          "model": "colaboradores",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "pregunta": {
+        "type": "text",
+        "allowNull": false
+      },
+      "intencion": {
+        "type": "varchar(80)",
+        "allowNull": true
+      },
+      "agente": {
+        "type": "varchar(80)",
+        "allowNull": true
+      },
+      "tema": {
+        "type": "varchar(100)",
+        "allowNull": true
+      },
+      "origen": {
+        "type": "varchar(20)",
+        "allowNull": false,
+        "defaultValue": "ejecucion"
+      },
+      "documentos_citados": {
+        "type": "json",
+        "allowNull": true
+      },
+      "resuelta": {
+        "type": "boolean",
+        "allowNull": false,
+        "defaultValue": false
+      },
+      "escalada": {
+        "type": "boolean",
+        "allowNull": false,
+        "defaultValue": false
+      },
+      "latencia_ms": {
+        "type": "int",
+        "allowNull": true
+      },
+      "creada_en": {
+        "type": "datetime",
+        "allowNull": false
+      }
+    },
+    "indexes": [
+      {
+        "name": "consultas_chat_creada_en_idx",
+        "unique": false,
+        "fields": [
+          "creada_en"
+        ]
+      },
+      {
+        "name": "consultas_chat_colaborador_id_creada_en_idx",
+        "unique": false,
+        "fields": [
+          "colaborador_id",
+          "creada_en"
+        ]
+      },
+      {
+        "name": "consultas_chat_intencion_creada_en_idx",
+        "unique": false,
+        "fields": [
+          "intencion",
+          "creada_en"
+        ]
+      }
+    ],
+    "checks": [
+      "latencia_ms >= 0",
+      "origen IN ('ejecucion', 'fixture')"
+    ]
+  },
+  "agent_execution_logs": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "consulta_chat_id": {
+        "type": "int",
+        "allowNull": true,
+        "references": {
+          "model": "consultas_chat",
+          "key": "id"
+        },
+        "onDelete": "RESTRICT",
+        "onUpdate": "RESTRICT"
+      },
+      "tipo_ejecucion": {
+        "type": "varchar(40)",
+        "allowNull": false
+      },
+      "agente": {
+        "type": "varchar(80)",
+        "allowNull": false
+      },
+      "consulta": {
+        "type": "text",
+        "allowNull": true
+      },
+      "contexto": {
+        "type": "json",
+        "allowNull": true
+      },
+      "origen": {
+        "type": "varchar(20)",
+        "allowNull": false,
+        "defaultValue": "ejecucion"
+      },
+      "fragmentos_usados": {
+        "type": "json",
+        "allowNull": true
+      },
+      "escalada": {
+        "type": "boolean",
+        "allowNull": false,
+        "defaultValue": false
+      },
+      "latencia_ms": {
+        "type": "int",
+        "allowNull": true
+      },
+      "estado": {
+        "type": "enum",
+        "allowNull": false,
+        "values": [
+          "iniciada",
+          "completada",
+          "fallida"
+        ]
+      },
+      "codigo_error": {
+        "type": "varchar(80)",
+        "allowNull": true
+      },
+      "iniciada_en": {
+        "type": "datetime",
+        "allowNull": false
+      },
+      "finalizada_en": {
+        "type": "datetime",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "agent_execution_logs_iniciada_en_agente_idx",
+        "unique": false,
+        "fields": [
+          "iniciada_en",
+          "agente"
+        ]
+      },
+      {
+        "name": "agent_execution_logs_consulta_chat_id_idx",
+        "unique": false,
+        "fields": [
+          "consulta_chat_id"
+        ]
+      },
+      {
+        "name": "agent_execution_logs_tipo_ejecucion_estado_iniciada_en_idx",
+        "unique": false,
+        "fields": [
+          "tipo_ejecucion",
+          "estado",
+          "iniciada_en"
+        ]
+      }
+    ],
+    "checks": [
+      "latencia_ms >= 0",
+      "finalizada_en IS NULL OR finalizada_en >= iniciada_en",
+      "origen IN ('ejecucion', 'fixture')"
+    ]
+  },
+  "reportes_diarios": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "fecha": {
+        "type": "date",
+        "allowNull": false
+      },
+      "datos_json": {
+        "type": "json",
+        "allowNull": false
+      },
+      "resumen_texto": {
+        "type": "text",
+        "allowNull": false
+      },
+      "generado_por": {
+        "type": "varchar(80)",
+        "allowNull": false,
+        "defaultValue": "agente_analista"
+      },
+      "generado_en": {
+        "type": "datetime",
+        "allowNull": false
+      },
+      "origen": {
+        "type": "varchar(20)",
+        "allowNull": false,
+        "defaultValue": "ejecucion"
+      },
+      "esquema_version": {
+        "type": "int",
+        "allowNull": false,
+        "defaultValue": 1
+      }
+    },
+    "indexes": [
+      {
+        "name": "reportes_diarios_fecha_uq",
+        "unique": true,
+        "fields": [
+          "fecha"
+        ]
+      }
+    ],
+    "checks": [
+      "origen IN ('ejecucion', 'fixture')"
+    ]
+  },
+  "drive_documentos": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "drive_file_id": {
+        "type": "varchar(200)",
+        "allowNull": false
+      },
+      "nombre": {
+        "type": "varchar(500)",
+        "allowNull": false
+      },
+      "enlace": {
+        "type": "varchar(1000)",
+        "allowNull": true
+      },
+      "mime_type": {
+        "type": "varchar(160)",
+        "allowNull": true
+      },
+      "version": {
+        "type": "varchar(80)",
+        "allowNull": true
+      },
+      "modificado_drive_en": {
+        "type": "datetime",
+        "allowNull": true
+      },
+      "checksum": {
+        "type": "varchar(128)",
+        "allowNull": true
+      },
+      "revision_indexada": {
+        "type": "varchar(200)",
+        "allowNull": true
+      },
+      "estado_indexacion": {
+        "type": "varchar(30)",
+        "allowNull": false,
+        "defaultValue": "pendiente"
+      },
+      "eliminado": {
+        "type": "boolean",
+        "allowNull": false,
+        "defaultValue": false
+      },
+      "sincronizado_en": {
+        "type": "datetime",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "drive_documentos_drive_file_id_uq",
+        "unique": true,
+        "fields": [
+          "drive_file_id"
+        ]
+      },
+      {
+        "name": "drive_documentos_eliminado_modificado_drive_en_idx",
+        "unique": false,
+        "fields": [
+          "eliminado",
+          "modificado_drive_en"
+        ]
+      }
+    ],
+    "checks": []
+  },
+  "drive_sync_state": {
+    "fields": {
+      "id": {
+        "type": "int",
+        "allowNull": false,
+        "primaryKey": true,
+        "autoIncrement": true
+      },
+      "carpeta_drive_id": {
+        "type": "varchar(200)",
+        "allowNull": false
+      },
+      "page_token": {
+        "type": "text",
+        "allowNull": false
+      },
+      "bloqueo_hasta": {
+        "type": "datetime",
+        "allowNull": true
+      },
+      "sincronizado_en": {
+        "type": "datetime",
+        "allowNull": true
+      },
+      "estado": {
+        "type": "varchar(30)",
+        "allowNull": false,
+        "defaultValue": "pendiente"
+      },
+      "ultimo_error": {
+        "type": "varchar(1000)",
+        "allowNull": true
+      }
+    },
+    "indexes": [
+      {
+        "name": "drive_sync_state_carpeta_drive_id_uq",
+        "unique": true,
+        "fields": [
+          "carpeta_drive_id"
+        ]
+      }
+    ],
+    "checks": []
+  }
+}

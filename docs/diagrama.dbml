@@ -1,0 +1,361 @@
+Project portal_rrhh_bosque_claro {
+  database_type: 'MySQL'
+  Note: 'Modelo lógico para MySQL 8.0.16 o posterior. Seed: 60 personas 100% simuladas y movimientos para la ventana inclusiva 2026-08-18 a 2026-11-17; pagos y evaluaciones pueden programarse después de la ventana. No fija cifras ni derechos legales: las políticas vigentes son fuente documental separada. Fechas de negocio DATE interpretadas en America/Costa_Rica; instantes DATETIME se guardan en UTC. El API serializa identificadores como enteros JSON y valores DECIMAL como cadenas JSON.'
+}
+
+Enum estado_colaborador {
+  activo
+  inactivo
+}
+
+Enum rol_colaborador {
+  colaborador
+  rrhh
+}
+
+Enum estado_usuario {
+  activo
+  bloqueado
+}
+
+Enum tipo_solicitud {
+  vacaciones
+  permiso
+}
+
+Enum estado_solicitud {
+  pendiente
+  aprobada
+  rechazada
+  cancelada
+}
+
+Enum estado_pago {
+  programado
+  confirmado
+  pagado
+  cancelado
+}
+
+Enum tipo_pago {
+  salario
+  aguinaldo
+  otro
+}
+
+Enum tipo_movimiento {
+  ingreso
+  salida
+  ascenso
+}
+
+Enum estado_evaluacion {
+  programada
+  completada
+  cancelada
+}
+
+Enum estado_ejecucion {
+  iniciada
+  completada
+  fallida
+}
+
+Table colaboradores {
+  id int [pk, increment]
+  nombre varchar(160) [not null]
+  correo varchar(254) [not null, unique]
+  departamento varchar(100) [not null]
+  puesto varchar(120) [not null]
+  fecha_ingreso date [not null, note: 'Fecha civil de Costa Rica.']
+  jefe_id int [note: 'Autorreferencia opcional; debe apuntar a una persona activa al asignarse.']
+  estado estado_colaborador [not null, default: 'activo']
+  rol rol_colaborador [not null, default: 'colaborador']
+
+  Indexes {
+    (estado, departamento)
+    (jefe_id)
+  }
+
+  Note: 'Personas simuladas. La identidad personal siempre se resuelve desde la sesión autenticada; el cliente no elige colaborador_id.'
+}
+
+Table usuarios {
+  id int [pk, increment]
+  colaborador_id int [not null, unique]
+  password_hash varchar(255) [not null, note: 'Hash de contraseña con algoritmo adaptativo; nunca guardar la contraseña.']
+  estado estado_usuario [not null, default: 'activo']
+  creado_en datetime [not null, note: 'Instante UTC.']
+
+  Note: 'Una cuenta de acceso por colaborador. El rol autorizado tiene una sola fuente: colaboradores.rol; el cliente nunca puede cambiarlo.'
+}
+
+Table sesiones {
+  id int [pk, increment]
+  usuario_id int [not null]
+  token_hash char(64) [not null, unique, note: 'SHA-256 del secreto opaco de cookie; el secreto en claro solo vive en el cliente.']
+  csrf_token_hash char(64) [not null, note: 'Hash de token CSRF asociado a la sesión.']
+  creada_en datetime [not null, note: 'Instante UTC.']
+  expira_en datetime [not null, note: 'Instante UTC.']
+  revocada_en datetime [note: 'Instante UTC; NULL mientras siga activa.']
+  ultimo_uso_en datetime [note: 'Instante UTC.']
+
+  checks {
+    `expira_en > creada_en`
+  }
+
+  Indexes {
+    (usuario_id, expira_en)
+    (revocada_en, expira_en)
+  }
+}
+
+Table saldos_vacaciones {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  periodo_inicio date [not null]
+  periodo_fin date [not null]
+  dias_asignados decimal(6,2) [not null]
+  dias_tomados decimal(6,2) [not null, default: 0]
+  dias_disponibles decimal(6,2) [not null, note: 'Snapshot usado por lectura; mantener igual a asignados menos tomados.']
+
+  checks {
+    `periodo_fin >= periodo_inicio`
+    `dias_asignados >= 0`
+    `dias_tomados >= 0`
+    `dias_tomados <= dias_asignados`
+    `dias_disponibles >= 0`
+    `dias_disponibles = dias_asignados - dias_tomados`
+  }
+
+  Indexes {
+    (colaborador_id, periodo_inicio, periodo_fin) [unique]
+  }
+
+  Note: 'El acumulado de un colaborador puede abarcar más de un período. La API filtra siempre por el colaborador autenticado.'
+}
+
+Table solicitudes {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  tipo tipo_solicitud [not null]
+  fecha_inicio date [not null]
+  fecha_fin date [not null]
+  estado estado_solicitud [not null, default: 'pendiente']
+  aprobador_id int
+  creada_en datetime [not null, note: 'Instante UTC.']
+  resuelta_en datetime [note: 'Instante UTC.']
+
+  checks {
+    `fecha_fin >= fecha_inicio`
+  }
+
+  Indexes {
+    (colaborador_id, fecha_inicio, estado)
+    (estado, creada_en)
+  }
+}
+
+Table incapacidades {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  tipo varchar(80) [not null, note: 'Clasificación operativa; no deduce cobertura ni reglas de pago.']
+  fecha_inicio date [not null]
+  dias int [not null]
+  entidad varchar(120)
+  registrada_en datetime [not null, note: 'Instante UTC.']
+
+  checks {
+    `dias > 0`
+  }
+
+  Indexes {
+    (colaborador_id, fecha_inicio)
+    (fecha_inicio)
+  }
+}
+
+Table movimientos_personal {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  tipo tipo_movimiento [not null]
+  fecha date [not null]
+  motivo varchar(500)
+
+  Indexes {
+    (fecha, tipo)
+    (colaborador_id, fecha)
+  }
+}
+
+Table pagos {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  tipo tipo_pago [not null]
+  periodo_inicio date [not null]
+  periodo_fin date [not null]
+  fecha_pago date [not null, note: 'Fecha civil de Costa Rica; no convertir a UTC.']
+  monto decimal(12,2) [not null]
+  moneda char(3) [not null, default: 'CRC']
+  estado estado_pago [not null, default: 'programado']
+
+  checks {
+    `periodo_fin >= periodo_inicio`
+    `monto >= 0`
+  }
+
+  Indexes {
+    (colaborador_id, estado, fecha_pago)
+    (fecha_pago, estado)
+  }
+
+  Note: 'Registro individual simulado. Próximo pago: menor fecha_pago mayor o igual al día actual de Costa Rica con estado programado o confirmado, filtrada por colaborador de sesión. Fechas futuras permitidas aunque superen la ventana del seed.'
+}
+
+Table evaluaciones {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  fecha_programada date [not null, note: 'Fecha civil de Costa Rica.']
+  tipo varchar(80) [not null, default: 'desempeno']
+  estado estado_evaluacion [not null, default: 'programada']
+  completada_en datetime [note: 'Instante UTC.']
+
+  Indexes {
+    (colaborador_id, estado, fecha_programada)
+  }
+
+  Note: 'Próxima evaluación: fecha_programada más cercana desde la fecha actual local con estado programada, filtrada por colaborador de sesión.'
+}
+
+Table consultas_chat {
+  id int [pk, increment]
+  colaborador_id int [not null]
+  pregunta text [not null]
+  intencion varchar(80)
+  agente varchar(80)
+  tema varchar(100) [note: 'Categoría controlada para top de temas; no texto personal libre.']
+  origen varchar(20) [not null, default: 'ejecucion', note: 'ejecucion o fixture; no presentar fixtures como llamadas reales.']
+  documentos_citados json
+  respuesta_json json [note: 'Migración 15: respuesta estructurada para historial/memoria propia. Acceso siempre por colaborador de sesión; excluir origen fixture.']
+  resuelta boolean [not null, default: false]
+  escalada boolean [not null, default: false]
+  latencia_ms int
+  creada_en datetime [not null, note: 'Instante UTC. /chat requiere sesión; intentos anónimos van al log de seguridad sin contenido personal.']
+
+  checks {
+    `latencia_ms >= 0`
+  }
+
+  Indexes {
+    (creada_en)
+    (colaborador_id, creada_en)
+    (intencion, creada_en)
+  }
+
+  Note: 'Una fila por POST /chat. Historial propio persistente y contexto acotado por usuario; no exponer fixtures como conversación real. Documentos citados es JSON de metadatos de fuente.'
+}
+
+Table agent_execution_logs {
+  id int [pk, increment]
+  consulta_chat_id int
+  tipo_ejecucion varchar(40) [not null, note: 'chat, reporte_diario o ingesta.']
+  agente varchar(80) [not null]
+  consulta text
+  contexto json [note: 'Fecha del reporte o carpeta de ingesta para correlación de trabajos sin chat; sin secretos.']
+  origen varchar(20) [not null, default: 'ejecucion', note: 'ejecucion o fixture.']
+  fragmentos_usados json
+  escalada boolean [not null, default: false]
+  latencia_ms int
+  estado estado_ejecucion [not null]
+  codigo_error varchar(80)
+  iniciada_en datetime [not null, note: 'Instante UTC.']
+  finalizada_en datetime [note: 'Instante UTC.']
+
+  checks {
+    `latencia_ms >= 0`
+    `finalizada_en IS NULL OR finalizada_en >= iniciada_en`
+  }
+
+  Indexes {
+    (iniciada_en, agente)
+    (consulta_chat_id)
+    (tipo_ejecucion, estado, iniciada_en)
+  }
+
+  Note: 'Una fila por cada ejecución de agente, también las ejecuciones del analista que no nacen de una consulta de chat.'
+}
+
+Table reportes_diarios {
+  id int [pk, increment]
+  fecha date [not null, unique, note: 'Día de negocio en Costa Rica.']
+  datos_json json [not null, note: 'Incluye 8 componentes: ausencias, solicitudes_pendientes, incapacidades, movimientos_personal, riesgo_vacaciones, uso_chatbot, temas_chatbot y resumen_ejecutivo.']
+  resumen_texto text [not null]
+  generado_por varchar(80) [not null, default: 'agente_analista']
+  generado_en datetime [not null, note: 'Instante UTC.']
+  origen varchar(20) [not null, default: 'ejecucion', note: 'ejecucion o fixture.']
+  esquema_version int [not null, default: 1]
+
+  Note: 'El JSON conserva los resultados calculados por SQL y el resumen derivado de ellos. Mantener histórico para el dashboard.'
+}
+
+Table drive_documentos {
+  id int [pk, increment]
+  drive_file_id varchar(200) [not null, unique]
+  nombre varchar(500) [not null]
+  enlace varchar(1000)
+  mime_type varchar(160)
+  version varchar(80)
+  modificado_drive_en datetime [note: 'Instante UTC reportado por Drive.']
+  checksum varchar(128)
+  revision_indexada varchar(200) [note: 'Identificador de revisión aplicada a Qdrant; no implica transacción distribuida.']
+  estado_indexacion varchar(30) [not null, default: 'pendiente', note: 'pendiente, indexado o error.']
+  eliminado boolean [not null, default: false]
+  sincronizado_en datetime [note: 'Instante UTC de la última sincronización aplicada.']
+
+  Indexes {
+    (eliminado, modificado_drive_en)
+  }
+
+  Note: 'Metadatos de fuente para citas y reconciliación de archivos. Los vectores y fragmentos viven en Qdrant.'
+}
+
+Table drive_sync_state {
+  id int [pk, increment]
+  carpeta_drive_id varchar(200) [not null, unique]
+  page_token text [not null]
+  bloqueo_hasta datetime [note: 'Lease UTC para impedir sincronizaciones simultáneas; coordinar también lock del worker.']
+  sincronizado_en datetime [note: 'Instante UTC.']
+  estado varchar(30) [not null, default: 'pendiente']
+  ultimo_error varchar(1000)
+
+  Note: 'Una fila activa para la carpeta autorizada. Persistir el token de changes.list solo después de aplicar la página correspondiente.'
+}
+
+Ref: colaboradores.jefe_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: colaboradores.id - usuarios.colaborador_id [delete: restrict, update: restrict]
+Ref: sesiones.usuario_id > usuarios.id [delete: restrict, update: restrict]
+Ref: saldos_vacaciones.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: solicitudes.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: solicitudes.aprobador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: incapacidades.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: movimientos_personal.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: pagos.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: evaluaciones.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: consultas_chat.colaborador_id > colaboradores.id [delete: restrict, update: restrict]
+Ref: agent_execution_logs.consulta_chat_id > consultas_chat.id [delete: restrict, update: restrict]
+
+// Reglas de servicio/seed no expresables como CHECK de una sola fila:
+// - No autoasignación ni ciclos de jefatura (servicio, no CHECK sobre id autoincremental); colaboradores.rol es la única autoridad de rol.
+// - Usuarios activos + colaboradores activos + sesión no expirada/no revocada para autorizar.
+// - Saldo por período no se solapa con otro período del mismo colaborador.
+// - Al descontar vacaciones aprobadas, actualizar saldo una sola vez y en transacción; no usar movimientos_personal como libro de vacaciones.
+// - Al menos una cuenta colaborador y una rrhh, exactamente 60 colaboradores sintéticos.
+// - Historial de ingresos y salidas suficiente para reconstruir dotación al inicio/cierre de cada mes.
+// - Todo pago y evaluación corresponde a la persona filtrada por sesión; desempatar fechas por id ASC.
+// - Campos origen aceptan solo ejecucion o fixture (validación + CHECK en migración).
+// - reporte con ocho componentes completos y resumen validado; no publicar borradores incompletos.
+// - Cada llamada a agente tiene log, incluidos orquestador, datos, políticas, analista e ingesta.
+// - JSON de citas: drive_file_id, documento, seccion, version, enlace, fragmento_id.
+// - JSON de reporte y umbrales operativos según contrato-api.md; cifras no salen de Qdrant.
+// - Sesiones y cursores no se siembran; drive_documentos se puebla solo con sincronización real.
+// - Referencias CHECK/UNIQUE se aplicarán en migraciones MySQL, no solo validaciones Sequelize.

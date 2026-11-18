@@ -1,0 +1,8 @@
+[
+  { "pregunta": "¿Con cuánta anticipación debo solicitar vacaciones?", "documento_esperado": "D01" },
+  { "pregunta": "¿Cuáles son las fechas de los feriados de diciembre de 2026?", "documento_esperado": "D02" },
+  { "pregunta": "¿Qué licencia corresponde por fallecimiento de un familiar?", "documento_esperado": "D03" },
+  { "pregunta": "¿Desde qué día comienza el subsidio de una incapacidad de la CCSS?", "documento_esperado": "D04" },
+  { "pregunta": "¿Qué se propone para solicitar teletrabajo y registrar mi jornada?", "documento_esperado": "D05" },
+  { "pregunta": "¿Cómo se presenta una denuncia confidencial por hostigamiento sexual?", "documento_esperado": "D11" }
+]
