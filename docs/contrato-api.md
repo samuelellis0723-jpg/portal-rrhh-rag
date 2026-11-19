@@ -217,7 +217,7 @@ Autenticada. Devuelve `data:{items,limit,offset,total}` con solicitudes propias 
 
 ## Reportes de RRHH
 
-Ambas rutas requieren sesión cuyo rol en `colaboradores` sea `rrhh`. El MVP expone agregados y datos operativos mínimos de solicitudes y riesgo de vacaciones; los IDs de colaboradores en este reporte son visibles solo para RRHH. No expone salarios ajenos, nombres ni respuestas a consultas personales de terceros. Reportes se generan por el proceso programado, no por GET. Una fecha sin reporte retorna `404`.
+Estas rutas requieren sesión cuyo rol en `colaboradores` sea `rrhh`. El MVP expone agregados y datos operativos mínimos de solicitudes y riesgo de vacaciones; los IDs de colaboradores en este reporte son visibles solo para RRHH. No expone salarios ajenos, nombres ni respuestas a consultas personales de terceros. Las lecturas GET nunca disparan generación; una fecha sin reporte retorna `404`. La generación y actualización manual se realizan únicamente mediante `POST /rrhh/reportes/generar` con validación `Origin` + CSRF y bloqueo por fecha compartido con el worker automático de las 07:00 `America/Costa_Rica`.
 
 ### `GET /rrhh/reportes`
 
@@ -233,6 +233,15 @@ Historial paginado, ordenado por `fecha` descendente. Parámetros: `limit`, `off
   }
 }
 ```
+
+### `POST /rrhh/reportes/generar`
+
+Requiere sesión con rol `rrhh`, origen permitido (`Origin`) y token CSRF (`X-CSRF-Token`). Usa siempre la fecha actual de Costa Rica (`America/Costa_Rica`), coordinada mediante bloqueo `GET_LOCK` en MySQL para evitar duplicados con el worker de las 07:00 a. m. Cuerpo JSON opcional: `{ "actualizar": false | true }` (rechaza cualquier otro campo o parámetro de query con `400 VALIDATION_ERROR`).
+
+- Si no existe reporte para hoy: lo genera, lo persiste en MySQL y responde `201 Created` con el detalle completo del reporte y `estado_generacion: "created"`.
+- Si ya existe reporte para hoy y `actualizar` es `false` (u omitido): responde `200 OK` con el reporte existente y `estado_generacion: "exists"`.
+- Si ya existe reporte para hoy y `actualizar` es `true`: recalcula las cifras y el resumen; si el proveedor LLM falla, conserva el reporte anterior sin sobrescribirlo y responde `503 DEPENDENCY_UNAVAILABLE`. Si tiene éxito, actualiza el registro de hoy y responde `200 OK` con `estado_generacion: "updated"`.
+- Si hay otra generación en curso para la fecha de hoy: responde `409 REPORT_GENERATION_IN_PROGRESS`.
 
 ### `GET /rrhh/reportes/:fecha`
 
@@ -268,6 +277,28 @@ Definiciones de elementos: cada elemento de `por_departamento` es `{ "departamen
 
 Valores desconocidos no se sustituyen por cero: usan `null` y pueden incluir `disponible:false` dentro del componente. Si el reporte no existe, responde `404 NOT_FOUND`. Solo se publican reportes completos; un reporte no generado responde 404. Un fallo de MySQL al leer responde `503 DEPENDENCY_UNAVAILABLE`. Un reporte persistido puede leerse aunque IA, Drive o Qdrant estén caídos; el GET nunca calcula ni fabrica una respuesta alternativa.
 
+### `GET /rrhh/reportes-mensuales`
+
+Requiere sesión con rol `rrhh`. Devuelve los tres meses completos consecutivos disponibles (`2026-10`, `2026-09`, `2026-08`) con su `etiqueta`, `fecha_inicio`, `fecha_fin` y `mes_por_defecto` (`"2026-10"`).
+
+### `GET /rrhh/reportes-mensuales/:mes`
+
+Requiere sesión con rol `rrhh`. `:mes` debe tener formato `YYYY-MM` (`400 VALIDATION_ERROR` si es inválido, `404 NOT_FOUND` si el mes no está disponible). Calcula desde MySQL para `[fecha_inicio, fecha_fin]` en `America/Costa_Rica`:
+- `asistencia`: `dias_programados`, `dias_trabajados` (`puntual + tardia`), `dias_puntuales`, `tardias`, `minutos_tardia_total`, `promedio_minutos_tardia`, `faltas`, `ausencias_justificadas: { total, vacaciones, permiso, incapacidad }`, `dias_libres`, `sin_registro`, `porcentaje_asistencia` y `porcentaje_puntualidad` con sus fórmulas explícitas (`formula_porcentaje_asistencia`, `formula_porcentaje_puntualidad`).
+- `solicitudes`: `total`, `por_estado: { aprobada, pendiente, rechazada }`, `por_tipo: { vacaciones, permiso }`, `dias_solicitados_en_mes` y `nota_conteo` (distinguiendo número de solicitudes de días dentro del mes).
+- `incapacidades`: `total_registros`, `dias_en_mes` y `nota_conteo`.
+- `movimientos_personal`: `total`, `ingresos`, `salidas`, `ascensos` e `items` (sin salarios).
+
+### `GET /rrhh/colaboradores/:id/ficha`
+
+Requiere sesión con rol `rrhh`. `:id` debe ser entero positivo; parámetro de query opcional `mes=YYYY-MM` (por defecto el mes completo más reciente, `2026-10`). Rechaza cualquier otro parámetro de query o cuerpo con `400 VALIDATION_ERROR`; devuelve `404 NOT_FOUND` si el colaborador o el mes no existen.
+Devuelve:
+- `colaborador`: `{ id, nombre, departamento, puesto, estado, fecha_ingreso, fecha_salida }` (sin salarios, diagnósticos médicos ni conversaciones privadas).
+- `meses_disponibles` y `periodo` (`mes`, `etiqueta`, `fecha_inicio`, `fecha_fin`, `zona_horaria: "America/Costa_Rica"`).
+- `resumen`: `dias_programados`, `dias_trabajados`, `dias_puntuales`, `tardias`, `minutos_tardia_total`, `faltas`, `ausencias_justificadas`, `dias_libres`, `sin_registro`.
+- `registro_diario`: lista día por día dentro de la vigencia de empleo con `fecha`, `es_dia_programado`, `estado` (`puntual`, `tardia`, `falta`, `vacaciones`, `permiso`, `incapacidad`, `dia_libre`, `sin_registro`), `hora_entrada_programada`, `hora_entrada_real`, `minutos_tardia` y `origen`.
+- `solicitudes`, `incapacidades` (sin diagnósticos) y `movimientos_personal` del período.
+
 ## Códigos HTTP comunes
 
 | HTTP | Código | Uso |
@@ -299,3 +330,15 @@ Valores desconocidos no se sustituyen por cero: usan `null` y pueden incluir `di
 - El agente de políticas no consulta Drive en cada chat: usa el índice sincronizado. Drive caído no impide usar un índice ya válido; índice ausente o dependencias requeridas caídas producen 503. Un 503 de chat se registra como fallo operativo, no como respuesta exitosa.
 
 Se registran `consultas_chat` y `agent_execution_logs` para analítica y diagnóstico con acceso restringido. No se escriben contraseñas, cookies, tokens CSRF, token de sesión ni datos personales innecesarios en logs. Las consultas/reporte quedan sujetas al aviso de privacidad y retención que el equipo documente.
+
+## Eliminación de la conversación propia
+
+### `DELETE /chat/historial`
+
+Requiere sesión activa, `Origin` autorizado y `X-CSRF-Token`, igual que `POST /chat`. Sin cuerpo ni parámetros de consulta: rechaza IDs, correos o roles enviados por el cliente. La única conversación del MVP comprende todo el historial `origen=ejecucion` del colaborador de sesión; también RRHH solo puede eliminar el suyo. No existe ruta para borrar conversaciones ajenas.
+
+Devuelve `200` con `{"data":{"eliminadas":12}}`; repetir devuelve cero y no duplica métricas. La interfaz solicita confirmación y permite cancelar sin hacer la petición. La operación serializa envíos y borrados de esa cuenta mediante bloqueo MySQL; en una transacción acumula métricas y elimina preguntas, respuestas JSON, citas y logs de agentes vinculados. El historial y la memoria dejan de contener los mensajes, también tras recargar o abrir otra sesión. Un timeout del bloqueo devuelve `409 CHAT_BUSY` y permite reintentar.
+
+Solo se conserva `chat_metricas_eliminadas`: fecha de Costa Rica, tema controlado, conteo de consultas, resueltas sin escalamiento, sin respuesta, suma de latencias y cantidad de latencias. No contiene identidad, texto, citas, hora individual ni enlaces a mensajes. Los reportes publicados se conservan; los nuevos agregan esas métricas a las consultas restantes para mantener totales, tendencias y promedios. Los fixtures no forman parte del historial ni se eliminan.
+
+Los saludos aislados devuelven `intencion=saludo`, `estado=respondida`, sin citas y sin invocar LLM ni búsqueda documental. Un saludo acompañado de una pregunta sigue las reglas de la pregunta. Las consultas de próximos feriados usan fecha de `America/Costa_Rica` y exclusivamente filas del calendario publicado; si no hay cobertura suficiente se explica la limitación.

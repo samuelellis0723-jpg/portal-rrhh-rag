@@ -3,7 +3,7 @@ import WorkspaceLayout from '../components/WorkspaceLayout';
 import ChatMessage from '../components/ChatMessage';
 import { ErrorMessage, Loading } from '../components/Feedback';
 import { useSession } from '../components/SessionProvider';
-import { getChatHistory, sendMessage } from '../services/chat';
+import { getChatHistory, sendMessage, deleteConversation } from '../services/chat';
 
 const sortHistory = (items) => [...items].sort((a, b) => (a.consulta_id || Number.MAX_SAFE_INTEGER) - (b.consulta_id || Number.MAX_SAFE_INTEGER));
 
@@ -18,6 +18,9 @@ export default function Chat() {
   const [attempt, setAttempt] = useState(0);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
   const bottom = useRef(null);
   const mounted = useRef(true);
   const sequence = useRef(0);
@@ -48,10 +51,20 @@ export default function Chat() {
     finally { if (mounted.current) setMoreLoading(false); }
   }
 
+  async function clearConversation() {
+    setDeleting(true); setDeleteError('');
+    try {
+      await deleteConversation();
+      if (!mounted.current) return;
+      setItems([]); setTotal(0); setLoaded(0); setDraft(''); setConfirmDelete(false);
+    } catch (error) { if (mounted.current) setDeleteError(error.message); }
+    finally { if (mounted.current) setDeleting(false); }
+  }
+
   async function submit(event) {
     event?.preventDefault();
     const mensaje = draft.trim();
-    if (!mensaje || sending || loading || mensaje.length > 4000) return;
+    if (!mensaje || sending || loading || deleting || confirmDelete || mensaje.length > 4000) return;
     const localId = `pending-${++sequence.current}`;
     setItems((previous) => [...previous, { localId, mensaje, pending: true }]);
     setDraft(''); setSending(true);
@@ -68,7 +81,16 @@ export default function Chat() {
   return <WorkspaceLayout title="Asistente de RRHH" className="chat-dashboard">
     <div className="section-tag">CONVERSEMOS CON CLARIDAD</div><h1 className="page-title">Tu asistente de RRHH<span className="greeting-dot">.</span></h1>
     <p className="muted page-intro">Pregunta por las políticas o tu información. Cada fuente conserva su procedencia.</p>
-    <div className="chat-panel">
+    <div className="chat-toolbar"><button className="history-button" type="button" disabled={loading || sending || moreLoading || deleting || !items.length}
+      onClick={() => { setDeleteError(''); setConfirmDelete(true); }}>Eliminar conversación</button></div>
+    {confirmDelete && <div role="alertdialog" aria-modal="true" aria-labelledby="delete-chat-title" aria-describedby="delete-chat-description" className="chat-delete-confirm">
+      <h2 id="delete-chat-title">¿Eliminar esta conversación?</h2>
+      <p id="delete-chat-description">Se eliminarán tus mensajes y respuestas guardados y dejarán de usarse como contexto. Esta acción no se puede deshacer.</p>
+      {deleteError && <p role="alert">{deleteError}</p>}
+      <div className="composer-actions"><button type="button" className="history-button" autoFocus disabled={deleting} onClick={() => setConfirmDelete(false)}>Cancelar</button>
+        <button type="button" className="primary-button" disabled={deleting} onClick={clearConversation}>{deleting ? 'Eliminando…' : 'Confirmar eliminación'}</button></div>
+    </div>}
+    <div className="chat-panel" inert={confirmDelete ? true : undefined}>
       {loading ? <Loading>Recuperando tu conversación…</Loading> : <>
         {loaded < total && <button className="history-button" onClick={loadMore} disabled={moreLoading || sending}>{moreLoading ? 'Cargando…' : 'Ver consultas anteriores'}</button>}
         {historyError && <ErrorMessage onRetry={() => setAttempt((value) => value + 1)}>{historyError}</ErrorMessage>}
@@ -79,7 +101,7 @@ export default function Chat() {
       </>}
       <form className="chat-composer" onSubmit={submit} aria-busy={sending}>
         <label htmlFor="chat-message">Escribe tu consulta</label>
-        <textarea id="chat-message" value={draft} maxLength={4000} rows={3} disabled={sending || loading} placeholder="Por ejemplo: ¿cuántos días de vacaciones tengo disponibles?"
+        <textarea id="chat-message" value={draft} maxLength={4000} rows={3} disabled={sending || loading || deleting} placeholder="Por ejemplo: ¿cuántos días de vacaciones tengo disponibles?"
           onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => {
             if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); submit(); }
           }} aria-describedby="chat-help" />

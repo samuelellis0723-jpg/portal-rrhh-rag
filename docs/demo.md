@@ -1,30 +1,26 @@
-# Demo de cinco minutos
+# Video de respaldo: cinco minutos
 
-Empresa y datos exclusivamente simulados. No mostrar archivos `.env`, contraseñas, credenciales, cookies, CSRF ni pestañas de facturación. El video no está grabado: este archivo es su guion.
+El enunciado pide un video de demo de **5 minutos**, además de la presentación en vivo de **15 minutos**. Este archivo es el guion del video; [demo-en-vivo.md](demo-en-vivo.md) contiene el recorrido de quince minutos. El video todavía debe grabarse.
+
+Bosque Claro y sus 60 colaboradores son ficticios. Preparar las sesiones antes de grabar y pausar la captura al introducir contraseñas. No mostrar `.env`, credenciales, cookies, tokens CSRF ni paneles de facturación.
 
 ## Preparación
 
-Iniciar MySQL, `npm start` en backend y `npm run dev` en frontend. Abrir localhost:5173. Usar las cuentas `.example` existentes y contraseña local privada. Leer [PROGRESO](PROGRESO.md) y comprobar `ingest:check -- --live` y `llm:check`. Para una demo documental completa, publicar los doce documentos, sincronizar, pasar `ingest:verify`, generar un reporte real y repetir evaluación. No sustituir esos pasos por respuestas de ejemplo.
+Iniciar MySQL, Express (`cd backend && npm start`) y Vite (`cd frontend && npm run dev`). Abrir `http://localhost:5173` y una sesión Google autorizada para las citas de Drive. Revisar [PROGRESO.md](PROGRESO.md), el resultado JSON y la hoja XLSX. El reporte del 19-11-2026 tiene `origen=ejecucion`; se generó manualmente con el analista y DeepSeek. El worker no está activo como servicio: no presentar ese reporte como prueba de ejecución programada.
 
 ## Guion cronometrado
 
 | Tiempo | Acción y explicación |
 |---|---|
-| 0:00–0:35 | Presentar Bosque Claro y los 60 colaboradores simulados. Mostrar arquitectura: MySQL guarda identidades/cifras; Drive políticas; Qdrant es derivado. Gemini crea embeddings y DeepSeek clasifica/compone respuestas. |
-| 0:35–1:10 | Login colaborador sin grabar la contraseña. Mostrar saldo y períodos. Recargar para comprobar cookie/sesión. |
-| 1:10–2:15 | Chat: «¿Cuántos días de vacaciones me quedan disponibles?» y «¿Qué día cae mi próximo pago?». Mostrar la procedencia SQL y recargar el historial. Con accesos completos, preguntar «¿Con cuánta anticipación debo solicitar vacaciones?»; abrir una cita y señalar documento, sección, versión y enlace real. |
-| 2:15–2:55 | Pregunta mixta: «¿Cuántos días me quedan y puedo acumularlos al próximo año?». Distinguir saldo SQL y política citada. Preguntar por vacaciones de otro colaborador y comprobar rechazo genérico. Si falta corpus/LLM, mostrar el fallo o respuesta parcial e indicar el bloqueo, sin simular una cita. |
-| 2:55–4:10 | Cerrar sesión, ingresar con RRHH. Mostrar cuatro indicadores, dos gráficas, tendencia de 30 días, tabla de pendientes, ausencias por departamento, riesgo, temas, resumen e historial. Señalar claramente si el reporte es fixture o ejecución. Explicar worker de reportes 07:00 Costa Rica e ingesta independiente. |
-| 4:10–4:40 | Mostrar hoja de 45 preguntas y resultados obtenidos. Distinguir aciertos, fallos, bloqueos y revisión humana; mencionar privacidad 21/22 y p90 RAG, sin atribuir los errores rápidos a rendimiento del RAG. |
-| 4:40–5:00 | Logout y acceso privado rechazado. Cerrar con límites reales: fuentes académicas, dependencias externas, worker bajo supervisor y pendientes que indique PROGRESO. |
+| 0:00–0:30 | Presentar la empresa ficticia, los 60 colaboradores y el problema. Mostrar arquitectura: MySQL para cifras; Drive para políticas; Gemini/Qdrant para recuperación; DeepSeek para clasificación y redacción. |
+| 0:30–1:10 | Entrar con colaborador sin grabar contraseña. Mostrar saldo propio y recargar. Abrir chat: «hola» y «cuantas vacaciones tengo». Señalar que el saludo no usa LLM y el saldo viene de MySQL. |
+| 1:10–2:00 | Preguntar «cuando es el proximo feriado?». Mostrar fecha de referencia de Costa Rica; abrir la cita de D02 y comprobar fila/fecha en Drive. Si la demo ocurre fuera de 2026, explicar que el calendario publicado no cubre el período; no prometer una fecha de otro año. |
+| 2:00–2:45 | Pregunta mixta: «¿Cuántos días me quedan y puedo pasarlos al año siguiente?». Distinguir saldo SQL y política D01 propuesta con cita. Preguntar por el saldo de un compañero y mostrar rechazo genérico. |
+| 2:45–3:15 | Pulsar «Eliminar conversación», cancelar y mostrar que sigue ahí. Confirmar la eliminación; recargar y mostrar chat vacío. Explicar que preguntas, respuestas, citas y trazas se borran; solo quedan métricas anónimas agregadas. |
+| 3:15–4:15 | Ingresar como RRHH y abrir reporte real del 19-11-2026. Mostrar indicadores, dos gráficos, pendientes, temas, resumen e historial. Distinguir `ejecucion` de fixtures y generación manual de scheduler configurado a las 07:00 de Costa Rica. |
+| 4:15–4:45 | Mostrar XLSX/CSV y el resumen del JSON final: puntaje automático, fallos/bloqueos, privacidad 21/22 y p90 documental. Leer los valores actuales, sin atribuirles revisión humana completa. |
+| 4:45–5:00 | Cerrar sesión. Mencionar límites: políticas académicas, revisión humana de fidelidad y worker sin servicio continuo. Indicar dónde están README, contrato y entregables. |
 
-## Checklist de entrega
+## Archivos a entregar
 
-- README, `.env.example`, fuentes editables y lockfiles; sin secretos.
-- Arquitectura, investigación legal de nueve páginas e informe técnico de 8–12 páginas.
-- Hoja Excel/CSV de evaluación con 45 respuestas esperadas y obtenidas.
-- Publicación de doce documentos, formatos nativos y PDF, sincronización repetida sin duplicados y cita abierta: **pendientes de escritura Google**.
-- Chat RAG/mixto y resumen nuevo del analista: **pendientes de DeepSeek y corpus real**.
-- Grabar video de cinco minutos después de comprobar esos accesos; no afirmar una grabación o aprobación que no existe.
-
-Estado observado el 18-11-2026: autenticación, saldo, chat SQL e historial y dashboard fixture comprobados desde navegador; 61 pruebas unitarias, 13 de integración y ocho de navegador aprobadas. Banco real: 15 verificaciones automáticas aprobadas, cero fallidas y 30 bloqueadas; no acredita 80 %. Drive vacío y Qdrant cero puntos, embeddings Gemini reales correctos. Faltan escritora Drive y clave DeepSeek. Seguir [prompt para Gemini](PROMPT_GEMINI_ACCESOS.md).
+Repositorio sin secretos, README y ejemplos de entorno; investigación de nueve páginas; informe técnico y PDF de 8–12 páginas; arquitectura; banco de 45 preguntas, JSON final y hoja XLSX/CSV; enlace o archivo del video grabado de cinco minutos. Revisar las notas de fidelidad y fuentes en `docs/evaluacion/` antes de grabar.

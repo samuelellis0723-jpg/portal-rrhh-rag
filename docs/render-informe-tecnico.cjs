@@ -92,7 +92,7 @@ th,td{border:0.5pt solid #bbc9c0;padding:4pt 5pt;vertical-align:top;text-align:l
 th{background:#edf3ef;color:#173f31}
 .footer{position:absolute;bottom:0;left:0;right:0;border-top:.5pt solid #d5ded8;padding-top:4pt;color:#66736c;font-size:8pt;display:flex;justify-content:space-between}
 @media screen{body{background:#e8ede9}.page{width:210mm;min-height:297mm;margin:15px auto;padding:14mm 16mm 18mm;background:white;box-shadow:0 2px 12px #0002}.footer{left:16mm;right:16mm;bottom:12mm}}
-</style></head><body>${pages.map((page, index) => `<section class="page">${renderPage(page).replace("<h1>", index ? '<h1 style="page-break-before:always">' : "<h1>")}<footer class="footer"><span>Bosque Claro · Informe técnico · 18-11-2026</span><span>${index + 1} / ${pages.length}</span></footer></section>`).join('')}</body></html>`;
+</style></head><body>${pages.map((page, index) => `<section class="page">${renderPage(page).replace("<h1>", index ? '<h1 style="page-break-before:always">' : "<h1>")}<footer class="footer"><span>Bosque Claro · Informe técnico · 19-11-2026</span><span>${index + 1} / ${pages.length}</span></footer></section>`).join('')}</body></html>`;
 
 fs.writeFileSync(htmlPath, html);
 if (process.argv.includes('--html-only')) { console.log('HTML técnico preparado.'); process.exit(0); }

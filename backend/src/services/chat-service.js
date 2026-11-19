@@ -14,7 +14,12 @@ class ChatService {
     Object.assign(this, { llm, dataAgent, policyAgent, repository, privacy, clock });
   }
 
-  async ask({ collaboratorId, role, message }) {
+  async ask(input) {
+    const run = () => this.askLocked(input);
+    return this.repository.withConversationLock ? this.repository.withConversationLock(input.collaboratorId, run) : run();
+  }
+
+  async askLocked({ collaboratorId, role, message }) {
     const started = this.clock();
     const loggedMessage = redactSecrets(message);
     const chat = await this.repository.createChat({ colaboradorId: collaboratorId, pregunta: loggedMessage, creadaEn: started });
@@ -36,7 +41,8 @@ class ChatService {
       if (denied) throw new ApiError(403, 'FORBIDDEN', FORBIDDEN);
       if (isReportRequest(message) && role !== 'rrhh') throw new ApiError(403, 'FORBIDDEN', FORBIDDEN);
 
-      const memory = this.repository.recentConversationMemory
+      const greeting = isGreeting(message);
+      const memory = greeting ? [] : this.repository.recentConversationMemory
         ? await this.repository.recentConversationMemory(collaboratorId, chat.id, 5)
         : await this.repository.recentPolicyMemory(collaboratorId, chat.id, 5);
       const resolvedMessage = resolveFollowup(message, memory);
@@ -44,9 +50,10 @@ class ChatService {
         || await this.privacy.mentionsAnotherCollaborator(resolvedMessage, collaboratorId));
       if (resolvedDenied) throw new ApiError(403, 'FORBIDDEN', FORBIDDEN);
       const personalIntent = selectOwnPersonalIntent(resolvedMessage);
-      const direct = personalIntent ? { intencion: asksAboutPolicy(resolvedMessage) ? 'mixta' : 'dato_personal', tema: personalTheme(personalIntent) }
+      const direct = greeting ? { intencion: 'saludo', tema: 'otro' } : personalIntent ? { intencion: asksAboutPolicy(resolvedMessage) ? 'mixta' : 'dato_personal', tema: personalTheme(personalIntent) }
         : isReportRequest(resolvedMessage) ? { intencion: 'reporte', tema: 'otro' }
-          : isClearlyOutside(resolvedMessage) ? { intencion: 'fuera', tema: 'otro' } : null;
+          : isClearlyOutside(resolvedMessage) ? { intencion: 'fuera', tema: 'otro' }
+          : isPolicyQuestion(resolvedMessage) ? { intencion: 'politica', tema: 'politicas' } : null;
       // Las consultas inequívocas usan rutas de lectura fijas; no requieren una llamada LLM ficticia.
       const classification = await execute('clasificador', () => direct || this.llm.completeJson({ system: CLASSIFIER_SYSTEM, maxTokens: 250,
         user: JSON.stringify({ consulta: resolvedMessage, contexto_previo: memory.map(({ pregunta, tema, intencion }) => ({ pregunta, tema, intencion })) }) }),
@@ -55,7 +62,10 @@ class ChatService {
       if (classification.intencion === 'restringida') throw new ApiError(403, 'FORBIDDEN', FORBIDDEN);
       const hasPolicyPart = personalIntent && (asksAboutPolicy(resolvedMessage) || classification.intencion === 'mixta');
       let intent, response, citations = [], personalData, reportMetadata, parts, escalated = false, state = 'respondida';
-      if (personalIntent) {
+      if (greeting) {
+        intent = 'saludo';
+        response = '¡Hola! Puedes consultar tus vacaciones, pagos y solicitudes, o preguntar por las políticas de RRHH.';
+      } else if (personalIntent) {
         intent = hasPolicyPart ? 'mixta' : 'dato_personal';
         if (hasPolicyPart) {
           const policyQuery = policyOnlyQuestion(resolvedMessage);
@@ -156,7 +166,7 @@ function isExplicitlyThirdParty(message) {
   if (/\b(?:salarios?|sueldos?|vacaciones|saldos?|evaluaci[oó]n|pagos?)\b[\s\S]{0,180}\b(?:del?\s+(?:gerente|director|administrador|colaborador|empleado)|de\s+todos|de\s+los\s+dem[aá]s|ajenos?|de\s+otra\s+persona)\b/i.test(message)) return true;
   return /(?:\bcolaborador[_ ]?id\b|\b(?:correo|email)\s*[:=]|\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b|\b(?:de|para)\s+(?:otra\s+persona|tercero|(?:un|el|la)\s+(?:jef[ae]|supervisor[ae]?|compa(?:ñ|n)er[oa]|colega|colaborador[ae]?|emplead[oa])|mi\s+(?:jef[ae]|supervisor[ae]?|compa(?:ñ|n)er[oa]|colega)|alguien\s+m[aá]s)\b)/i.test(message);
 }
-function validClassification(value) { return value && typeof value === 'object' && ['politica','dato_personal','mixta','reporte','restringida','fuera'].includes(value.intencion)
+function validClassification(value) { return value && typeof value === 'object' && ['politica','dato_personal','mixta','reporte','restringida','fuera','saludo'].includes(value.intencion)
   && ['vacaciones','solicitudes','pagos','evaluaciones','politicas','otro'].includes(value.tema); }
 function validTheme(value) { return ['vacaciones','solicitudes','pagos','evaluaciones','politicas','otro'].includes(value) ? value : 'otro'; }
 function resolveFollowup(message, memory) {
@@ -169,13 +179,21 @@ function resolveFollowup(message, memory) {
   }
   return `Contexto previo de política: ${previous.pregunta}. Respuesta previa: ${previous.respuesta || ''}. Seguimiento: ${message}`;
 }
+function isGreeting(message) {
+  const text = message.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase().replace(/[¡!¿?,.]/g, ' ').trim();
+  return /^(?:(?:hola|buenas|buenos dias|buenas tardes|buenas noches)(?:\s+|$))+$/.test(text + ' ');
+}
+function isPolicyQuestion(message) {
+  return asksAboutPolicy(message) || /\b(?:vacaciones|jornada|horas\s+extra|preaviso|periodo\s+de\s+prueba|per[ií]odo\s+de\s+prueba|maternidad|paternidad|permisos?|bonos?|seguros?|feriados?|incapacitaron|incapacidades?|liquidaci[oó]n|despid|deducciones|recibo|privacidad|datos\s+guarda|qui[eé]n\s+puede\s+acceder|teletrabajo|aguinaldo|licencia|beneficios?|inducci[oó]n|hostigamiento)\b/i.test(message);
+}
 function isReportRequest(message) { return /\b(?:reportes?|informes?|dashboard|resumen\s+ejecutivo|indicadores\s+de\s+rrhh|cu[aá]ntas?\s+(?:personas|colaboradores|empleados))\b/i.test(message); }
 function policyOnlyQuestion(message) {
   if (message.startsWith('Contexto previo de política:')) return `Consulta sobre política: ${message.trim()}`;
   const clauses = message.split(/\b(?:y|adem[aá]s|tambi[eé]n)\b|[,;]|\?+/i).map((part) => part.trim()).filter(Boolean);
   const selected = clauses.find((part) => asksAboutPolicy(part) || /\b(?:puedo|se\s+puede|est[aá]\s+permitido)\b/i.test(part));
   const source = selected || message;
-  return `Consulta sobre política: ${source.replace(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, '').trim()}`;
+  const topic = /\bvacaciones\b/i.test(message) || selectOwnPersonalIntent(message) === 'saldo_vacaciones' ? ' de vacaciones' : '';
+  return `Consulta sobre política${topic}: ${source.replace(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi, '').trim()}`;
 }
 function personalTheme(type) { return ({ saldo_vacaciones: 'vacaciones', proximo_pago: 'pagos', proxima_evaluacion: 'evaluaciones', solicitudes: 'solicitudes' })[type] || 'otro'; }
 function isClearlyOutside(message) { return /\b(?:recomiendas?|recomienda|recomendar)\b[\s\S]{0,70}\b(?:pel[ií]cula|receta|serie|videojuego)\b/i.test(message); }

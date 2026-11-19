@@ -1,4 +1,4 @@
-const HEADING = /^\s{0,3}(#{1,6}\s+.+|(?:\d+(?:\.\d+)*[.)]?\s+)?[A-ZÁÉÍÓÚÜÑ][A-ZÁÉÍÓÚÜÑ0-9 ,;:()/_-]{3,100})\s*$/u;
+const HEADING = /^\s{0,3}(#{1,6}\s+.+|\d+(?:\.\d+)*[.)]\s+[^\n]{3,100}|(?:\d+(?:\.\d+)*[.)]?\s+)?[A-ZÁÉÍÓÚÜÑ][A-ZÁÉÍÓÚÜÑ0-9 ,;:()/_-]{3,100})\s*$/u;
 
 function splitDocument(text, { maxChars = 3200, overlap = 400 } = {}) {
   if (!Number.isInteger(maxChars) || maxChars < 500 || !Number.isInteger(overlap) || overlap < 0 || overlap >= maxChars) {

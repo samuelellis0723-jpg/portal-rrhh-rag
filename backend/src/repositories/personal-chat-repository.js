@@ -87,6 +87,44 @@ async function findReport(reportDate) {
   return ReporteDiario.findOne({ where: { fecha: reportDate }, attributes: ['fecha', 'datos_json', 'resumen_texto', 'origen', 'generado_en'] });
 }
 
+// El envío y el borrado de una misma cuenta se serializan también entre procesos.
+async function withConversationLock(colaboradorId, operation) {
+  // Una conexión dedicada al bloqueo evita ocupar el pool que atiende las consultas del agente.
+  const connection = await sequelize.connectionManager.connect(sequelize.config);
+  const name = `bc_chat_${colaboradorId}`;
+  let acquired = false;
+  try {
+    const [row] = await new Promise((resolve, reject) => connection.query('SELECT GET_LOCK(?, 60) AS acquired', [name],
+      (error, rows) => error ? reject(error) : resolve(rows)));
+    acquired = Number(row.acquired) === 1;
+    if (!acquired) throw new (require('../services/api-error'))(409, 'CHAT_BUSY', 'Tu conversación está ocupada. Vuelve a intentarlo.');
+    return await operation();
+  } finally {
+    if (acquired) await new Promise((resolve) => connection.query('SELECT RELEASE_LOCK(?)', [name], () => resolve()));
+    await sequelize.connectionManager.disconnect(connection);
+  }
+}
+
+async function deleteConversation(colaboradorId) {
+  return withConversationLock(colaboradorId, () => sequelize.transaction(async (transaction) => {
+    const replacements = { colaboradorId };
+    // No conservar preguntas, respuestas, documentos citados ni identidad en las métricas.
+    await sequelize.query(`INSERT INTO chat_metricas_eliminadas
+      (fecha, tema, consultas, resueltas, sin_respuesta, latencia_total, latencia_count)
+      SELECT DATE(DATE_SUB(creada_en, INTERVAL 6 HOUR)), COALESCE(tema, ''), COUNT(*),
+        SUM(resuelta = 1 AND escalada = 0), SUM(resuelta = 0), COALESCE(SUM(latencia_ms), 0), COUNT(latencia_ms)
+      FROM consultas_chat WHERE colaborador_id = :colaboradorId AND origen = 'ejecucion'
+      GROUP BY DATE(DATE_SUB(creada_en, INTERVAL 6 HOUR)), COALESCE(tema, '')
+      ON DUPLICATE KEY UPDATE consultas = consultas + VALUES(consultas), resueltas = resueltas + VALUES(resueltas),
+        sin_respuesta = sin_respuesta + VALUES(sin_respuesta), latencia_total = latencia_total + VALUES(latencia_total),
+        latencia_count = latencia_count + VALUES(latencia_count)`, { replacements, transaction });
+    await sequelize.query(`DELETE logs FROM agent_execution_logs logs JOIN consultas_chat chat ON chat.id = logs.consulta_chat_id
+      WHERE chat.colaborador_id = :colaboradorId AND chat.origen = 'ejecucion'`, { replacements, transaction });
+    const deleted = await ConsultaChat.destroy({ where: { colaborador_id: colaboradorId, origen: 'ejecucion' }, transaction });
+    return { eliminadas: deleted };
+  }));
+}
+
 function safeTopic(topic) { return ['vacaciones','solicitudes','pagos','evaluaciones','politicas','otro'].includes(topic) ? topic : 'otro'; }
 
-module.exports = { ownVacationBalance, ownNextPayment, ownNextEvaluation, ownRequests, findReport, createChat, completeChat, addExecution, history, recentPolicyMemory, recentConversationMemory };
+module.exports = { ownVacationBalance, ownNextPayment, ownNextEvaluation, ownRequests, findReport, createChat, completeChat, addExecution, history, recentPolicyMemory, recentConversationMemory, withConversationLock, deleteConversation };

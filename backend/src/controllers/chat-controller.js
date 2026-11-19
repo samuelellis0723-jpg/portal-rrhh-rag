@@ -7,6 +7,10 @@ function createController(service = new ChatService()) {
       const data = await service.ask({ collaboratorId: req.auth.data.colaborador.id, role: req.auth.data.colaborador.rol, message: req.chatMessage });
       res.status(200).json({ data });
     },
+    async clear(req, res) {
+      const data = await repository.deleteConversation(req.auth.data.colaborador.id);
+      res.json({ data });
+    },
     async history(req, res) {
       const data = await repository.history(req.auth.data.colaborador.id, req.pagination);
       res.json({ data });

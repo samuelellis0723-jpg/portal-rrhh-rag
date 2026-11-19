@@ -59,8 +59,8 @@ async function main() {
     "SELECT COUNT(*) AS total FROM information_schema.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = DATABASE() AND REFERENCED_TABLE_NAME IS NOT NULL",
     { type: QueryTypes.SELECT },
   );
-  assert.equal(Number(fk.total), 12);
-  console.log(JSON.stringify({ connection: 'up', models: 14, migrations: migrations.length, foreign_keys: Number(fk.total),
+  assert.equal(Number(fk.total), 13);
+  console.log(JSON.stringify({ connection: 'up', models: Object.keys(models.sequelize.models).length, migrations: migrations.length, foreign_keys: Number(fk.total),
     fixture_window: { from: START, to: END }, fixture_counts: counts, demo_password_hashes_verified: true }, null, 2));
 }
 

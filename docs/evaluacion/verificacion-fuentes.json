@@ -1,0 +1,763 @@
+{
+  "fecha": "2026-11-19T17:19:21.492Z",
+  "modo": "Drive lector y Qdrant reales; sin cambio de documentos",
+  "documentos": [
+    {
+      "id_documental": "D12",
+      "documento": "Aviso propuesto de privacidad para colaboradores",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 7,
+      "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D11",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 7,
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D10",
+      "documento": "Política de evaluación del desempeño y desarrollo",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 7,
+      "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D09",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 6,
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D08",
+      "documento": "Catálogo propuesto de beneficios",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 5,
+      "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D07",
+      "documento": "Calendario general de pagos y obligaciones 2026",
+      "mime": "application/vnd.google-apps.spreadsheet",
+      "drive_file_id": "1L3pZkgOnnxkeIL6zeXLd7Ha7u0fM5ZVnW-naH4FLh2g",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 3,
+      "enlace": "https://docs.google.com/spreadsheets/d/1L3pZkgOnnxkeIL6zeXLd7Ha7u0fM5ZVnW-naH4FLh2g/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D06",
+      "documento": "Política salarial y de planilla",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 6,
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D05",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 6,
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D04",
+      "documento": "Procedimiento de incapacidades",
+      "mime": "application/pdf",
+      "drive_file_id": "1vl2so3zVBag5p6z7NqOPmybok790Pk6w",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 7,
+      "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk"
+    },
+    {
+      "id_documental": "D03",
+      "documento": "Política de permisos y licencias",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 6,
+      "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D02",
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "mime": "application/vnd.google-apps.spreadsheet",
+      "drive_file_id": "1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 1,
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk"
+    },
+    {
+      "id_documental": "D01",
+      "documento": "Politica de vacaciones",
+      "mime": "application/vnd.google-apps.document",
+      "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+      "en_carpeta_autorizada": true,
+      "indexado": true,
+      "puntos_revision_activa": 7,
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk"
+    }
+  ],
+  "citas_comprobadas": [
+    {
+      "caso": "banco-1",
+      "documento": "Politica de vacaciones",
+      "seccion": "2. Piso legal verificado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-1",
+      "documento": "Politica de vacaciones",
+      "seccion": "1. Alcance y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-1",
+      "documento": "Politica de vacaciones",
+      "seccion": "6. Revisión",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-3",
+      "documento": "Politica de vacaciones",
+      "seccion": "4. Disfrute, saldo y registro",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-3",
+      "documento": "Politica de vacaciones",
+      "seccion": "2. Piso legal verificado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-3",
+      "documento": "Politica de vacaciones",
+      "seccion": "6. Revisión",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-3",
+      "documento": "Politica de vacaciones",
+      "seccion": "1. Alcance y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-4",
+      "documento": "Politica de vacaciones",
+      "seccion": "3. Propuesta interna para solicitud y aprobación",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-4",
+      "documento": "Politica de vacaciones",
+      "seccion": "1. Alcance y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-5",
+      "documento": "Política de permisos y licencias",
+      "seccion": "2. Licencias con base legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-6",
+      "documento": "Política de permisos y licencias",
+      "seccion": "2. Licencias con base legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-6",
+      "documento": "Política de permisos y licencias",
+      "seccion": "5. No renuncia ni discriminación",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-6",
+      "documento": "Política de permisos y licencias",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-7",
+      "documento": "Procedimiento de incapacidades",
+      "seccion": "3. Enfermedad común: cobertura y pago",
+      "version": "0.1",
+      "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-7",
+      "documento": "Procedimiento de incapacidades",
+      "seccion": "6. Fuentes y advertencia de vigencia",
+      "version": "0.1",
+      "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-7",
+      "documento": "Procedimiento de incapacidades",
+      "seccion": "1. Estado y alcance",
+      "version": "0.1",
+      "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-8",
+      "documento": "Política salarial y de planilla",
+      "seccion": "4. Aguinaldo legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-8",
+      "documento": "Calendario general de pagos y obligaciones 2026",
+      "seccion": "Hoja: Calendario general de pagos y o",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/spreadsheets/d/1L3pZkgOnnxkeIL6zeXLd7Ha7u0fM5ZVnW-naH4FLh2g/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-8",
+      "documento": "Política salarial y de planilla",
+      "seccion": "5. Consultas y correcciones",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-10",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "4. Teletrabajo",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-10",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "1. Estado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-10",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-11",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "2. Jornada y descansos: marco legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-11",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "3. Horario propuesto y marcas",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-11",
+      "documento": "Política salarial y de planilla",
+      "seccion": "2. Remuneración y transparencia operativa",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-11",
+      "documento": "Política salarial y de planilla",
+      "seccion": "1. Propósito y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-12",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "3. Período de prueba",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-13",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "4. Renuncia y terminación",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-13",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "3. Período de prueba",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-14",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "4. Renuncia y terminación",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-14",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "3. Período de prueba",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-15",
+      "documento": "Catálogo propuesto de beneficios",
+      "seccion": "3. Beneficios que se podrían evaluar",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-15",
+      "documento": "Catálogo propuesto de beneficios",
+      "seccion": "1. Estado del catálogo",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-15",
+      "documento": "Catálogo propuesto de beneficios",
+      "seccion": "2. Obligaciones frente a beneficios voluntarios",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "3. Hostigamiento sexual: obligación legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "6. Otras quejas de acoso laboral",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "4. Canal interno propuesto",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "1. Estado y alcance",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-16",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "5. Investigación y protección",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-19",
+      "documento": "Politica de vacaciones",
+      "seccion": "4. Disfrute, saldo y registro",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-19",
+      "documento": "Politica de vacaciones",
+      "seccion": "2. Piso legal verificado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-19",
+      "documento": "Politica de vacaciones",
+      "seccion": "6. Revisión",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-19",
+      "documento": "Politica de vacaciones",
+      "seccion": "1. Alcance y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-20",
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa · Fila 20; Hoja: Calendario de feriados de Costa · Fila 21",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-30",
+      "documento": "Politica de vacaciones",
+      "seccion": "3. Propuesta interna para solicitud y aprobación",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-30",
+      "documento": "Politica de vacaciones",
+      "seccion": "4. Disfrute, saldo y registro",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-30",
+      "documento": "Politica de vacaciones",
+      "seccion": "1. Alcance y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-31",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "3. Horario propuesto y marcas",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-31",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "2. Jornada y descansos: marco legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-32",
+      "documento": "Política salarial y de planilla",
+      "seccion": "5. Consultas y correcciones",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-32",
+      "documento": "Política salarial y de planilla",
+      "seccion": "2. Remuneración y transparencia operativa",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-33",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "4. Teletrabajo",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-33",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-33",
+      "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+      "seccion": "1. Estado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-34",
+      "documento": "Catálogo propuesto de beneficios",
+      "seccion": "3. Beneficios que se podrían evaluar",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-34",
+      "documento": "Política de evaluación del desempeño y desarrollo",
+      "seccion": "4. Planes de desarrollo y mejora",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-35",
+      "documento": "Aviso propuesto de privacidad para colaboradores",
+      "seccion": "2. Responsable y datos tratados",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-35",
+      "documento": "Aviso propuesto de privacidad para colaboradores",
+      "seccion": "3. Finalidades y acceso",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-35",
+      "documento": "Aviso propuesto de privacidad para colaboradores",
+      "seccion": "6. Uso de IA en el portal académico",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-35",
+      "documento": "Política de evaluación del desempeño y desarrollo",
+      "seccion": "6. Confidencialidad",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-36",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "3. Hostigamiento sexual: obligación legal",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-36",
+      "documento": "Código de conducta y protocolo propuesto de denuncias",
+      "seccion": "1. Estado y alcance",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-37",
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-38",
+      "documento": "Política salarial y de planilla",
+      "seccion": "5. Consultas y correcciones",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-38",
+      "documento": "Política salarial y de planilla",
+      "seccion": "2. Remuneración y transparencia operativa",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-38",
+      "documento": "Política salarial y de planilla",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-38",
+      "documento": "Política salarial y de planilla",
+      "seccion": "1. Propósito y carácter",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-39",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "2. Ingreso",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-39",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-39",
+      "documento": "Manual de ingreso y procedimiento de salida",
+      "seccion": "1. Estado y alcance",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-40",
+      "documento": "Política de evaluación del desempeño y desarrollo",
+      "seccion": "3. Conversación y revisión",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "banco-40",
+      "documento": "Política de evaluación del desempeño y desarrollo",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-4",
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-5",
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-8",
+      "documento": "Politica de vacaciones",
+      "seccion": "4. Disfrute, saldo y registro",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-8",
+      "documento": "Politica de vacaciones",
+      "seccion": "2. Piso legal verificado",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-8",
+      "documento": "Politica de vacaciones",
+      "seccion": "6. Revisión",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    },
+    {
+      "caso": "navegador-8",
+      "documento": "Politica de vacaciones",
+      "seccion": "Introducción",
+      "version": "0.1",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "fragmento_en_fuente_drive": true
+    }
+  ],
+  "total_documentos": 12,
+  "total_puntos": 68,
+  "aprobado": true
+}

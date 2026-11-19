@@ -18,7 +18,7 @@ function cors(req, res, next) {
   }
   if (req.method === 'OPTIONS') {
     allowedOrigin(req, res, () => {});
-    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
     res.set('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
     return res.sendStatus(204);
   }

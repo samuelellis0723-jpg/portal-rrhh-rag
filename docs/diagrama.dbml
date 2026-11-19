@@ -359,3 +359,18 @@ Ref: agent_execution_logs.consulta_chat_id > consultas_chat.id [delete: restrict
 // - JSON de reporte y umbrales operativos según contrato-api.md; cifras no salen de Qdrant.
 // - Sesiones y cursores no se siembran; drive_documentos se puebla solo con sincronización real.
 // - Referencias CHECK/UNIQUE se aplicarán en migraciones MySQL, no solo validaciones Sequelize.
+
+Table chat_metricas_eliminadas {
+  fecha date [not null, note: 'Día en America/Costa_Rica; migración 16.']
+  tema varchar(100) [not null, note: 'Categoría controlada; nunca texto libre.']
+  consultas int [not null]
+  resueltas int [not null]
+  sin_respuesta int [not null]
+  latencia_total decimal(20,0) [not null]
+  latencia_count int [not null]
+
+  Indexes {
+    (fecha, tema) [pk]
+  }
+  Note: 'Agregados de conversaciones eliminadas, sin identidad ni contenido. Alimentan métricas junto a consultas_chat; sin relación FK con personas.'
+}

@@ -47,10 +47,20 @@ async function rosterAt(date) {
   return { count: Number(row.headcount || 0), unknown: Number(row.unknown_count || 0) > 0 };
 }
 
+// La suma incluye conversaciones borradas sin volver a almacenar su contenido o identidad.
+const chatMetricsSql = `
+  SELECT DATE_FORMAT(DATE_SUB(creada_en, INTERVAL 6 HOUR), '%Y-%m-%d') AS fecha,
+    COALESCE(tema, '') AS tema, COUNT(*) AS consultas,
+    SUM(resuelta = 1 AND escalada = 0) AS resueltas, SUM(resuelta = 0) AS sin_respuesta,
+    COALESCE(SUM(latencia_ms), 0) AS latencia_total, COUNT(latencia_ms) AS latencia_count
+  FROM consultas_chat GROUP BY DATE_FORMAT(DATE_SUB(creada_en, INTERVAL 6 HOUR), '%Y-%m-%d'), COALESCE(tema, '')
+  UNION ALL SELECT fecha, tema, consultas, resueltas, sin_respuesta, latencia_total, latencia_count FROM chat_metricas_eliminadas
+`;
+
 async function aggregateReport(date) {
   const range = dateRange(date);
   const [absenceRows, pendingRows, activeIncapacityRows, daysRows, movementRows, initialRoster, cutoffRoster,
-    riskRows, chatbotRows, trendRows, topicRows, unresolvedRows, unknownRoster] = await Promise.all([
+    riskRows, chatbotRows, trendRows, topicRows, unresolvedRows, unknownRoster, peopleRows] = await Promise.all([
     select(`
       SELECT DISTINCT source.colaborador_id, source.departamento, source.tipo
       FROM (
@@ -68,8 +78,9 @@ async function aggregateReport(date) {
       ) source
     `, range),
     select(`
-      SELECT s.id, s.colaborador_id, s.tipo, c.departamento, s.fecha_inicio, s.fecha_fin, s.creada_en
+      SELECT s.id, s.colaborador_id, COALESCE(u.nombres, c.nombre) AS nombre, s.tipo, c.departamento, s.fecha_inicio, s.fecha_fin, s.creada_en
       FROM solicitudes s JOIN colaboradores c ON c.id = s.colaborador_id
+      LEFT JOIN usuarios u ON u.colaborador_id = c.id
       WHERE s.creada_en <= :cutoffUtc
         AND ((s.estado = 'pendiente' AND (s.resuelta_en IS NULL OR s.resuelta_en > :cutoffUtc)) OR s.resuelta_en > :cutoffUtc)
       ORDER BY s.creada_en ASC, s.id ASC
@@ -94,39 +105,64 @@ async function aggregateReport(date) {
     `, range),
     rosterAt(range.monthStart), rosterAt(date),
     select(`
-      SELECT c.id AS colaborador_id, c.departamento, CAST(SUM(v.dias_disponibles) AS CHAR) AS dias_disponibles
+      SELECT c.id AS colaborador_id, COALESCE(u.nombres, c.nombre) AS nombre, c.departamento, CAST(SUM(v.dias_disponibles) AS CHAR) AS dias_disponibles
       FROM saldos_vacaciones v JOIN colaboradores c ON c.id = v.colaborador_id
+      LEFT JOIN usuarios u ON u.colaborador_id = c.id
       WHERE c.fecha_ingreso <= :date
         AND NOT EXISTS (SELECT 1 FROM movimientos_personal m WHERE m.colaborador_id = c.id AND m.tipo = 'salida' AND m.fecha <= :date)
-      GROUP BY c.id, c.departamento HAVING SUM(v.dias_disponibles) > 20
+      GROUP BY c.id, u.nombres, c.nombre, c.departamento HAVING SUM(v.dias_disponibles) > 20
       ORDER BY SUM(v.dias_disponibles) DESC, c.id ASC
     `, range),
     select(`
-      SELECT COUNT(*) AS total,
-        SUM(CASE WHEN resuelta = 1 AND escalada = 0 THEN 1 ELSE 0 END) AS resueltas_sin_escalar,
-        AVG(latencia_ms) AS latencia_promedio_ms
-      FROM consultas_chat WHERE creada_en >= :yesterdayStartUtc AND creada_en < :dateStartUtc
-    `, range),
+      SELECT SUM(consultas) AS total, SUM(resueltas) AS resueltas_sin_escalar,
+        SUM(latencia_total) / NULLIF(SUM(latencia_count), 0) AS latencia_promedio_ms
+      FROM (${chatMetricsSql}) metrics WHERE fecha = :yesterday
+    `, { ...range, yesterday: dateBefore(date, 1) }),
     select(`
-      SELECT DATE_FORMAT(DATE_SUB(creada_en, INTERVAL 6 HOUR), '%Y-%m-%d') AS fecha, COUNT(*) AS consultas
-      FROM consultas_chat
-      WHERE creada_en >= :trendStartUtc AND creada_en < :dateStartUtc
-      GROUP BY DATE_FORMAT(DATE_SUB(creada_en, INTERVAL 6 HOUR), '%Y-%m-%d')
-    `, { ...range, trendStartUtc: `${dateBefore(date, 30)} 06:00:00` }),
+      SELECT fecha, SUM(consultas) AS consultas FROM (${chatMetricsSql}) metrics
+      WHERE fecha >= :trendStart AND fecha < :date GROUP BY fecha
+    `, { ...range, trendStart: dateBefore(date, 30) }),
     select(`
-      SELECT tema, COUNT(*) AS consultas FROM consultas_chat
-      WHERE creada_en >= :yesterdayStartUtc AND creada_en < :dateStartUtc AND tema IS NOT NULL AND tema <> ''
+      SELECT tema, SUM(consultas) AS consultas FROM (${chatMetricsSql}) metrics
+      WHERE fecha = :yesterday AND tema <> ''
       GROUP BY tema ORDER BY consultas DESC, tema ASC LIMIT 20
-    `, range),
+    `, { ...range, yesterday: dateBefore(date, 1) }),
     select(`
-      SELECT tema, COUNT(*) AS consultas FROM consultas_chat
-      WHERE creada_en >= :yesterdayStartUtc AND creada_en < :dateStartUtc AND resuelta = 0
-      GROUP BY tema ORDER BY consultas DESC, tema ASC LIMIT 20
-    `, range),
+      SELECT tema, SUM(sin_respuesta) AS consultas FROM (${chatMetricsSql}) metrics
+      WHERE fecha = :yesterday GROUP BY tema HAVING SUM(sin_respuesta) > 0
+      ORDER BY consultas DESC, tema ASC LIMIT 20
+    `, { ...range, yesterday: dateBefore(date, 1) }),
     select(`
       SELECT COUNT(*) AS total FROM colaboradores c
       WHERE c.fecha_ingreso <= :date AND c.estado = 'inactivo'
         AND NOT EXISTS (SELECT 1 FROM movimientos_personal m WHERE m.colaborador_id = c.id AND m.tipo = 'salida')
+    `, range),
+    select(`
+      SELECT c.id AS colaborador_id, COALESCE(u.nombres, c.nombre) AS nombre, c.departamento, c.puesto, c.estado,
+        CAST(COALESCE(vac.dias_disponibles, 0) AS CHAR) AS dias_vacaciones_disponibles,
+        COALESCE(pend.total, 0) AS solicitudes_pendientes,
+        COALESCE(inc.total, 0) AS incapacidades_activas
+      FROM colaboradores c
+      LEFT JOIN usuarios u ON u.colaborador_id = c.id
+      LEFT JOIN (
+        SELECT colaborador_id, SUM(dias_disponibles) AS dias_disponibles
+        FROM saldos_vacaciones GROUP BY colaborador_id
+      ) vac ON vac.colaborador_id = c.id
+      LEFT JOIN (
+        SELECT colaborador_id, COUNT(*) AS total
+        FROM solicitudes
+        WHERE creada_en <= :cutoffUtc
+          AND ((estado = 'pendiente' AND (resuelta_en IS NULL OR resuelta_en > :cutoffUtc)) OR resuelta_en > :cutoffUtc)
+        GROUP BY colaborador_id
+      ) pend ON pend.colaborador_id = c.id
+      LEFT JOIN (
+        SELECT colaborador_id, COUNT(*) AS total
+        FROM incapacidades
+        WHERE registrada_en <= :cutoffUtc AND fecha_inicio <= :date AND DATE_ADD(fecha_inicio, INTERVAL (dias - 1) DAY) >= :date
+        GROUP BY colaborador_id
+      ) inc ON inc.colaborador_id = c.id
+      WHERE c.fecha_ingreso <= :date
+      ORDER BY nombre ASC, c.id ASC
     `, range),
   ]);
 
@@ -136,7 +172,7 @@ async function aggregateReport(date) {
     const created = asUtcInstant(row.creada_en);
     const ageMs = cutoff - created.getTime();
     return {
-      id: Number(row.id), tipo: row.tipo, departamento: row.departamento,
+      id: Number(row.id), nombre: row.nombre, tipo: row.tipo, departamento: row.departamento,
       fecha_inicio: asDate(row.fecha_inicio), fecha_fin: asDate(row.fecha_fin),
       creada_en: created.toISOString(), dias_pendiente: Math.max(0, Math.floor(ageMs / 86400000)),
       _ageMs: ageMs,
@@ -220,7 +256,7 @@ async function aggregateReport(date) {
       total_colaboradores: riskAvailable ? riskRows.length : null,
       por_departamento: riskAvailable ? [...riskByDepartment].map(([departamento, total]) => ({ departamento, total })) : null,
       items: riskAvailable ? riskRows.map((row) => ({ colaborador_id: Number(row.colaborador_id),
-        departamento: row.departamento, dias_disponibles: String(row.dias_disponibles) })) : null,
+        nombre: row.nombre, departamento: row.departamento, dias_disponibles: String(row.dias_disponibles) })) : null,
     },
     uso_chatbot: {
       consultas_dia_anterior: chatTotal,
@@ -230,6 +266,20 @@ async function aggregateReport(date) {
       tendencia_30_dias: trend,
     },
     temas_chatbot: { top_5: groupTopicRows(topicRows).slice(0, 5), sin_respuesta: unresolved },
+    detalle_personas: {
+      total: peopleRows.length,
+      items: peopleRows.map((row) => ({
+        colaborador_id: Number(row.colaborador_id),
+        nombre: row.nombre,
+        departamento: row.departamento,
+        puesto: row.puesto,
+        estado: row.estado,
+        dias_vacaciones_disponibles: String(row.dias_vacaciones_disponibles),
+        solicitudes_pendientes: Number(row.solicitudes_pendientes || 0),
+        incapacidades_activas: Number(row.incapacidades_activas || 0),
+        ausente_hoy: absentByPerson.has(Number(row.colaborador_id)),
+      })),
+    },
   };
   return report;
 }
@@ -245,19 +295,20 @@ async function list({ limit, offset }) {
   });
 }
 
+async function queryOnConnection(connection, sql, params) {
+  const [rows] = await connection.promise().query(sql, params);
+  return rows;
+}
+
 async function withDateLock(date, operation) {
   const lockName = `bc_report_${date.replaceAll('-', '')}`;
   const connection = await sequelize.connectionManager.getConnection({ type: 'WRITE' });
   try {
-    const [lock] = await sequelize.query('SELECT GET_LOCK(:name, 0) AS acquired', {
-      replacements: { name: lockName }, type: QueryTypes.SELECT, connection,
-    });
+    const [lock] = await queryOnConnection(connection, 'SELECT GET_LOCK(?, 0) AS acquired', [lockName]);
     if (Number(lock.acquired) !== 1) return { acquired: false };
     try { return { acquired: true, result: await operation() }; }
     finally {
-      await sequelize.query('SELECT RELEASE_LOCK(:name)', {
-        replacements: { name: lockName }, type: QueryTypes.SELECT, connection,
-      }).catch(() => {});
+      await queryOnConnection(connection, 'SELECT RELEASE_LOCK(?) AS released', [lockName]).catch(() => {});
     }
   } finally {
     await sequelize.connectionManager.releaseConnection(connection);
@@ -271,6 +322,14 @@ async function createExecution({ date, data, summary, generatedAt }) {
   });
 }
 
+async function updateExecution(id, { data, summary, generatedAt }) {
+  await models.ReporteDiario.update({
+    datos_json: data, resumen_texto: summary, generado_por: 'agente_analista',
+    generado_en: generatedAt, origen: 'ejecucion', esquema_version: 1,
+  }, { where: { id } });
+  return models.ReporteDiario.findByPk(id);
+}
+
 async function logAnalystExecution({ startedAt, finishedAt, state, errorCode = null, context = {} }) {
   return models.AgentExecutionLog.create({
     consulta_chat_id: null, tipo_ejecucion: 'reporte_diario', agente: 'agente_analista', consulta: null,
@@ -280,4 +339,4 @@ async function logAnalystExecution({ startedAt, finishedAt, state, errorCode = n
   });
 }
 
-module.exports = { aggregateReport, dateBefore, dateRange, findByDate, list, withDateLock, createExecution, logAnalystExecution, sequelize, asDate, asUtcInstant };
+module.exports = { aggregateReport, dateBefore, dateRange, findByDate, list, withDateLock, createExecution, updateExecution, logAnalystExecution, sequelize, asDate, asUtcInstant };

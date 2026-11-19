@@ -6,8 +6,8 @@ const schema = require('../src/database/current-schema');
 
 test.after(() => sequelize.close());
 
-test('14 modelos reflejan todos los atributos, sin timestamps automáticos extra', () => {
-  assert.equal(Object.keys(sequelize.models).length, 14);
+test('16 modelos reflejan todos los atributos, sin timestamps automáticos extra', () => {
+  assert.equal(Object.keys(sequelize.models).length, 16);
   for (const model of Object.values(sequelize.models)) {
     assert.deepEqual(Object.keys(model.rawAttributes).sort(), Object.keys(schema[model.tableName].fields).sort());
     for (const [name, field] of Object.entries(schema[model.tableName].fields)) {

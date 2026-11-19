@@ -10,10 +10,12 @@ const models = {
   Pago: require('./pago')(sequelize),
   Evaluacion: require('./evaluacion')(sequelize),
   ConsultaChat: require('./consulta-chat')(sequelize),
+  ChatMetricaEliminada: require('./chat-metrica-eliminada')(sequelize),
   AgentExecutionLog: require('./agent-execution-log')(sequelize),
   ReporteDiario: require('./reporte-diario')(sequelize),
   DriveDocumento: require('./drive-documento')(sequelize),
   DriveSyncState: require('./drive-sync-state')(sequelize),
+  Asistencia: require('./asistencia')(sequelize),
 };
 const { Colaborador, Usuario, Sesion, Solicitud, ConsultaChat, AgentExecutionLog } = models;
 const options = { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' };
@@ -26,7 +28,7 @@ Usuario.hasMany(Sesion, { ...options, as: 'sesiones', foreignKey: 'usuario_id' }
 for (const [name, as] of [
   ['SaldoVacaciones', 'saldos'], ['Solicitud', 'solicitudes'], ['Incapacidad', 'incapacidades'],
   ['MovimientoPersonal', 'movimientos'], ['Pago', 'pagos'], ['Evaluacion', 'evaluaciones'],
-  ['ConsultaChat', 'consultas'],
+  ['ConsultaChat', 'consultas'], ['Asistencia', 'asistencias'],
 ]) {
   models[name].belongsTo(Colaborador, { ...options, as: 'colaborador', foreignKey: 'colaborador_id' });
   Colaborador.hasMany(models[name], { ...options, as, foreignKey: 'colaborador_id' });

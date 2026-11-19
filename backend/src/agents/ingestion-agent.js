@@ -189,7 +189,7 @@ class IngestionAgent {
       || verifiedProps.bosque_claro_version !== metadata.bosque_claro_version) throw new Error('DRIVE_FILE_CHANGED_DURING_READ');
     if (content.length < this.config.minTextChars) throw new Error('DOCUMENT_TEXT_TOO_SHORT');
     const contentChecksum = hash(content);
-    const revision = hash(`${this.config.embeddingProvider}:${this.config.embeddingModel}:${this.config.embeddingDimension}:${this.config.chunkSize}:${this.config.chunkOverlap}:pipeline-v1\n${file.version || ''}\n${file.modifiedTime || ''}\n${metadata.bosque_claro_version || ''}\n${contentChecksum}`);
+    const revision = hash(`${this.config.embeddingProvider}:${this.config.embeddingModel}:${this.config.embeddingDimension}:${this.config.chunkSize}:${this.config.chunkOverlap}:pipeline-v2\n${file.version || ''}\n${file.modifiedTime || ''}\n${metadata.bosque_claro_version || ''}\n${contentChecksum}`);
     if (current && !current.eliminado && current.revision_indexada === revision && current.estado_indexacion === 'indexado') {
       await this.qdrant.deleteFileExcept(file.id, revision);
       return 'skipped';

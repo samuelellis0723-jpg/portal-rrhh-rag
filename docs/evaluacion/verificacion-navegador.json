@@ -1,0 +1,248 @@
+{
+  "fecha": "2026-11-19T17:14:49.266Z",
+  "modo": "Chromium + HTTP/MySQL y proveedores reales",
+  "consultas": [
+    {
+      "pregunta": "hola",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000804,
+        "intencion": "saludo",
+        "respuesta": "¡Hola! Puedes consultar tus vacaciones, pagos y solicitudes, o preguntar por las políticas de RRHH.",
+        "estado": "respondida",
+        "citas": [],
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:02.079Z"
+      }
+    },
+    {
+      "pregunta": "buenas",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000805,
+        "intencion": "saludo",
+        "respuesta": "¡Hola! Puedes consultar tus vacaciones, pagos y solicitudes, o preguntar por las políticas de RRHH.",
+        "estado": "respondida",
+        "citas": [],
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:02.259Z"
+      }
+    },
+    {
+      "pregunta": "buenos días",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000806,
+        "intencion": "saludo",
+        "respuesta": "¡Hola! Puedes consultar tus vacaciones, pagos y solicitudes, o preguntar por las políticas de RRHH.",
+        "estado": "respondida",
+        "citas": [],
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:02.409Z"
+      }
+    },
+    {
+      "pregunta": "cuando es feriado",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000807,
+        "intencion": "politica",
+        "respuesta": "Con fecha de referencia 2026-11-19 en Costa Rica, el próximo feriado publicado es: 2026-12-01 (Martes), Abolición del Ejército, de pago no obligatorio. El tratamiento del pago depende de la modalidad salarial; confirma tu caso con Planillas. Calendario académico propuesto, versión 0.1.",
+        "estado": "respondida",
+        "citas": [
+          {
+            "documento": "Calendario de feriados de Costa Rica 2026",
+            "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+            "version": "0.1",
+            "drive_file_id": "1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU",
+            "fragmento_id": "c8f37b20-ba76-596e-bc97-09a5a507a77d",
+            "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+            "fragmento": "Fila 1: Título | Calendario de feriados de Costa Rica 2026\nFila 2: Versión | 0.1\nFila 3: Responsable | RRHH y Planillas\nFila 4: Fecha | 2026-11-17\nFila 5: Vigencia propuesta | 2026-11-17 (solo simulación; sin adopción empresarial)\nFila 6: Sección | Vacaciones y feriados\nFila 7: Estado | Borrador académico no aprobado\nFila 9: fecha | evento | dia_semana | tipo_feriado | nota | fuente_url\nFila 10: 2026-01-01 | Año Nuevo | Jueves | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 11: 2026-04-02 | Jueves Santo | Jueves | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 12: 2026-04-03 | Viernes Santo | Viernes | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 13: 2026-04-11 | Día de Juan Santamaría | Sábado | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 14: 2026-05-01 | Día Internacional del Trabajo | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 15: 2026-07-25 | Anexión del Partido de Nicoya | Sábado | obligatorio | La conmemoración y disfrute no se trasladan | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 16: 2026-08-02 | Día de la Virgen de los Ángeles | Domingo | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 17: 2026-08-15 | Día de la Madre y Asunción | Sábado | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 18: 2026-08-31 | Día de la Persona Negra y la Cultura Afrocostarricense | Lunes | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 19: 2026-09-15 | Día de la Independencia | Martes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 20: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 21: 2026-12-25 | Navidad | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf"
+          }
+        ],
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:02.511Z"
+      }
+    },
+    {
+      "pregunta": "cuando es el proximo feriado?",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000808,
+        "intencion": "politica",
+        "respuesta": "Con fecha de referencia 2026-11-19 en Costa Rica, el próximo feriado publicado es: 2026-12-01 (Martes), Abolición del Ejército, de pago no obligatorio. El tratamiento del pago depende de la modalidad salarial; confirma tu caso con Planillas. Calendario académico propuesto, versión 0.1.",
+        "estado": "respondida",
+        "citas": [
+          {
+            "documento": "Calendario de feriados de Costa Rica 2026",
+            "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+            "version": "0.1",
+            "drive_file_id": "1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU",
+            "fragmento_id": "c8f37b20-ba76-596e-bc97-09a5a507a77d",
+            "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+            "fragmento": "Fila 1: Título | Calendario de feriados de Costa Rica 2026\nFila 2: Versión | 0.1\nFila 3: Responsable | RRHH y Planillas\nFila 4: Fecha | 2026-11-17\nFila 5: Vigencia propuesta | 2026-11-17 (solo simulación; sin adopción empresarial)\nFila 6: Sección | Vacaciones y feriados\nFila 7: Estado | Borrador académico no aprobado\nFila 9: fecha | evento | dia_semana | tipo_feriado | nota | fuente_url\nFila 10: 2026-01-01 | Año Nuevo | Jueves | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 11: 2026-04-02 | Jueves Santo | Jueves | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 12: 2026-04-03 | Viernes Santo | Viernes | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 13: 2026-04-11 | Día de Juan Santamaría | Sábado | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 14: 2026-05-01 | Día Internacional del Trabajo | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 15: 2026-07-25 | Anexión del Partido de Nicoya | Sábado | obligatorio | La conmemoración y disfrute no se trasladan | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 16: 2026-08-02 | Día de la Virgen de los Ángeles | Domingo | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 17: 2026-08-15 | Día de la Madre y Asunción | Sábado | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 18: 2026-08-31 | Día de la Persona Negra y la Cultura Afrocostarricense | Lunes | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 19: 2026-09-15 | Día de la Independencia | Martes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 20: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 21: 2026-12-25 | Navidad | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf"
+          }
+        ],
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:23.914Z"
+      }
+    },
+    {
+      "pregunta": "cuantas vacaciones tengo",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000809,
+        "intencion": "dato_personal",
+        "respuesta": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19.",
+        "estado": "respondida",
+        "citas": [],
+        "dato_personal": {
+          "tipo": "saldo_vacaciones",
+          "dias_disponibles": "14.00",
+          "fecha_corte": "2026-11-19"
+        },
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:35.358Z"
+      }
+    },
+    {
+      "pregunta": "Hola, ¿cuántas vacaciones tengo?",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000810,
+        "intencion": "dato_personal",
+        "respuesta": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19.",
+        "estado": "respondida",
+        "citas": [],
+        "dato_personal": {
+          "tipo": "saldo_vacaciones",
+          "dias_disponibles": "14.00",
+          "fecha_corte": "2026-11-19"
+        },
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:35.488Z"
+      }
+    },
+    {
+      "pregunta": "¿Cuántos días me quedan y puedo pasarlos al año siguiente?",
+      "http": 200,
+      "data": {
+        "consulta_id": 91000811,
+        "intencion": "mixta",
+        "respuesta": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19. La política de vacaciones es una propuesta académica en borrador, no aprobada ni vigente. Sobre acumular vacaciones para el año siguiente, la sección 4 indica que se planifica el disfrute efectivo y oportuno y que no se promueve la acumulación; solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. La sección 2 señala que el artículo 158 del Código de Trabajo prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Para resolver un caso particular de traslado de saldo, la fuente remite a la fuente legal aplicable y asesoría laboral (sección 6).",
+        "estado": "respondida",
+        "citas": [
+          {
+            "documento": "Politica de vacaciones",
+            "seccion": "4. Disfrute, saldo y registro",
+            "version": "0.1",
+            "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+            "fragmento_id": "d2ccd5bb-2c64-5cd1-9a72-0746f9e0a67a",
+            "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+            "fragmento": "RRHH conserva fecha de adquisición, período, días reconocidos, disfrute y saldo, y entrega constancia escrita a solicitud. Se planifica el disfrute efectivo y oportuno; no se promueve la acumulación. Solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. No se sustituye descanso por dinero salvo excepción legal aplicable."
+          },
+          {
+            "documento": "Politica de vacaciones",
+            "seccion": "2. Piso legal verificado",
+            "version": "0.1",
+            "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+            "fragmento_id": "4a8b0a0f-d80b-53be-a886-bb95540412d0",
+            "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+            "fragmento": "El artículo 153 del Código de Trabajo establece un mínimo de dos semanas de vacaciones pagadas por cada 50 semanas de trabajo continuo con la misma persona empleadora; si termina la relación antes, corresponde como mínimo un día por mes trabajado. El artículo 154 extiende el derecho a jornadas parciales y semanales. El artículo 155 asigna a la persona empleadora la determinación del disfrute dentro de las 15 semanas posteriores a la adquisición del derecho. El artículo 156 declara las vacaciones incompensables salvo excepciones taxativas. El artículo 158 prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Véanse también artículos 157 y 159 para cálculo y descanso.\nEl MTSS describe las dos semanas como doce días laborables más los descansos semanales, en los esquemas ordinarios correspondientes. El cómputo y pago dependen de jornada, forma de pago y actividad; no convertir “14 días naturales” en una regla universal."
+          },
+          {
+            "documento": "Politica de vacaciones",
+            "seccion": "6. Revisión",
+            "version": "0.1",
+            "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+            "fragmento_id": "14e03a7e-1455-59cc-9c8a-a54cbd7522ce",
+            "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+            "fragmento": "RRHH revisará esta propuesta anualmente y ante reformas. Una controversia sobre cómputo individual se resuelve con la fuente legal aplicable y asesoría laboral, no con los saldos ficticios de la demo.\nFuentes para verificar\n* Código de Trabajo, Ley 2, arts. 153–161, texto del MTSS: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* MTSS, preguntas frecuentes sobre vacaciones: https://www.mtss.go.cr/temas-laborales/\n* Consulta de esta versión: 2026-11-17."
+          },
+          {
+            "documento": "Politica de vacaciones",
+            "seccion": "Introducción",
+            "version": "0.1",
+            "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+            "fragmento_id": "c253dfd8-775f-5f9a-8555-f09322b6ce43",
+            "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+            "fragmento": "Politica de vacaciones\n________________\nVersión: 0.1 · Responsable: RRHH · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+          }
+        ],
+        "dato_personal": {
+          "tipo": "saldo_vacaciones",
+          "dias_disponibles": "14.00",
+          "fecha_corte": "2026-11-19"
+        },
+        "partes": {
+          "datos": "respondida",
+          "politicas": "respondida"
+        },
+        "escalada": false,
+        "creada_en": "2026-11-19T17:15:35.639Z"
+      }
+    }
+  ],
+  "citas_abiertas": [
+    {
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Sheets: Sign-in"
+    },
+    {
+      "documento": "Calendario de feriados de Costa Rica 2026",
+      "seccion": "Hoja: Calendario de feriados de Costa · Fila 20",
+      "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Sheets: Sign-in"
+    },
+    {
+      "documento": "Politica de vacaciones",
+      "seccion": "4. Disfrute, saldo y registro",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Docs: Sign-in"
+    },
+    {
+      "documento": "Politica de vacaciones",
+      "seccion": "2. Piso legal verificado",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Docs: Sign-in"
+    },
+    {
+      "documento": "Politica de vacaciones",
+      "seccion": "6. Revisión",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Docs: Sign-in"
+    },
+    {
+      "documento": "Politica de vacaciones",
+      "seccion": "Introducción",
+      "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+      "url_abierta": "https://accounts.google.com/v3/signin/identifier",
+      "requiere_login_o_permiso": true,
+      "titulo_pagina": "Google Docs: Sign-in"
+    }
+  ],
+  "checks": [
+    "Saludos, ambas frases de feriados, saldo MySQL y pregunta mixta con fuentes reales",
+    "Cancelar conserva el historial también después de recargar",
+    "Confirmar borra contenido y memoria; recarga vacía; otra cuenta intacta; métricas conservadas",
+    "Dashboard RRHH abre reporte real del 19-11-2026 después de borrar conversación"
+  ],
+  "reporte": {
+    "fecha": "2026-11-19",
+    "origen": "ejecucion",
+    "generado_en": "2026-11-19T14:46:17.000Z"
+  },
+  "aprobado": true
+}

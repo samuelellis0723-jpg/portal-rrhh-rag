@@ -2,12 +2,12 @@
 
 ## Bosque Claro: portal de RRHH con datos y políticas trazables
 
-**Mini Proyecto #2 · Costa Rica · 18 de noviembre de 2026**  
-**Equipo académico · versión de entrega técnica 1.0**
+**Mini Proyecto #2 · Costa Rica · 19 de noviembre de 2026**
+**Equipo académico · versión de entrega técnica 1.1**
 
 Este informe describe una aplicación para una empresa enteramente ficticia y un conjunto de 60 colaboradores sintéticos. La arquitectura separa las reglas y citas documentales de los datos personales y agregados. El objetivo técnico es responder consultas permitidas con evidencia y abstenerse cuando una dependencia o fuente no está disponible.
 
-**Estado que debe conservar esta entrega:** las políticas existen como archivos editables locales, pero el Drive observado contiene cero archivos en la carpeta autorizada. La sincronización inicial real terminó con cero documentos y cero puntos vectoriales. Se comprobó Gemini para crear embeddings y Qdrant respondió; falta DeepSeek API key y la credencial escritora de Drive. Por eso aún no hay un recorrido real de pregunta RAG con cita. Las pruebas locales no sustituyen esa validación.
+**Estado verificado al 19-11-2026:** doce documentos publicados en la carpeta autorizada de Drive, 68 fragmentos activos en Qdrant, embeddings Gemini y DeepSeek operativos. Reporte real del 19-11-2026 persistido con origen ejecución y abierto desde RRHH. La generación fue manual; el worker no está instalado ni activo como servicio. **45/45 (100 %) verificaciones automáticas aprobadas**, **0 fallidas**, **0 bloqueadas**. p90 HTTP **5465 ms** y p90 con documentos **6597 ms**. Preguntas 21/22: **HTTP 403 genérico sin datos**. Los controles automáticos no sustituyen revisión humana de fidelidad ni aprobación jurídica.
 
 El proyecto usa MySQL como fuente de identidad y cifras; Google Drive como fuente de políticas; Qdrant como índice derivado; React/Vite como interfaz y Express como frontera de sesión, autorización y validación. El LLM no autentica personas, no genera SQL ejecutable y no calcula cifras. El material legal en políticas distingue obligaciones oficiales de propuestas simuladas.
 
@@ -23,7 +23,7 @@ El enunciado exige al menos diez dominios documentales, cinco responsabilidades 
 
 La implementación fijó Node.js/Express/Sequelize, MySQL 8 e InnoDB, React/Vite, Google Drive y Qdrant. La base conserva cifras; el índice vectorial contiene texto derivado y metadatos. La elección MySQL/Qdrant cumple la arquitectura permitida por el proyecto, aunque el enunciado sugería PostgreSQL como una opción.
 
-El alcance ya incluye login con sesiones opacas, cookie, CSRF, rutas propias, frontend, ingesta Drive, chat con historial, agentes de políticas/datos, analista y scheduler aislado. El contrato HTTP y el código reflejan esta evolución; las verificaciones externas siguen separadas de la preparación local. Al corte del informe, faltan credencial escritora para publicar documentos y clave DeepSeek para completar conversación real. No se declara cumplimiento de la meta 80 % o p90 inferior a ocho segundos sin ejecutar el banco con dependencias disponibles.
+El alcance incluye login con sesiones opacas, cookie, CSRF, rutas propias, frontend, ingesta Drive, chat con historial, políticas/datos, analista y scheduler. Se añadieron saludos sin LLM, calendario contextualizado a Costa Rica y eliminación segura del historial. Las integraciones documentales se probaron con proveedores reales. La revisión visual de documentos privados en el navegador requiere una sesión Google autorizada.
 
 <!-- pagebreak -->
 
@@ -47,7 +47,7 @@ Los datos de ejemplo son reproducibles y usan 60 colaboradores `.example`, con m
 
 El contrato de API establece errores JSON, validación estricta, paginación `limit`/`offset` de máximo 100 y propiedad de sesión. Los endpoints personales (`/me/vacaciones`, `/me/proximo-pago`, `/me/proxima-evaluacion`, `/me/solicitudes`) no aceptan ID de persona desde query o cuerpo. El chat usa `POST /api/v1/chat` con `{ "mensaje": "..." }`; `GET /api/v1/chat/historial` presenta únicamente filas `origen=ejecucion` del usuario autenticado. Los reportes ofrecen listado/detalle solo a RRHH.
 
-La migración 15 es importante para que historial y analítica no dependan de una memoria efímera. El JSON guarda respuesta, estado y metadatos de dato/reporte; las citas persisten en `documentos_citados`. Los logs enlazan por `consulta_chat_id` y almacenan tipo de ejecución, agente, tiempo, estado, escalamiento y fragmentos usados. Fixtures quedan etiquetados y excluidos del historial conversacional.
+La migración 15 conserva respuesta estructurada, estado y procedencia en consultas_chat; las citas persisten en documentos_citados y las trazas enlazan por consulta_chat_id. La nueva migración 16 añade chat_metricas_eliminadas, con fecha Costa Rica, tema, conteos y sumas de latencia; sin identidad ni contenido. El esquema efectivo contiene 15 modelos y 16 migraciones. Las migraciones anteriores no se modificaron.
 
 <!-- pagebreak -->
 
@@ -87,7 +87,7 @@ El fragmentador respeta secciones y solapamiento configurable. El fingerprint de
 
 Qdrant usa Cosine, índices de payload y filtros obligatorios por folder, corpus `preparado_simulacion`, embedding space y `drive_revision` activa derivada del catálogo SQL. Esto evita mezclar dimensiones/modelos o servir revisiones antiguas. La reconciliación y las operaciones idempotentes reducen daños ante fallo parcial, pero MySQL/Qdrant no comparten transacción distribuida.
 
-Verificación externa actual: Qdrant reachable; Gemini embeddings real generó una respuesta de dimensión configurada; el snapshot autorizado tenía cero archivos y la ejecución inicial produjo cero documentos/puntos. Faltan publicación Drive y búsqueda semántica con corpus. Las pruebas con dobles verifican parseo, idempotencia, 410, filtros y lock; no prueban corpus real.
+Verificación externa actual: doce documentos Drive (nueve Docs nativos, dos Sheets y un PDF), todos dentro de la carpeta autorizada e indexados; 68 puntos corresponden a revisiones activas. Se volvió a sincronizar sin duplicados. La fragmentación reconoce encabezados numerados exportados desde Google Docs y PDF; una versión nueva del pipeline fuerza reconciliación sin modificar las políticas. Las seis búsquedas de verificación en español recuperaron la fuente esperada con enlaces trazables.
 
 <!-- pagebreak -->
 
@@ -95,13 +95,13 @@ Verificación externa actual: Qdrant reachable; Gemini embeddings real generó u
 
 DeepSeek es proveedor del LLM conversacional, distinto del proveedor de embeddings. El adaptador REST usa `DEEPSEEK_API_KEY`, `DEEPSEEK_BASE_URL` HTTPS y `DEEPSEEK_MODEL` (default `deepseek-flash` verificado en documentación oficial consultada). Clasificación y respuestas JSON usan `response_format=json_object`; la configuración desactiva thinking para respuestas cortas. Salida vacía, truncada, no JSON, HTTP no exitoso o timeout se trata como dependencia fallida.
 
-El intent classifier devuelve uno de seis tipos: política, dato propio, mixta, reporte, restringida y fuera de alcance. Aun así, la rama SQL se escoge con patrones deterministas de pregunta propia y usa ID autenticado; una clasificación de “dato” no se convierte por sí sola en autorización. El report branch requiere rol RRHH de sesión, fecha explícita o hoy Costa Rica y reporte persistido para esa fecha. Reportes fixture se identifican como fixture; no se presentan como ejecución de analista.
+El clasificador combina reglas permitidas para consultas inequívocas con JSON DeepSeek para ambigüedades. Distingue política, dato propio, mixta, reporte, restringida y fuera de alcance; el saludo aislado se responde sin LLM ni recuperación. El mensaje con saludo y pregunta conserva la intención de la pregunta. Las guardias de privacidad preceden la clasificación; un procedimiento de revisión de recibo no se confunde con un reporte reservado para RRHH.
 
 Para política, la búsqueda debe superar `POLICY_MIN_SCORE`. DeepSeek recibe solamente consulta de política y fragmentos de la recuperación actual. Las consultas mixtas seleccionan la cláusula documental, conservando fechas o plazos normativos, y no comparten la respuesta SQL. No se pasa respuesta SQL ni historial personal al agente RAG. Si el agente de políticas falla, el sistema conserva el resultado personal y devuelve una abstención parcial con escalamiento.
 
-El historial se sirve por dueño de sesión y excluye fixtures. La memoria de recuperación está acotada a cinco interacciones; solo la parte de política se devuelve al contexto del agente de políticas, mientras respuesta personal/mixta queda vacía. Un seguimiento puede resolverse a partir del historial y vuelve a pasar guardias de privacidad. `respuesta_json` persiste la respuesta usada para reconstruir el historial.
+El historial se sirve por dueño de sesión y excluye fixtures. DELETE /chat/historial exige sesión, Origin autorizado y CSRF y rechaza identidad desde query o cuerpo. Un bloqueo MySQL por cuenta serializa envíos y borrado; una transacción acumula métricas anónimas y elimina preguntas, respuestas, citas y logs asociados. Los reportes publicados se conservan, y los nuevos suman métricas eliminadas sin conservar texto ni vínculo personal. La memoria de recuperación está acotada a cinco interacciones; solo la parte de política se devuelve al contexto del agente de políticas, mientras respuesta personal/mixta queda vacía. Un seguimiento puede resolverse a partir del historial y vuelve a pasar guardias de privacidad. `respuesta_json` persiste la respuesta usada para reconstruir el historial.
 
-La UI incluye página de login, espacio personal, chat y reportes. El flujo de sesión y consultas personales se verificó en etapas anteriores. Como la key DeepSeek falta y Drive no contiene documentos, el chat con respuesta documental/cita real todavía no es un resultado demostrable. Al primer `503`, el sistema debe explicar la indisponibilidad; el demo no debe mostrar texto de ejemplo como si procediera de una política real.
+La UI incluye login, espacio personal, chat y reportes. Chromium comprobó ambas frases de feriados, saludos, saldo MySQL y respuesta mixta real con citas. El calendario utiliza la fecha de Costa Rica y filas del documento publicado, sin fechas de entrenamiento; si falta cobertura, explica la limitación. La separación de cláusulas conserva el tema de vacaciones incluso con pronombres. Los números de sección y versión recuperados forman parte de la evidencia; las cifras sin respaldo se rechazan o se pide una única redacción correctiva con las mismas fuentes.
 
 <!-- pagebreak -->
 
@@ -113,7 +113,7 @@ Las fechas de negocio usan `America/Costa_Rica` (UTC−06:00), y el corte del re
 
 El agente analista construye frases factuales desde el JSON SQL. DeepSeek recibe agregados sin identificadores y selecciona de tres a cinco índices de esas frases para componer el resumen. El servidor conserva exactamente la relación entre métrica y cifra; rechaza índices repetidos, inexistentes o texto inyectado. Este diseño limita la redacción libre para impedir cambios de significado numérico y valida además longitud y pertenencia de números al JSON. Si el LLM falla o inventa cifra, no crea un reporte nuevo ni sobrescribe el anterior. La persistencia por fecha y `GET_LOCK` protegen idempotencia; `reportes_diarios` conserva `origen=ejecucion` o `fixture`.
 
-Existe script `report:generate [YYYY-MM-DD]` y endpoints RRHH de listado/detalle. `createDailyWorker` define reporte diario a las 07:00 y sincronización de Drive independiente a las 02:00, con reintentos diferenciados. En el estado observado se requiere iniciar worker desde un servicio; el servidor HTTP aún no lo arranca automáticamente. No se afirma un reporte real diario generado ni scheduling activo. Las 13 pruebas de integración pasaron sin omisiones: la agregación se concilió con MySQL y el fixture, y se corrigieron agrupación SQL y límites UTC/Costa Rica. El riesgo usa el saldo disponible observado al generar: no hay un libro histórico de cambios que permita reconstruir saldos arbitrarios de cualquier fecha. Los fixtures históricos se conservan.
+El script report:generate genera por fecha y conserva reportes existentes. El reporte del 19-11-2026 fue generado manualmente mediante el analista y DeepSeek, con origen=ejecucion; no es un fixture. createDailyWorker agenda reportes 07:00 e ingesta 02:00 America/Costa_Rica, pero el worker no está instalado ni activo como servicio. No hay evidencia de un disparo programado a las 07:00. Las 15 pruebas de integración validan SQL, límites de fecha, sesiones, borrado y métricas; los fixtures históricos se conservan. Los saldos de riesgo son los observados al generar, sin reconstrucción histórica arbitraria.
 
 <!-- pagebreak -->
 
@@ -121,11 +121,11 @@ Existe script `report:generate [YYYY-MM-DD]` y endpoints RRHH de listado/detalle
 
 El banco editable `docs/evaluacion/banco-45.json` contiene las 25 preguntas base y 20 propias, con respuesta/fuente esperada, tipo y rol. El script `backend/scripts/evaluate-chat.js` levanta Express, inicia cuentas demo, dispara HTTP y guarda `docs/evaluacion/resultados-actuales.json`. Comprueba estructura, intención, citas/host/ID, resultados de privacidad 21–22 y saldo SQL para casos definidos. Las dependencias ausentes se registran como bloqueadas, no como aciertos.
 
-Los checks automáticos de fuente y formato no prueban por sí mismos fidelidad semántica; se requiere revisión humana de respuesta frente a fragmento. El script calcula tasa automática sobre las 45 preguntas, p90 de latencia total y p90 con citas. La corrida real completa registró 15 aprobadas automáticamente, cero fallidas y 30 bloqueadas: 27 por dependencia, dos respuestas mixtas parciales y un reporte no publicado. Las preguntas 21/22 recibieron 403 genérico sin datos ajenos. La cobertura automática es 33,33 % de 45; no acredita 80 %. El p90 HTTP es 57 ms e incluye errores rápidos; p90 documental null no acredita la meta de ocho segundos. La hoja Excel/CSV conserva respuestas esperadas, obtenidas y fuentes.
+Los controles automáticos comprueban estructura, intención, procedencia y cifras propias; no certifican fidelidad semántica completa. Resultado final: **45/45 (100 %) verificaciones automáticas aprobadas**, **0 fallidas**, **0 bloqueadas**. p90 HTTP **5465 ms** y p90 con documentos **6597 ms**. Preguntas 21/22: **HTTP 403 genérico sin datos**. La matriz XLSX/CSV contiene 45 filas y se regeneró desde el JSON. Se conserva la corrida de Gemini (37/45) como evidencia previa; no se cambiaron el banco ni los criterios para aumentar el puntaje.
 
-Verificación final: 61 pruebas unitarias con dobles, 13 de integración HTTP/MySQL y ocho pruebas Chromium escritorio/móvil aprobadas; build React y salud HTTP 200 correctos. El navegador verificó chat SQL persistido tras recarga, saldo y dashboard fixture. Una rama HTTP interceptada prueba presentación de citas/mixtas, sin acreditar RAG real. El worker arrancó, sincronizó independientemente del fallo por clave DeepSeek ausente y cerró con SIGTERM.
+Verificación final: 67 pruebas unitarias, 15 de integración HTTP/MySQL y ocho pruebas Chromium de escritorio/móvil aprobadas; build React y verificación de esquema correctos. Un recorrido adicional con proveedores reales comprobó saludos, feriados, saldo, consulta mixta, cancelar/eliminar y dashboard posterior. Cancelar no emite DELETE; confirmar deja el historial vacío tras recargar y la memoria no recupera mensajes eliminados. Las pruebas de acceso cruzado y CSRF usan dos identidades temporales y conservan cuentas previas.
 
-Estado externo concreto al corte: Drive autorizado, pero vacío; ingest initial snapshot 0 documentos/0 puntos. Qdrant responde y colección existe. Gemini generación de embeddings real/dimensión verificada. No está configurada la llave DeepSeek ni writer de Drive. Este proyecto no tiene métricas de RAG reales, respuesta de políticas en producción, test de Drive con documento publicado ni video grabado.
+El cotejo automático contrastó 79 citas con exportaciones actuales de Drive; sus fragmentos están presentes en la fuente autorizada. El agente revisó documentalmente los ocho fallos previos y las respuestas del recorrido. Al pulsar las citas D01/D02, el navegador de prueba llegó a Google y pidió iniciar sesión; no se acredita lectura visual del documento privado dentro de ese navegador. La revisión humana completa sigue pendiente; el detalle figura en evaluacion/revision-fidelidad.md y el prompt de revisión final. Una corrida intermedia tuvo p90 documental de 8624 ms: las latencias varían y una corrida favorable no garantiza el servicio.
 
 <!-- pagebreak -->
 
@@ -135,9 +135,9 @@ La instalación usa `backend/.env.example` como lista de variables ficticias y m
 
 Comandos representativos desde `backend/`: `npm run db:migrate:status`, `npm run db:verify`, `npm test`, `npm run test:integration`, `npm run ingest:check -- --live`, `npm run ingest:sync`, `npm run ingest:search -- "consulta"`, `npm run report:generate`, `npm run eval:chat`. Los últimos tres necesitan dependencias/corpus/credenciales según la tarea. Las variables privadas y secretos no se copian a documentación.
 
-Limitaciones: documentos no publicados; sin corpus real en Qdrant; LLM conversacional sin key; una corrida inicial vacía no prueba recuperación; worker no instalado como servicio persistente; límites por proceso para login/chat; semántica aún no evaluada por personas; no hay video final. Las políticas son académicas no aprobadas y el reporte fixture no es ejecución automatizada.
+Limitaciones: políticas académicas no adoptadas, revisión humana completa de fidelidad y vigencia legal pendiente, documentos privados que necesitan sesión Google para comprobación visual, worker sin servicio persistente y video aún sin grabar. Login y límites de chat son por proceso. El resultado automático no representa aprobación jurídica ni disponibilidad continua de proveedores.
 
-La arquitectura es útil porque fija fronteras de confianza y permite probar componentes sin confundir dobles con servicios reales. Las próximas prioridades son obtener credenciales de mínimo privilegio, publicar doce fuentes, hacer ingesta idempotente no vacía, ejecutar pregunta y cita en español, evaluar las 45 preguntas con revisión humana y grabar demo. La entrega será honesta solo cuando cada afirmación se vincule a evidencia observable.
+La arquitectura fija fronteras entre identidad, cifras y conocimiento documental. La entrega incluye fuentes editables, API/DBML actualizados, reporte técnico/PDF y evaluación exportada. Queda completar la revisión humana en un navegador Google autorizado y grabar el video de cinco minutos; la demo en vivo de quince tiene guion separado. Si se requiere continuidad, iniciar el worker bajo un supervisor y comprobar una ejecución programada antes de atribuirle ese resultado.
 
 ## Referencias
 

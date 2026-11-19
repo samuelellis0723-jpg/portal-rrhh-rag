@@ -1367,3 +1367,32 @@ summary { cursor: pointer; min-height: 30px; padding-top: 6px; }
   .chat-question p, .answer-text { font-size: .85rem; }
   .answer-header { gap: 6px; }
 }
+
+.chat-toolbar { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+.chat-delete-confirm { border: 1px solid var(--border, #cbd5cf); border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; background: white; }
+.chat-delete-confirm h2 { font-size: 1.2rem; margin-top: 0; }
+.chat-delete-confirm p { line-height: 1.6; }
+
+.report-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; justify-content: flex-end; }
+.report-confirm-box { background: #fdfdfa; border: 1px solid #d7e2ca; border-radius: 12px; padding: 16px 20px; margin: 16px 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+.report-confirm-box p { margin: 0; font-size: .82rem; color: #35532d; max-width: 640px; line-height: 1.5; }
+.report-confirm-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.report-people-header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 14px; margin-bottom: 14px; }
+.report-people-filter input { border: 1px solid #dce4cf; border-radius: 8px; padding: 9px 12px; min-width: 240px; font: inherit; color: #35532d; background: #fff; }
+.report-card .pagination { padding: 14px 0 0; min-height: auto; border-top: 1px solid #e6ecdd; margin-top: 12px; }
+.person-link { color: #2d5a27; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.person-link:hover { color: #1b3a17; }
+.ficha-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.back-link { color: #35532d; font-weight: 600; text-decoration: none; font-size: .86rem; }
+.back-link:hover { text-decoration: underline; }
+.monthly-header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.month-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.month-tab { border: 1px solid #d5e0c9; background: #fff; color: #35532d; border-radius: 999px; padding: 8px 15px; font: inherit; font-size: .8rem; cursor: pointer; }
+.month-tab.active { background: #35532d; color: #fff; border-color: #35532d; font-weight: 600; }
+.status-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: .72rem; font-weight: 600; }
+.status-puntual { background: #e5f3e2; color: #24511f; }
+.status-tardia { background: #fff4d6; color: #7a5200; }
+.status-falta { background: #fde8e8; color: #9b1c1c; }
+.status-vacaciones, .status-permiso, .status-incapacidad { background: #e3f0fb; color: #1d4f7a; }
+.status-dia_libre { background: #eef1eb; color: #5b6855; }
+.status-sin_registro { background: #f3e8ff; color: #5b21b6; }

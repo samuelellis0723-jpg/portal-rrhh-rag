@@ -159,3 +159,83 @@ test('validador acepta únicamente mensaje JSON no vacío de hasta 4000 caracter
   assert.equal(next, true);
   assert.throws(() => validateChat({ ...req, body: { mensaje: 'hola', colaborador_id: 3 } }, {}, () => {}), /Campos o parámetros inválidos/);
 });
+
+test('saludos aislados no invocan LLM, documentos ni datos; saludo con pregunta conserva SQL', async () => {
+  const { service, dataAgent, policyAgent } = harness();
+  service.llm = { completeJson() { throw new Error('No debe invocarse para un saludo'); } };
+  for (const message of ['hola', 'buenas', 'buenos días', '¡Hola!']) {
+    const result = await service.ask({ collaboratorId: 84, message });
+    assert.equal(result.intencion, 'saludo');
+    assert.match(result.respuesta, /vacaciones/);
+  }
+  assert.equal(dataAgent.calls.length, 0);
+  assert.equal(policyAgent.calls.length, 0);
+  const result = await service.ask({ collaboratorId: 84, message: 'Hola, ¿cuántas vacaciones tengo?' });
+  assert.equal(result.intencion, 'dato_personal');
+  assert.equal(dataAgent.calls.length, 1);
+});
+
+test('procedimientos propios y calendario se enrutan a políticas sin conceder acceso a reportes', async () => {
+  const { service, policyAgent } = harness();
+  service.llm = { completeJson() { throw new Error('No debe clasificarse como dato ni reporte'); } };
+  for (const message of ['Me incapacitaron 5 días, ¿quién paga esos días y cuánto recibo?',
+    '¿Qué incluye mi liquidación si me despiden sin justa causa?', '¿Cómo reporto un error en las deducciones de mi recibo?',
+    '¿Qué datos guarda este portal y quién puede acceder?', '¿Es feriado el primero de diciembre de 2026?',
+    '¿Cómo solicito revisión de mi recibo salarial?', '¿Cómo pido revisión de mi evaluación de desempeño?']) {
+    assert.equal((await service.ask({ collaboratorId: 84, role: 'colaborador', message })).intencion, 'politica');
+  }
+  assert.equal(policyAgent.calls.length, 7);
+  await assert.rejects(service.ask({ collaboratorId: 84, role: 'colaborador', message: 'Dame el reporte de RRHH' }), { status: 403 });
+});
+
+test('próximo feriado utiliza fecha Costa Rica y filas publicadas; fuera de cobertura se abstiene', async () => {
+  const fragment = { fragmento_id: 'calendar-test', external_document_id: 'D02', documento: 'Calendario de feriados 2026',
+    drive_file_id: 'calendar-1', seccion: 'Hoja: Feriados', version: '0.1', enlace: 'https://docs.google.com/spreadsheets/d/calendar-1/edit', score: .9,
+    texto: 'Fila 20: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio\nFila 21: 2026-12-25 | Navidad | Viernes | obligatorio' };
+  const agent = new PolicyAgent({ search: async () => [fragment], clock: () => new Date('2026-12-02T01:00:00Z'),
+    llm: { completeJson() { throw new Error('El calendario no requiere redacción LLM'); } } });
+  const result = await agent.answer('cuando es el proximo feriado?');
+  // UTC ya es 2 de diciembre, Costa Rica todavía es 1 de diciembre.
+  assert.match(result.response, /referencia 2026-12-01/);
+  assert.match(result.response, /2026-12-25/);
+  assert.equal(result.citations[0].seccion, 'Hoja: Feriados · Fila 21');
+  agent.clock = () => new Date('2027-01-02T12:00:00Z');
+  assert.equal((await agent.answer('cuando es feriado')).escalated, true);
+});
+
+test('la evidencia numérica incluye sección y versión reales, pero sigue rechazando cifras inventadas', async () => {
+  const fragment = { fragmento_id: 'metadata-test', documento: 'Política de ejemplo', drive_file_id: 'doc-meta',
+    seccion: '5. Consultas y correcciones', version: '0.1', enlace: 'https://docs.google.com/document/d/doc-meta/edit', score: .9,
+    texto: 'Enviar consulta por el canal privado de Finanzas.' };
+  let respuesta = 'La sección 5 de la versión 0.1 indica usar el canal privado de Finanzas.';
+  const agent = new PolicyAgent({ search: async () => [fragment], llm: { async completeJson() {
+    return { respuesta, fragmento_ids: [fragment.fragmento_id], sin_respaldo: false };
+  } } });
+  assert.equal((await agent.answer('¿Cómo solicito revisión?')).escalated, false);
+  respuesta = 'Se pagan 999 días.';
+  assert.equal((await agent.answer('¿Cuánto se paga?')).escalated, true);
+});
+
+test('corrige una sola vez cifras sin fuente y revalida contra los mismos fragmentos', async () => {
+  const fragment = { fragmento_id: 'repair-test', documento: 'Política de ejemplo', drive_file_id: 'doc-repair',
+    seccion: 'Condiciones', version: '0.1', enlace: 'https://docs.google.com/document/d/doc-repair/edit', score: .9,
+    texto: 'El subsidio requiere validación de la entidad competente.' };
+  const inputs = [];
+  const agent = new PolicyAgent({ search: async () => [fragment], llm: { async completeJson(input) {
+    inputs.push(JSON.parse(input.user));
+    return { respuesta: inputs.length === 1 ? 'Recibirás 999 días.' : fragment.texto, fragmento_ids: [fragment.fragmento_id], sin_respaldo: false };
+  } } });
+  const result = await agent.answer('Tengo 999 días, ¿cuánto recibo?');
+  assert.equal(result.escalated, false);
+  assert.equal(result.response, fragment.texto);
+  assert.equal(inputs.length, 2);
+  assert.deepEqual(inputs[0].fuentes, inputs[1].fuentes);
+  assert.match(inputs[1].validacion, /No repitas cantidades/);
+});
+
+test('la cláusula mixta conserva el tema de vacaciones aunque la pregunta use solo días y pronombres', async () => {
+  const { service, policyAgent } = harness();
+  await service.ask({ collaboratorId: 84, message: '¿Cuántos días me quedan y puedo pasarlos al año siguiente?' });
+  assert.match(policyAgent.calls[0], /política de vacaciones/);
+  assert.equal(policyAgent.calls[0].includes('8.00'), false);
+});

@@ -1,5 +1,14 @@
 # Portal RRHH — Bosque Claro
 
+## Estado actual verificado — 19-11-2026
+
+**45/45 (100 %) verificaciones automáticas aprobadas**, **0 fallidas**, **0 bloqueadas**. p90 HTTP **5465 ms** y p90 con documentos **6597 ms**. Preguntas 21/22: **HTTP 403 genérico sin datos**.
+
+Doce políticas publicadas e indexadas (68 fragmentos activos); DeepSeek y Gemini operativos; reporte manual real del 19-11-2026. Saludos, calendario Costa Rica y eliminación de conversación con CSRF implementados y probados. Worker inactivo; video y revisión humana en navegador Google autorizado pendientes. Ver [PROGRESO](docs/PROGRESO.md), [evaluación](docs/evaluacion/README.md), [video de cinco minutos](docs/demo.md) y [demo en vivo de quince](docs/demo-en-vivo.md).
+
+Las notas del 18-11-2026 que siguen describen un corte anterior; el estado y métricas actuales son los de este bloque y PROGRESO.
+
+
 Mini Proyecto #2. Empresa ficticia **Bosque Claro Servicios Digitales S.A.**, Costa Rica, con **60 colaboradores simulados**. Stack: Node.js, Express, Sequelize y MySQL; frontend React/Vite. Este README distingue el código preparado de lo comprobado contra servicios reales.
 
 ## Estado de esta etapa

@@ -26,6 +26,7 @@ const messages = {
   VALIDATION_ERROR: 'Revisa los datos ingresados e inténtalo de nuevo.',
   RATE_LIMITED: 'Has realizado varios intentos. Espera unos minutos antes de volver a intentar.',
   DEPENDENCY_UNAVAILABLE: 'El servicio no está disponible en este momento. Inténtalo de nuevo más tarde.',
+  REPORT_GENERATION_IN_PROGRESS: 'Ya hay una generación en curso para hoy. Inténtalo en unos segundos.',
 };
 
 export async function request(path, { method = 'GET', body, signal, authenticated = true } = {}) {

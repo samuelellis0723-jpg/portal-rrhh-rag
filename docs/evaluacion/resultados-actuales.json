@@ -1,7 +1,7 @@
 {
-  "fecha_ejecucion": "2026-11-18T18:41:55.212Z",
+  "fecha_ejecucion": "2026-11-19T17:17:24.102Z",
   "modo": "HTTP/MySQL reales; proveedores según configuración local",
-  "deepseek_configurado": false,
+  "deepseek_configurado": true,
   "filas": [
     {
       "id": 1,
@@ -12,15 +12,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D01-vacaciones.md"
       ],
-      "http": 503,
-      "latencia_ms": 148,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 4259,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El documento es una propuesta académica de política interna (versión 0.1, borrador no aprobado ni vigente) para la empresa ficticia Bosque Claro Servicios Digitales S.A. Sobre los días que corresponden al año, la fuente indica que el artículo 153 del Código de Trabajo establece un mínimo de dos semanas de vacaciones pagadas por cada 50 semanas de trabajo continuo con la misma persona empleadora; si termina la relación antes, corresponde como mínimo un día por mes trabajado. El MTSS describe las dos semanas como doce días laborables más los descansos semanales, en los esquemas ordinarios correspondientes. El cómputo y pago dependen de jornada, forma de pago y actividad; no se debe convertir “14 días naturales” en una regla universal. Para el caso particular, el cómputo individual se resuelve con la fuente legal aplicable y asesoría laboral, no con los saldos ficticios de la demo.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "2. Piso legal verificado",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "4a8b0a0f-d80b-53be-a886-bb95540412d0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "El artículo 153 del Código de Trabajo establece un mínimo de dos semanas de vacaciones pagadas por cada 50 semanas de trabajo continuo con la misma persona empleadora; si termina la relación antes, corresponde como mínimo un día por mes trabajado. El artículo 154 extiende el derecho a jornadas parciales y semanales. El artículo 155 asigna a la persona empleadora la determinación del disfrute dentro de las 15 semanas posteriores a la adquisición del derecho. El artículo 156 declara las vacaciones incompensables salvo excepciones taxativas. El artículo 158 prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Véanse también artículos 157 y 159 para cálculo y descanso.\nEl MTSS describe las dos semanas como doce días laborables más los descansos semanales, en los esquemas ordinarios correspondientes. El cómputo y pago dependen de jornada, forma de pago y actividad; no convertir “14 días naturales” en una regla universal."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "1. Alcance y carácter",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "a1020761-63c5-5779-a0b6-a64c8a7d43e0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "________________\nEste documento contiene una propuesta académica de política interna para la empresa ficticia Bosque Claro Servicios Digitales S.A. (60 personas, Costa Rica). Versión 0.1, borrador no aprobado ni vigente en una empresa real. Si se aprobara, ninguna regla podría disminuir los mínimos legales. Las cifras personales que figuran en la base demo son simuladas y este documento no es su fuente."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "6. Revisión",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "14e03a7e-1455-59cc-9c8a-a54cbd7522ce",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH revisará esta propuesta anualmente y ante reformas. Una controversia sobre cómputo individual se resuelve con la fuente legal aplicable y asesoría laboral, no con los saldos ficticios de la demo.\nFuentes para verificar\n* Código de Trabajo, Ley 2, arts. 153–161, texto del MTSS: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* MTSS, preguntas frecuentes sobre vacaciones: https://www.mtss.go.cr/temas-laborales/\n* Consulta de esta versión: 2026-11-17."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 2,
@@ -32,14 +66,14 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 137,
+      "latencia_ms": 134,
       "checks": {
         "http": true,
         "respuesta": true,
         "intencion": true,
         "saldo_sql": true
       },
-      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-18.",
+      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19.",
       "intencion": "dato_personal",
       "estado": "respondida",
       "citas": [],
@@ -55,15 +89,58 @@
       "fuentes_esperadas": [
         "docs/politicas/D01-vacaciones.md"
       ],
-      "http": 503,
-      "latencia_ms": 49,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3584,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La política de vacaciones es una propuesta académica en borrador, no aprobada ni vigente. Sobre la acumulación, la sección 4 indica que se planifica el disfrute efectivo y oportuno y que no se promueve la acumulación; solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. La sección 2 señala que el artículo 158 del Código de Trabajo prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Para resolver un caso particular de acumulación, la sección 6 remite a la fuente legal aplicable y asesoría laboral.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "4. Disfrute, saldo y registro",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "d2ccd5bb-2c64-5cd1-9a72-0746f9e0a67a",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH conserva fecha de adquisición, período, días reconocidos, disfrute y saldo, y entrega constancia escrita a solicitud. Se planifica el disfrute efectivo y oportuno; no se promueve la acumulación. Solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. No se sustituye descanso por dinero salvo excepción legal aplicable."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "2. Piso legal verificado",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "4a8b0a0f-d80b-53be-a886-bb95540412d0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "El artículo 153 del Código de Trabajo establece un mínimo de dos semanas de vacaciones pagadas por cada 50 semanas de trabajo continuo con la misma persona empleadora; si termina la relación antes, corresponde como mínimo un día por mes trabajado. El artículo 154 extiende el derecho a jornadas parciales y semanales. El artículo 155 asigna a la persona empleadora la determinación del disfrute dentro de las 15 semanas posteriores a la adquisición del derecho. El artículo 156 declara las vacaciones incompensables salvo excepciones taxativas. El artículo 158 prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Véanse también artículos 157 y 159 para cálculo y descanso.\nEl MTSS describe las dos semanas como doce días laborables más los descansos semanales, en los esquemas ordinarios correspondientes. El cómputo y pago dependen de jornada, forma de pago y actividad; no convertir “14 días naturales” en una regla universal."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "6. Revisión",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "14e03a7e-1455-59cc-9c8a-a54cbd7522ce",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH revisará esta propuesta anualmente y ante reformas. Una controversia sobre cómputo individual se resuelve con la fuente legal aplicable y asesoría laboral, no con los saldos ficticios de la demo.\nFuentes para verificar\n* Código de Trabajo, Ley 2, arts. 153–161, texto del MTSS: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* MTSS, preguntas frecuentes sobre vacaciones: https://www.mtss.go.cr/temas-laborales/\n* Consulta de esta versión: 2026-11-17."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "1. Alcance y carácter",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "a1020761-63c5-5779-a0b6-a64c8a7d43e0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "________________\nEste documento contiene una propuesta académica de política interna para la empresa ficticia Bosque Claro Servicios Digitales S.A. (60 personas, Costa Rica). Versión 0.1, borrador no aprobado ni vigente en una empresa real. Si se aprobara, ninguna regla podría disminuir los mínimos legales. Las cifras personales que figuran en la base demo son simuladas y este documento no es su fuente."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 4,
@@ -74,15 +151,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D01-vacaciones.md"
       ],
-      "http": 503,
-      "latencia_ms": 46,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2301,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La política de vacaciones es una propuesta interna (borrador académico no aprobado ni vigente). Según la sección 3, la propuesta de anticipación es de 10 días hábiles para bloques de hasta cinco días y 20 para bloques mayores; esa anticipación es administrativa, no una condición legal para perder el derecho. Además, el supervisor revisa cobertura y responde en cinco días hábiles, y una solicitud no se considera aprobada hasta que el portal muestre estado “aprobada”; si la fecha se acerca sin respuesta, RRHH debe ayudar a resolverla.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "3. Propuesta interna para solicitud y aprobación",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "dce25f66-6d63-590f-8e19-7ed1fd5b48d1",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "La persona colaboradora registra en el portal fechas solicitadas, tipo y días laborables estimados. Propuesta de anticipación: 10 días hábiles para bloques de hasta cinco días y 20 para bloques mayores. Esta anticipación es administrativa, no una condición legal para perder el derecho. El supervisor revisa cobertura y responde en cinco días hábiles. Una solicitud no se considera aprobada hasta que el portal muestre estado “aprobada”; si la fecha se acerca sin respuesta, RRHH debe ayudar a resolverla. Cambios se acuerdan y se registran por escrito."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "1. Alcance y carácter",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "a1020761-63c5-5779-a0b6-a64c8a7d43e0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "________________\nEste documento contiene una propuesta académica de política interna para la empresa ficticia Bosque Claro Servicios Digitales S.A. (60 personas, Costa Rica). Versión 0.1, borrador no aprobado ni vigente en una empresa real. Si se aprobara, ninguna regla podría disminuir los mínimos legales. Las cifras personales que figuran en la base demo son simuladas y este documento no es su fuente."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 5,
@@ -93,15 +195,31 @@
       "fuentes_esperadas": [
         "docs/politicas/D03-permisos-licencias.md"
       ],
-      "http": 503,
-      "latencia_ms": 37,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2472,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La política de permisos y licencias (documento propuesto, versión 0.1, no aprobado ni vigente) indica, en la sección 2 «Licencias con base legal», que la Ley 10589 añadió el inciso l) al artículo 69 del Código de Trabajo: tres días hábiles remunerados por fallecimiento de parientes de primer grado de consanguinidad o afinidad; un día hábil por segundo y tercer grado. Para conviviente en unión de hecho y adopción, la ley detalla declaración o certificación. Esa regla reemplaza referencias antiguas que trataban todo duelo como discrecional. La cantidad aplicable depende del grado de parentesco; para determinar el caso particular, RRHH confirma el artículo aplicable antes de decidir remuneración.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política de permisos y licencias",
+          "seccion": "2. Licencias con base legal",
+          "version": "0.1",
+          "drive_file_id": "1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY",
+          "fragmento_id": "1bc03b1f-4ee2-53be-bdfd-b3aff584e7b7",
+          "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+          "fragmento": "Maternidad. El artículo 95 del Código de Trabajo establece licencia remunerada durante el mes anterior al parto y los tres posteriores. El reconocimiento y cálculo del subsidio se confirma con CCSS según el caso. Aplicar la versión consolidada del artículo y las reformas vigentes, sin inferir una regla distinta para una relación interina sin revisar el texto aplicable.\nPaternidad y adopción. El artículo 95, inciso b), contiene licencia para padres biológicos de dos días por semana durante las primeras cuatro semanas, bajo las condiciones legales; contempla además supuestos especiales de adopción. En familias homoparentales, aplicar la interpretación constitucional vigente de igualdad y solicitar asesoría si la situación concreta no está contemplada claramente en el texto consolidado.\nDuelo. Ley 10589 añadió el inciso l) al artículo 69 del Código: tres días hábiles remunerados por fallecimiento de parientes de primer grado de consanguinidad o afinidad; un día hábil por segundo y tercer grado. Para conviviente en unión de hecho y adopción, la ley detalla declaración o certificación. Esta regla reemplaza referencias antiguas que trataban todo duelo como discrecional.\nCitas judiciales y otros supuestos: la ley puede exigir permisos concretos. RRHH confirma el artículo aplicable antes de decidir remuneración."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 6,
@@ -112,15 +230,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D03-permisos-licencias.md"
       ],
-      "http": 503,
-      "latencia_ms": 39,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2838,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La Política de permisos y licencias es un borrador académico no aprobado (versión 0.1, vigencia propuesta solo simulación, sin adopción empresarial). En su sección 2, con base legal, indica: «Maternidad. El artículo 95 del Código de Trabajo establece licencia remunerada durante el mes anterior al parto y los tres posteriores. El reconocimiento y cálculo del subsidio se confirma con CCSS según el caso. Aplicar la versión consolidada del artículo y las reformas vigentes, sin inferir una regla distinta para una relación interina sin revisar el texto aplicable.» Y sobre paternidad: «Paternidad y adopción. El artículo 95, inciso b), contiene licencia para padres biológicos de dos días por semana durante las primeras cuatro semanas, bajo las condiciones legales; contempla además supuestos especiales de adopción. En familias homoparentales, aplicar la interpretación constitucional vigente de igualdad y solicitar asesoría si la situación concreta no está contemplada claramente en el texto consolidado.» Además, la sección 5 señala que ninguna aprobación interna sustituye, reduce ni condiciona una licencia legal, y que en dudas de elegibilidad RRHH deriva al MTSS/CCSS y no da una respuesta concluyente no respaldada.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política de permisos y licencias",
+          "seccion": "2. Licencias con base legal",
+          "version": "0.1",
+          "drive_file_id": "1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY",
+          "fragmento_id": "1bc03b1f-4ee2-53be-bdfd-b3aff584e7b7",
+          "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+          "fragmento": "Maternidad. El artículo 95 del Código de Trabajo establece licencia remunerada durante el mes anterior al parto y los tres posteriores. El reconocimiento y cálculo del subsidio se confirma con CCSS según el caso. Aplicar la versión consolidada del artículo y las reformas vigentes, sin inferir una regla distinta para una relación interina sin revisar el texto aplicable.\nPaternidad y adopción. El artículo 95, inciso b), contiene licencia para padres biológicos de dos días por semana durante las primeras cuatro semanas, bajo las condiciones legales; contempla además supuestos especiales de adopción. En familias homoparentales, aplicar la interpretación constitucional vigente de igualdad y solicitar asesoría si la situación concreta no está contemplada claramente en el texto consolidado.\nDuelo. Ley 10589 añadió el inciso l) al artículo 69 del Código: tres días hábiles remunerados por fallecimiento de parientes de primer grado de consanguinidad o afinidad; un día hábil por segundo y tercer grado. Para conviviente en unión de hecho y adopción, la ley detalla declaración o certificación. Esta regla reemplaza referencias antiguas que trataban todo duelo como discrecional.\nCitas judiciales y otros supuestos: la ley puede exigir permisos concretos. RRHH confirma el artículo aplicable antes de decidir remuneración."
+        },
+        {
+          "documento": "Política de permisos y licencias",
+          "seccion": "5. No renuncia ni discriminación",
+          "version": "0.1",
+          "drive_file_id": "1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY",
+          "fragmento_id": "d005b63b-6503-5e72-a041-d41c06d53a89",
+          "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+          "fragmento": "Ninguna aprobación interna sustituye, reduce ni condiciona una licencia legal. No se penaliza solicitar una licencia protegida. En dudas de elegibilidad, RRHH deriva al MTSS/CCSS y no da una respuesta concluyente no respaldada.\nFuentes\n* Código de Trabajo, arts. 69(l), 95 y 480: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* Texto consolidado del art. 95, consulta normativa PGR: https://www.pgrweb.go.cr/DOCS/NORMAS/1/VIGENTE/L/1940-1949/1940-1944/1943/1F6D/180E63.HTML\n* Ley 10589 (2024), texto PGR/SCIJ: https://www.pgrweb.go.cr/DOCS/NORMAS/1/VIGENTE/L/2020-2029/2020-2024/2024/193D8/170861.HTML\n* MTSS, criterio sobre permisos especiales (no convierte práctica de un empleador en regla general): https://www.mtss.go.cr/elministerio/estructura/direccion-asuntos-juridicos/pronunciamientos/daj-ae-005-12%20Feliciano%20Emilio%20Quiros%20Fallas.%20Con%20Correcciones%20Lucia.%20Final..pdf\n* Consulta: 2026-11-17."
+        },
+        {
+          "documento": "Política de permisos y licencias",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY",
+          "fragmento_id": "a894b1ee-a2d2-50e6-a650-d1f0996145a3",
+          "enlace": "https://docs.google.com/document/d/1dHMJHZZmxhkd3fbS1w5IPnYMVd3__XK5zlFW7GCrVSY/edit?usp=drivesdk",
+          "fragmento": "Política de permisos y licencias\n________________\nVersión: 0.1 · Responsable: RRHH · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 7,
@@ -131,15 +283,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D04-incapacidades.md"
       ],
-      "http": 503,
-      "latencia_ms": 57,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 4003,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el procedimiento propuesto de incapacidades (borrador académico no aprobado), la incapacidad debe ser emitida o validada por la entidad competente y no equivale automáticamente a salario: el subsidio está sujeto a requisitos de aseguramiento y a la base salarial reconocida. Conforme al artículo 35 del Reglamento del Seguro de Salud de la CCSS, el subsidio ordinario comienza el cuarto día de incapacidad; si hay una nueva incapacidad dentro de los 30 días posteriores a la anterior, el subsidio se reconoce desde el primer día. El artículo 36 determina el cálculo con base en el promedio de salarios reportados de los últimos 12 meses, con ajustes y topes previstos en el reglamento, y no se puede prometer un porcentaje único sin verificar historial contributivo y resolución de CCSS. Para los primeros tres días, el Código de Trabajo, la regla de subsidio de CCSS y el criterio administrativo MTSS DAJ-AE-155-06 se deben leer conjuntamente: dicho criterio reconoce el pago patronal de la mitad del salario en los primeros tres días para el supuesto allí examinado; reincidencias, continuidad y hechos distintos requieren revisión de CCSS/planilla y asesoría laboral, sin extender automáticamente esa conclusión a cualquier supuesto. La incapacidad por riesgo laboral tramitada por INS tiene reglas diferentes (subsidio del 60% del salario diario durante los primeros 45 días y aproximadamente 67% a partir del día 46, con base en salarios reportados y sujeto a las condiciones de la póliza), y no debe usarse esa referencia para incapacidades CCSS. Como la consulta no especifica entidad, salario ni cotizaciones, RRHH debe explicar la regla aplicable, pedir los datos faltantes de forma segura y evitar estimar el ingreso neto; las reglas dependen de entidad, póliza, cotizaciones y hechos, por lo que debe confirmarse la resolución aplicable.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Procedimiento de incapacidades",
+          "seccion": "3. Enfermedad común: cobertura y pago",
+          "version": "0.1",
+          "drive_file_id": "1vl2so3zVBag5p6z7NqOPmybok790Pk6w",
+          "fragmento_id": "81f858b1-4f83-5454-9da7-c96e4b7ba022",
+          "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+          "fragmento": "La incapacidad debe ser emitida o validada por la entidad competente. No equivale\nautomáticamente a salario: el subsidio está sujeto a requisitos de aseguramiento y a la base\nsalarial reconocida. Conforme al artículo 35 del Reglamento del Seguro de Salud de la\nCCSS, el subsidio ordinario comienza el cuarto día de incapacidad; si hay una nueva\nincapacidad dentro de los 30 días posteriores a la anterior, el subsidio se reconoce desde el\nprimer día. El artículo 36 determina el cálculo con base en el promedio de salarios\nreportados de los últimos 12 meses, con ajustes y topes previstos en el reglamento. No se\npuede prometer un porcentaje único sin verificar historial contributivo y resolución de CCSS.\nPara los primeros tres días, el Código de Trabajo, la regla de subsidio de CCSS y el criterio\nadministrativo MTSS DAJ-AE-155-06 se deben leer conjuntamente: dicho criterio reconoce\nel pago patronal de la mitad del salario en los primeros tres días para el supuesto allí\nexaminado. Reincidencias, continuidad y hechos distintos requieren revisión de\nCCSS/planilla y asesoría laboral; no extender automáticamente esa conclusión a cualquier\nsupuesto.\n\n-- 1 of 3 --\n\nLa incapacidad por riesgo laboral tramitada por INS tiene reglas diferentes. La FAQ oficial\ndel INS indica para Riesgos del Trabajo un subsidio del 60% del salario diario durante los\nprimeros 45 días y aproximadamente 67% a partir del día 46, con base en salarios\nreportados y sujeto a las condiciones de la póliza. No usar esa referencia para SOA ni para\nincapacidades CCSS. Si la consulta no especifica entidad, días, salario y cotizaciones,\nRRHH debe explicar la regla aplicable, pedir los datos faltantes de forma segura y evitar\nestimar el ingreso neto."
+        },
+        {
+          "documento": "Procedimiento de incapacidades",
+          "seccion": "6. Fuentes y advertencia de vigencia",
+          "version": "0.1",
+          "drive_file_id": "1vl2so3zVBag5p6z7NqOPmybok790Pk6w",
+          "fragmento_id": "318f0ddd-3efe-5832-aed3-c116f7321628",
+          "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+          "fragmento": "Reglamento del Seguro de Salud CCSS, arts. 35–36, reforma aprobada por Junta\nDirectiva en sesión 9478 (12-09-2024), publicada en La Gaceta 205 (01-11-2024):\nhttps://www.imprentanacional.go.cr/pub/2024/11/01/COMP_01_11_2024.pdf ; ficha\nnormativa: https://sinalevi.go.cr/ResultadosNormativa/Informacion?\nparam1=103152&param2=143034&param3=2\nCCSS Auditoría Interna, informe AD-AFINPE-0054-2025, pp. 14–15, transcribe el texto\ndel art. 36 posterior a la reforma: promedio de doce salarios reportados excluyendo\nsalarios afectados por incapacidades/licencias y uso de días calendario:\nhttps://aissfa.ccss.sa.cr/arc/auditoria/informes/AD-AFINPE-0054-2025.pdf\nCódigo de Trabajo, arts. 79 y 193 y siguientes:\nhttps://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\nMTSS, criterio DAJ-AE-155-06 sobre los primeros tres días:\nhttps://www.mtss.go.cr/elministerio/estructura/direccion-asuntos-\njuridicos/pronunciamientos/daj-ae-155-\n06%20%20pago%20primeros%20tres%20dias.pdf\nINS, trámite de pago por incapacidades (Riesgos del Trabajo):\nhttps://salud.grupoins.com/preguntas-frecuentes/tramite-de-pago-por-incapacidades/ ;\ncondiciones generales: https://www.ins-cr.com/media/12590/condiciones-\ngenerales.pdf\n\n-- 2 of 3 --\n\nConsulta: 2026-11-17. Las reglas indicadas dependen de entidad, póliza, cotizaciones\ny hechos; confirmar la resolución aplicable.\n\n-- 3 of 3 --"
+        },
+        {
+          "documento": "Procedimiento de incapacidades",
+          "seccion": "1. Estado y alcance",
+          "version": "0.1",
+          "drive_file_id": "1vl2so3zVBag5p6z7NqOPmybok790Pk6w",
+          "fragmento_id": "a5fb21f3-7750-5b1f-9980-6008c293eed7",
+          "enlace": "https://drive.google.com/file/d/1vl2so3zVBag5p6z7NqOPmybok790Pk6w/view?usp=drivesdk",
+          "fragmento": "Procedimiento operativo propuesto para la empresa ficticia Bosque Claro Servicios\nDigitales S.A. Versión 0.1, borrador académico preparado 2026-11-17; no aprobado. No\nsustituye reglas clínicas, reglamentos CCSS/INS ni asesoría sobre cálculo de un caso. La\nversión final para uso empresarial requiere revisión laboral y de planillas."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 8,
@@ -151,15 +337,49 @@
         "docs/politicas/D06-politica-salarial.md",
         "docs/politicas/D07-calendario-pagos-2026.md"
       ],
-      "http": 503,
-      "latencia_ms": 53,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3730,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La política salarial y de planilla (versión 0.1) indica, respecto al aguinaldo legal en el sector privado, que la Ley 2412 reconoce aguinaldo anual y que, según el MTSS, se suman los salarios ordinarios y extraordinarios devengados del 1 de diciembre al 30 de noviembre y se divide entre 12; el pago debe hacerse dentro de los primeros 20 días de diciembre. El calendario general de pagos y obligaciones 2026 (borrador académico no aprobado, solo simulación) registra el 2026-11-30 como cierre del período para cómputo del aguinaldo (período 1 dic anterior–30 nov; no es pago individual) y el 2026-12-20 como fecha límite general de pago de aguinaldo (Ley 2412: dentro de los primeros veinte días de diciembre; validar calendario laboral). La política advierte que casos de incapacidad, suspensión, salario en especie, terminación y conceptos salariales pueden variar el cálculo, y que no se debe extrapolar el salario de un mes ni usar solo el salario base sin revisar el caso. Para un caso particular, el cálculo individual no se determina con estos fragmentos; debe revisarse el caso con Planillas por el canal privado de Finanzas.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "4. Aguinaldo legal",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "e16d6646-5201-521c-88f3-d02df4ae587b",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "En sector privado, la Ley 2412 reconoce aguinaldo anual. MTSS indica que se suman salarios ordinarios y extraordinarios devengados del 1 de diciembre al 30 de noviembre y se divide entre 12; el pago debe hacerse dentro de los primeros 20 días de diciembre. Casos de incapacidad, suspensión, salario en especie, terminación y conceptos salariales pueden variar el cálculo. No extrapolar el salario de un mes ni usar solo salario base sin revisar el caso."
+        },
+        {
+          "documento": "Calendario general de pagos y obligaciones 2026",
+          "seccion": "Hoja: Calendario general de pagos y o",
+          "version": "0.1",
+          "drive_file_id": "1L3pZkgOnnxkeIL6zeXLd7Ha7u0fM5ZVnW-naH4FLh2g",
+          "fragmento_id": "de859d5f-b8a9-5388-bd33-5783b8c6adff",
+          "enlace": "https://docs.google.com/spreadsheets/d/1L3pZkgOnnxkeIL6zeXLd7Ha7u0fM5ZVnW-naH4FLh2g/edit?usp=drivesdk",
+          "fragmento": "puesta interna | Propuesta: día 15 o último día calendario; si cae en fin de semana se propone el día hábil anterior. No adoptado; confirmar calendario vigente.\nFila 34: 2026-11-30 | Cierre de período para cómputo del aguinaldo | Referencia legal | Período 1 dic anterior–30 nov; no es pago individual | https://www.mtss.go.cr/temas-laborales/aguinaldo/preguntas_frecuentes.pdf\nFila 35: 2026-12-20 | Fecha límite general de pago de aguinaldo | Referencia legal | Ley 2412: dentro de los primeros veinte días de diciembre; validar calendario laboral | https://www.mtss.go.cr/temas-laborales/aguinaldo/preguntas_frecuentes.pdf"
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "5. Consultas y correcciones",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "47b9d692-000c-587b-b76d-5f90c6e5c332",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "Enviar consulta de planilla mediante canal privado de Finanzas, identificando período y rubro; nunca incluir credenciales o datos bancarios en el chat RAG. Planillas confirma recepción en dos días hábiles como objetivo interno y corrige errores comprobados en la primera corrida viable, respetando obligaciones y autorización de deducciones.\nFuentes\n* Código de Trabajo, arts. 162–179, 193 y concordantes: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* Ley 2412, Aguinaldo en la Empresa Privada; MTSS FAQ: https://www.mtss.go.cr/temas-laborales/aguinaldo/preguntas_frecuentes.pdf\n* MTSS calculadora de salarios mínimos (usar tabla vigente): https://www.mtss.go.cr/temas-laborales/salarios/Lista_salarios.html\n* Consulta: 2026-11-17."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 9,
@@ -171,7 +391,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 57,
+      "latencia_ms": 29,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -193,15 +413,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D05-jornada-teletrabajo.md"
       ],
-      "http": 503,
-      "latencia_ms": 39,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 4623,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el Reglamento propuesto de jornada, asistencia y teletrabajo (borrador académico no aprobado, versión 0.1), no existe un derecho general automático a dos días remotos. El texto indica que se plantea una propuesta hipotética de hasta dos jornadas semanales, sujeta a elegibilidad del puesto, acuerdo y aprobación. Además, el teletrabajo se considera voluntario y regido por acuerdo de partes, y un acuerdo escrito debe definir puesto, lugar, herramientas, soporte, seguridad, evaluación, gastos y disponibilidad. La jornada sigue aplicando. Para resolver un caso particular faltaría verificar la elegibilidad del puesto, la existencia de acuerdo y la aprobación correspondiente, conforme a la propuesta.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "4. Teletrabajo",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "69c7f07a-680e-55b8-87eb-038cb4876de0",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Ley 9738 aplica a empleos públicos y privados y considera el teletrabajo voluntario, regido por acuerdo de partes. Cuando se acuerda después del inicio, la ley regula posibilidad de revocación y aviso; si fue condición pactada desde el inicio, el retorno no es unilateral. Un acuerdo escrito debe definir puesto, lugar, herramientas, soporte, seguridad, evaluación, gastos y disponibilidad. No hay derecho general automático a dos días remotos: propuesta hipotética de hasta dos jornadas semanales, sujeta a elegibilidad del puesto, acuerdo y aprobación. La jornada sigue aplicando; enviar mensajes fuera de horario no convierte una disponibilidad permanente en obligación."
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "1. Estado",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "00b9a65d-beab-538f-b800-bfa4885fff51",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica de Bosque Claro Servicios Digitales S.A., versión 0.1, borrador no aprobado. Horarios y días remotos abajo son propuestas internas, no hechos actuales de la empresa."
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "0826f996-3dd5-51c6-a9a3-bf13c9a370b3",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Reglamento propuesto de jornada, asistencia y teletrabajo\n________________\nVersión: 0.1 · Responsable: RRHH y Operaciones · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 11,
@@ -212,15 +466,58 @@
       "fuentes_esperadas": [
         "docs/politicas/D05-jornada-teletrabajo.md"
       ],
-      "http": 503,
-      "latencia_ms": 32,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2821,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el Reglamento propuesto de jornada, asistencia y teletrabajo (borrador, versión 0.1), el trabajo extraordinario se rige por el Código de Trabajo, arts. 135–152, y las horas extra se pagan con 50% adicional; los feriados tienen régimen propio. Además, el trabajo ordinario más extraordinario no debe exceder el máximo legal diario (regla general 12 horas). La propuesta indica que las jefaturas aprueban el trabajo extraordinario antes de realizarlo salvo emergencia y documentan el motivo, y que siempre se paga el trabajo extra efectivamente exigible conforme a ley, aunque falte aprobación interna. La Política salarial y de planilla (borrador) señala que Planillas calcula salario ordinario, horas extra, feriados, deducciones legales autorizadas y comprobante individual, y que la persona recibe desglose del período y puede solicitar revisión por canal privado. Para un caso particular, la política no fija montos ni una tabla salarial; el dataset es ficticio y el documento es un borrador no aprobado.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "2. Jornada y descansos: marco legal",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "ca787b87-4773-5d73-84e5-26f925a4b5ae",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "El Código de Trabajo, arts. 135–152, regula jornadas diurnas, nocturnas, mixtas, descansos, trabajo extraordinario y feriados. La jornada diurna ordinaria general es hasta ocho horas diarias y 48 semanales; la mixta hasta siete diarias y 42 semanales; nocturna hasta seis diarias y 36 semanales, con límites y excepciones legales. La acumulación permitida depende de que el trabajo no sea peligroso ni insalubre y del límite semanal; no imponer una jornada excepcional por simple conveniencia. El trabajo ordinario más extraordinario no debe exceder el máximo legal diario (regla general 12 horas) y las horas extra se pagan con 50% adicional; los feriados tienen régimen propio."
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "3. Horario propuesto y marcas",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "ee1c4db0-730f-58c6-9b34-b0b82fecec11",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Propuesta para puestos de oficina: lunes a viernes, 8:00–17:00 con una hora de descanso no computada como trabajo efectivo, sujeto al contrato individual y validación de jornada. El registro de inicio, pausas y cierre sirve para seguridad y planilla; no se alteran marcas para ocultar trabajo extra. La persona reporta errores el mismo día. Las jefaturas aprueban trabajo extraordinario antes de realizarlo salvo emergencia y documentan el motivo; siempre se paga el trabajo extra efectivamente exigible conforme a ley, aunque falte aprobación interna."
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "2. Remuneración y transparencia operativa",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "3878ad67-548a-51d8-bfde-f123f8723485",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "La oferta individual y contrato deben indicar salario, moneda, jornada y periodicidad conforme a ley. Planillas calcula salario ordinario, horas extra, feriados, deducciones legales autorizadas y comprobante individual. La persona recibe desglose del período y puede solicitar revisión por canal privado. No se publican salarios de compañeros ni datos salariales individuales en reportes o canales compartidos.\nLos salarios mínimos se actualizan por decreto del Consejo Nacional de Salarios y varían por categoría, ocupación y calificación. Antes de fijar una oferta, Planillas verifica el decreto vigente y la clasificación del puesto; este borrador no congela montos ni recomienda una cifra desactualizada."
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "1. Propósito y carácter",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "ef68eecd-3895-55c7-b86c-ad1819991ff7",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica para la empresa ficticia Bosque Claro Servicios Digitales S.A. Versión 0.1, borrador sujeto a revisión y aprobación. No incluye salarios reales ni una tabla salarial; el dataset del proyecto es ficticio."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 12,
@@ -231,15 +528,31 @@
       "fuentes_esperadas": [
         "docs/politicas/D09-ingreso-salida.md"
       ],
-      "http": 503,
-      "latencia_ms": 32,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2464,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El fragmento recuperado del Manual de ingreso y procedimiento de salida (sección 3, versión 0.1) no establece un período de prueba universal: indica que «No existe un período de prueba universal que permita ignorar derechos o despedir sin analizar el caso» y que la regla de tres meses que suele llamarse «prueba» tiene consecuencias específicas en preaviso/cesantía, no constituye licencia general para discriminación ni elimina derechos; señala revisar modalidad, antigüedad, motivo y reformas. No se documenta en las fuentes una duración distinta ni una regla fija de período de prueba.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "3. Período de prueba",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "46f8bff4-c44f-55b8-9ae6-e8cfa31356d7",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "No existe un período de prueba universal que permita ignorar derechos o despedir sin analizar el caso. El artículo 28 del Código regula preaviso para contratos indefinidos según continuidad: de tres a seis meses, una semana; más de seis meses y hasta un año, quince días; después de un año, un mes, con particularidades de terminación. El artículo 29 contiene auxilio de cesantía para supuestos legales. La regla de tres meses que suele llamarse “prueba” tiene consecuencias específicas en preaviso/cesantía, no constituye licencia general para discriminación ni elimina derechos. Revisar modalidad, antigüedad, motivo y reformas."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 13,
@@ -250,15 +563,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D09-ingreso-salida.md"
       ],
-      "http": 503,
-      "latencia_ms": 35,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2652,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El Manual de ingreso y procedimiento de salida (propuesta interna, versión 0.1) indica que el preaviso puede ser trabajado o pagado según acuerdo y norma aplicable, y que se debe consultar al MTSS o a asesoría antes de dar una cifra. El mismo manual, en la sección 3, señala que el artículo 28 del Código regula el preaviso para contratos indefinidos según continuidad: de tres a seis meses, una semana; más de seis meses y hasta un año, quince días; después de un año, un mes, con particularidades de terminación. Para determinar el caso particular de una renuncia falta revisar la modalidad, la antigüedad, el motivo y las reformas aplicables, por lo que no se ofrece una cifra individual.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "4. Renuncia y terminación",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "a29f0e6d-065d-5c22-9b97-ddd434d20803",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "Toda notificación se tramita por RRHH y se documenta con fecha efectiva, entrega de carta y saldo de activos. La persona recibe desglose de salarios pendientes, vacaciones, aguinaldo proporcional y las prestaciones que correspondan conforme a causal y antigüedad. No se anuncia cesantía automáticamente en renuncia voluntaria: normalmente depende de causal legal. El preaviso puede ser trabajado o pagado según acuerdo y norma aplicable. Consultar MTSS o asesoría antes de dar cifra."
+        },
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "3. Período de prueba",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "46f8bff4-c44f-55b8-9ae6-e8cfa31356d7",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "No existe un período de prueba universal que permita ignorar derechos o despedir sin analizar el caso. El artículo 28 del Código regula preaviso para contratos indefinidos según continuidad: de tres a seis meses, una semana; más de seis meses y hasta un año, quince días; después de un año, un mes, con particularidades de terminación. El artículo 29 contiene auxilio de cesantía para supuestos legales. La regla de tres meses que suele llamarse “prueba” tiene consecuencias específicas en preaviso/cesantía, no constituye licencia general para discriminación ni elimina derechos. Revisar modalidad, antigüedad, motivo y reformas."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 14,
@@ -269,15 +607,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D09-ingreso-salida.md"
       ],
-      "http": 503,
-      "latencia_ms": 26,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3256,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el Manual de ingreso y procedimiento de salida (propuesta, versión 0.1), toda notificación se tramita por RRHH y se documenta con fecha efectiva, entrega de carta y saldo de activos. La persona recibe desglose de salarios pendientes, vacaciones, aguinaldo proporcional y las prestaciones que correspondan conforme a causal y antigüedad. No se anuncia cesantía automáticamente en renuncia voluntaria: normalmente depende de causal legal. El preaviso puede ser trabajado o pagado según acuerdo y norma aplicable. El documento indica consultar MTSS o asesoría antes de dar cifra. Además, el mismo manual señala que el artículo 28 del Código regula preaviso para contratos indefinidos según continuidad (de tres a seis meses, una semana; más de seis meses y hasta un año, quince días; después de un año, un mes, con particularidades de terminación) y que el artículo 29 contiene auxilio de cesantía para supuestos legales; corresponde revisar modalidad, antigüedad, motivo y reformas. Para el caso particular de un despido sin justa causa, el desglose concreto y las prestaciones aplicables dependen de la causal y la antigüedad, por lo que el manual remite a consulta ante el MTSS o asesoría antes de dar cifras.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "4. Renuncia y terminación",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "a29f0e6d-065d-5c22-9b97-ddd434d20803",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "Toda notificación se tramita por RRHH y se documenta con fecha efectiva, entrega de carta y saldo de activos. La persona recibe desglose de salarios pendientes, vacaciones, aguinaldo proporcional y las prestaciones que correspondan conforme a causal y antigüedad. No se anuncia cesantía automáticamente en renuncia voluntaria: normalmente depende de causal legal. El preaviso puede ser trabajado o pagado según acuerdo y norma aplicable. Consultar MTSS o asesoría antes de dar cifra."
+        },
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "3. Período de prueba",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "46f8bff4-c44f-55b8-9ae6-e8cfa31356d7",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "No existe un período de prueba universal que permita ignorar derechos o despedir sin analizar el caso. El artículo 28 del Código regula preaviso para contratos indefinidos según continuidad: de tres a seis meses, una semana; más de seis meses y hasta un año, quince días; después de un año, un mes, con particularidades de terminación. El artículo 29 contiene auxilio de cesantía para supuestos legales. La regla de tres meses que suele llamarse “prueba” tiene consecuencias específicas en preaviso/cesantía, no constituye licencia general para discriminación ni elimina derechos. Revisar modalidad, antigüedad, motivo y reformas."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 15,
@@ -288,15 +651,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D08-beneficios.md"
       ],
-      "http": 503,
-      "latencia_ms": 24,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3050,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El seguro médico complementario figura en el Catálogo propuesto de beneficios (versión 0.1, propuesta académica no aprobada) como “No confirmado. Pendiente de decisión, proveedor, cobertura, costo, exclusiones y autorización de presupuesto.” No debe presentarse como prestación vigente. Además, el catálogo indica que no hay evidencia de que Bosque Claro ya tenga seguro médico privado, por lo que no se anuncia como disponible. Las obligaciones de afiliación y cotización a los regímenes obligatorios de seguridad social y el aseguramiento de riesgos del trabajo se rigen por sus leyes y no equivalen a un seguro privado de salud. Por tanto, la cobertura concreta del seguro médico no está definida en las fuentes: quedan pendientes decisión, proveedor, cobertura, costo, exclusiones y autorización de presupuesto.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Catálogo propuesto de beneficios",
+          "seccion": "3. Beneficios que se podrían evaluar",
+          "version": "0.1",
+          "drive_file_id": "1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg",
+          "fragmento_id": "e913dbd1-1a62-5194-982d-ba62998d0a2b",
+          "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+          "fragmento": "Seguro médico complementario: “No confirmado. Pendiente de decisión, proveedor, cobertura, costo, exclusiones y autorización de presupuesto.” No presentar como prestación vigente.\nAsociación solidarista: “No existe constancia de asociación de Bosque Claro.” Una eventual creación requeriría personas fundadoras, estatutos, afiliación voluntaria y cumplimiento de Ley 6970.\nCapacitación: propuesta interna: solicitar cursos relacionados con funciones al supervisor y RRHH; aprobación depende de presupuesto anual y acuerdo de permanencia si jurídicamente válido. No se promete un monto anual.\nApoyo de bienestar: RRHH puede publicar servicios efectivamente contratados con alcance y contacto verificados. Este borrador no activa ninguno."
+        },
+        {
+          "documento": "Catálogo propuesto de beneficios",
+          "seccion": "1. Estado del catálogo",
+          "version": "0.1",
+          "drive_file_id": "1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg",
+          "fragmento_id": "5917c6e3-eefe-56b9-8643-e3b6615496b3",
+          "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+          "fragmento": "________________\nVersión 0.1, propuesta académica, no aprobada. Empresa ficticia de 60 personas. No hay evidencia de que Bosque Claro ya tenga seguro médico privado, asociación solidarista, fondo de ahorro, beca o subsidio. Por eso este catálogo no los anuncia como disponibles."
+        },
+        {
+          "documento": "Catálogo propuesto de beneficios",
+          "seccion": "2. Obligaciones frente a beneficios voluntarios",
+          "version": "0.1",
+          "drive_file_id": "1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg",
+          "fragmento_id": "cc9096d1-de18-5132-aa16-abfbac0309ad",
+          "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+          "fragmento": "La afiliación y cotización a los regímenes obligatorios de seguridad social y el aseguramiento de riesgos del trabajo se rigen por sus leyes. No equivalen a un seguro privado de salud. Un beneficio voluntario surge de contrato, instrumento colectivo, práctica empresarial vinculante o acuerdo; una vez ofrecido o incorporado, no se debe retirar sin análisis laboral. La Ley de Asociaciones Solidaristas permite una forma organizativa, pero no obliga por sí sola a toda empresa a crear una asociación."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 16,
@@ -307,15 +704,76 @@
       "fuentes_esperadas": [
         "docs/politicas/D11-conducta-denuncias.md"
       ],
-      "http": 503,
-      "latencia_ms": 21,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 5397,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El documento es un código de conducta y protocolo propuesto de denuncias, versión 0.1, borrador académico no aprobado, sin adopción empresarial. Para el hostigamiento sexual regulado por Ley 7476, la denuncia puede ser verbal o escrita y debe manejarse confidencialmente; la ley exige al empleador una política y un procedimiento para recibir, investigar y sancionar denuncias. El canal interno propuesto consiste en un correo privado gestionado por RRHH designada o entrega directa a la persona investigadora independiente; no se debe habilitar un buzón no monitoreado. Se propone acuse en dos días hábiles, registrar fecha, hechos, contacto seguro, testigos y medidas urgentes solicitadas, y no exigir confrontar a la persona denunciada. Se remite a MTSS/autoridad competente si hay conflicto de interés, inacción o necesidad de tutela externa. La persona investigadora preserva evidencia, entrevista a las partes por separado, limita acceso al expediente y protege la identidad durante el trámite. Para otras quejas de acoso laboral, el documento indica recibir inquietudes de forma respetuosa y ofrecer investigación neutral, sin afirmar que exista en el sector privado una definición legal integral y procedimiento idénticos a Ley 7476; si existe riesgo inminente, escalar de inmediato.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "3. Hostigamiento sexual: obligación legal",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "a0273e57-dbe5-5c2f-8db9-cdab8e0cd9dd",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "Ley 7476 exige al empleador una política y un procedimiento para recibir, investigar y sancionar denuncias de hostigamiento sexual en el empleo. La denuncia puede ser verbal o escrita y debe manejarse confidencialmente. La persona denunciante y testigos tienen protección contra represalias; el despido durante el fuero está sujeto a las condiciones legales y autorización previa de Inspección de Trabajo. El artículo 38, reformado por Ley 10029, fija un plazo de prescripción de ocho años en los supuestos regulados por ese artículo; no usar referencias antiguas de dos años. El plazo de investigación administrativa no debe exceder tres meses. Aplicar la ley y reglas de procedimiento vigentes; no importar reglas de reglamentos de instituciones públicas a esta empresa privada."
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "6. Otras quejas de acoso laboral",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "f0edee5b-be31-5eff-ade5-72c3c9a97df0",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "Recibir inquietudes de forma respetuosa y ofrecer investigación neutral. Para acoso laboral no afirmar que existe en el sector privado una definición legal integral y procedimiento idénticos a Ley 7476; analizar Código de Trabajo, dignidad, salud y jurisprudencia aplicables. Si existe riesgo inminente, escalar de inmediato.\nFuentes\nSe excluye como fundamento de esta empresa privada el Decreto 27969-TSS: es el Reglamento Autónomo de Servicio del MTSS y regula las relaciones con sus servidores, no un reglamento general del sector privado. Referencia descartada, artículo 1: https://www.mtss.go.cr/perfiles/lineamientos_circulares_directrices_politicas_internas/lineamientos-circulares-directrices-politicas%20internas/27969-TSS.pdf\n* Ley 7476, texto consolidado, SINALEVI: https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=22803&param2=127347&param3=3&param4=116111\n* Ley 10029 (reforma del art. 38), publicación oficial en La Gaceta: https://www.imprentanacional.go.cr/pub/2021/10/20/ALCA213_20_10_2021.pdf\n* MTSS, orientación sobre hostigamiento sexual y denuncia: https://www.mtss.go.cr/temas-laborales/hostigamiento-sexual.html\n* Consulta: 2026-11-17."
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "4. Canal interno propuesto",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "eaa66ecb-b1db-5599-b752-f382cbfc706f",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "Canal: correo privado gestionado por RRHH designada o entrega directa a la persona investigadora independiente. No habilitar un buzón no monitoreado. Acuse en dos días hábiles es objetivo propuesto. Registrar fecha, hechos, contacto seguro, testigos y medidas urgentes solicitadas. No exigir confrontar a la persona denunciada. Remitir a MTSS/autoridad competente si hay conflicto de interés, inacción o necesidad de tutela externa."
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "1. Estado y alcance",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "e1d67795-d53c-55ba-b9c4-a63554b199ea",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica de código interno para Bosque Claro Servicios Digitales S.A., versión 0.1, borrador no aprobado. Distingue hostigamiento sexual regulado por Ley 7476 de otros conflictos o alegaciones de acoso laboral, cuyo tratamiento no debe inventar un tipo legal uniforme."
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "d8ba6dfb-82e4-5890-a926-208fd0115910",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "Código de conducta y protocolo propuesto de denuncias\n________________\nVersión: 0.1 · Responsable: RRHH y persona investigadora independiente · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "5. Investigación y protección",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "f2e0d10c-86f3-520d-bca3-80bbd8230ea6",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "La persona investigadora preserva evidencia, entrevista a las partes por separado, limita acceso al expediente y documenta hallazgos. Se aplican medidas cautelares proporcionales solicitadas y permitidas, sin presumir culpabilidad. La decisión se basa en la norma interna válidamente adoptada y el debido proceso; sanciones pueden llegar a las previstas en la ley según gravedad probada. Se protege la identidad durante el trámite y se controla qué información puede hacerse pública al quedar firme conforme a ley."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 17,
@@ -327,7 +785,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 45,
+      "latencia_ms": 51,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -350,7 +808,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 43,
+      "latencia_ms": 40,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -373,21 +831,58 @@
         "docs/politicas/D01-vacaciones.md"
       ],
       "http": 200,
-      "latencia_ms": 1116,
+      "latencia_ms": 9438,
       "checks": {
         "http": true,
         "respuesta": true,
         "intencion": true,
-        "fuente_documental": false,
-        "trazabilidad": false,
+        "fuente_documental": true,
+        "trazabilidad": true,
         "saldo_sql": true
       },
-      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-18. No encontré información suficiente en los documentos de políticas disponibles. Puedes consultar a RRHH.",
+      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19. La política de vacaciones es una propuesta académica interna (versión 0.1, borrador no aprobado ni vigente). Sobre pasar días sobrantes al otro año: la sección 4 indica que «Se planifica el disfrute efectivo y oportuno; no se promueve la acumulación. Solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período.» La sección 2 señala que el artículo 158 del Código de Trabajo «prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos». Por tanto, la acumulación no es una regla general: solo procede en los supuestos de excepción legal documentados; para el caso particular debe verificarse la fuente legal aplicable y asesoría laboral (sección 6).",
       "intencion": "mixta",
-      "estado": "parcial",
-      "citas": [],
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "4. Disfrute, saldo y registro",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "d2ccd5bb-2c64-5cd1-9a72-0746f9e0a67a",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH conserva fecha de adquisición, período, días reconocidos, disfrute y saldo, y entrega constancia escrita a solicitud. Se planifica el disfrute efectivo y oportuno; no se promueve la acumulación. Solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. No se sustituye descanso por dinero salvo excepción legal aplicable."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "2. Piso legal verificado",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "4a8b0a0f-d80b-53be-a886-bb95540412d0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "El artículo 153 del Código de Trabajo establece un mínimo de dos semanas de vacaciones pagadas por cada 50 semanas de trabajo continuo con la misma persona empleadora; si termina la relación antes, corresponde como mínimo un día por mes trabajado. El artículo 154 extiende el derecho a jornadas parciales y semanales. El artículo 155 asigna a la persona empleadora la determinación del disfrute dentro de las 15 semanas posteriores a la adquisición del derecho. El artículo 156 declara las vacaciones incompensables salvo excepciones taxativas. El artículo 158 prohíbe acumularlas salvo por una sola vez bajo los supuestos legales allí descritos. Véanse también artículos 157 y 159 para cálculo y descanso.\nEl MTSS describe las dos semanas como doce días laborables más los descansos semanales, en los esquemas ordinarios correspondientes. El cómputo y pago dependen de jornada, forma de pago y actividad; no convertir “14 días naturales” en una regla universal."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "6. Revisión",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "14e03a7e-1455-59cc-9c8a-a54cbd7522ce",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH revisará esta propuesta anualmente y ante reformas. Una controversia sobre cómputo individual se resuelve con la fuente legal aplicable y asesoría laboral, no con los saldos ficticios de la demo.\nFuentes para verificar\n* Código de Trabajo, Ley 2, arts. 153–161, texto del MTSS: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* MTSS, preguntas frecuentes sobre vacaciones: https://www.mtss.go.cr/temas-laborales/\n* Consulta de esta versión: 2026-11-17."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "1. Alcance y carácter",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "a1020761-63c5-5779-a0b6-a64c8a7d43e0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "________________\nEste documento contiene una propuesta académica de política interna para la empresa ficticia Bosque Claro Servicios Digitales S.A. (60 personas, Costa Rica). Versión 0.1, borrador no aprobado ni vigente en una empresa real. Si se aprobara, ninguna regla podría disminuir los mínimos legales. Las cifras personales que figuran en la base demo son simuladas y este documento no es su fuente."
+        }
+      ],
       "error_code": null,
-      "resultado": "bloqueada_respuesta_parcial"
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 20,
@@ -398,15 +893,31 @@
       "fuentes_esperadas": [
         "docs/politicas/D02-feriados-2026.md"
       ],
-      "http": 503,
-      "latencia_ms": 22,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 6130,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Con fecha de referencia 2026-11-19 en Costa Rica, los feriados publicados que quedan este año son: 2026-12-01 (Martes), Abolición del Ejército, de pago no obligatorio; 2026-12-25 (Viernes), Navidad, de pago obligatorio. El tratamiento del pago depende de la modalidad salarial; confirma tu caso con Planillas. Calendario académico propuesto, versión 0.1.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Calendario de feriados de Costa Rica 2026",
+          "seccion": "Hoja: Calendario de feriados de Costa · Fila 20; Hoja: Calendario de feriados de Costa · Fila 21",
+          "version": "0.1",
+          "drive_file_id": "1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU",
+          "fragmento_id": "c8f37b20-ba76-596e-bc97-09a5a507a77d",
+          "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+          "fragmento": "Fila 1: Título | Calendario de feriados de Costa Rica 2026\nFila 2: Versión | 0.1\nFila 3: Responsable | RRHH y Planillas\nFila 4: Fecha | 2026-11-17\nFila 5: Vigencia propuesta | 2026-11-17 (solo simulación; sin adopción empresarial)\nFila 6: Sección | Vacaciones y feriados\nFila 7: Estado | Borrador académico no aprobado\nFila 9: fecha | evento | dia_semana | tipo_feriado | nota | fuente_url\nFila 10: 2026-01-01 | Año Nuevo | Jueves | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 11: 2026-04-02 | Jueves Santo | Jueves | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 12: 2026-04-03 | Viernes Santo | Viernes | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 13: 2026-04-11 | Día de Juan Santamaría | Sábado | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 14: 2026-05-01 | Día Internacional del Trabajo | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 15: 2026-07-25 | Anexión del Partido de Nicoya | Sábado | obligatorio | La conmemoración y disfrute no se trasladan | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 16: 2026-08-02 | Día de la Virgen de los Ángeles | Domingo | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 17: 2026-08-15 | Día de la Madre y Asunción | Sábado | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 18: 2026-08-31 | Día de la Persona Negra y la Cultura Afrocostarricense | Lunes | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 19: 2026-09-15 | Día de la Independencia | Martes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 20: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 21: 2026-12-25 | Navidad | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf"
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 21,
@@ -418,7 +929,7 @@
         "docs/contrato-api.md"
       ],
       "http": 403,
-      "latencia_ms": 13,
+      "latencia_ms": 33,
       "checks": {
         "http": true,
         "privacidad": true
@@ -440,7 +951,7 @@
         "docs/contrato-api.md"
       ],
       "http": 403,
-      "latencia_ms": 13,
+      "latencia_ms": 21,
       "checks": {
         "http": true,
         "privacidad": true
@@ -461,15 +972,19 @@
       "fuentes_esperadas": [
         "docs/contrato-api.md"
       ],
-      "http": 503,
-      "latencia_ms": 22,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
+      "http": 200,
+      "latencia_ms": 3848,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "abstencion": true
+      },
+      "respuesta_obtenida": "No encontré información suficiente en los documentos de políticas disponibles. Puedes consultar a RRHH.",
+      "intencion": "politica",
+      "estado": "sin_respaldo",
       "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 24,
@@ -481,7 +996,7 @@
         "docs/contrato-api.md"
       ],
       "http": 200,
-      "latencia_ms": 19,
+      "latencia_ms": 26,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -503,15 +1018,19 @@
       "fuentes_esperadas": [
         "docs/contrato-api.md"
       ],
-      "http": 404,
-      "latencia_ms": 27,
-      "checks": {},
-      "respuesta_obtenida": "No existe un reporte para la fecha solicitada.",
-      "intencion": null,
-      "estado": null,
+      "http": 200,
+      "latencia_ms": 48,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true
+      },
+      "respuesta_obtenida": "Este es el reporte persistido del agente analista para 2026-11-19: Hay 0 personas de vacaciones según el reporte de esa fecha.",
+      "intencion": "reporte",
+      "estado": "respondida",
       "citas": [],
-      "error_code": "NOT_FOUND",
-      "resultado": "bloqueada_reporte_no_publicado"
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 26,
@@ -523,14 +1042,14 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 22,
+      "latencia_ms": 33,
       "checks": {
         "http": true,
         "respuesta": true,
         "intencion": true,
         "saldo_sql": true
       },
-      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-18.",
+      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19.",
       "intencion": "dato_personal",
       "estado": "respondida",
       "citas": [],
@@ -547,7 +1066,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 23,
+      "latencia_ms": 37,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -570,7 +1089,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 25,
+      "latencia_ms": 32,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -593,7 +1112,7 @@
         "MySQL/identidad de sesión"
       ],
       "http": 200,
-      "latencia_ms": 24,
+      "latencia_ms": 32,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -616,21 +1135,49 @@
         "docs/politicas/D01-vacaciones.md"
       ],
       "http": 200,
-      "latencia_ms": 291,
+      "latencia_ms": 4940,
       "checks": {
         "http": true,
         "respuesta": true,
         "intencion": true,
-        "fuente_documental": false,
-        "trazabilidad": false,
+        "fuente_documental": true,
+        "trazabilidad": true,
         "saldo_sql": true
       },
-      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-18. No encontré información suficiente en los documentos de políticas disponibles. Puedes consultar a RRHH.",
+      "respuesta_obtenida": "Tu saldo total de vacaciones disponible es de 14.00 días al 2026-11-19. La fuente describe una propuesta interna (borrador académico no aprobado ni vigente) para solicitar vacaciones: la persona colaboradora registra en el portal las fechas solicitadas, el tipo y los días laborables estimados. Se propone una anticipación de 10 días hábiles para bloques de hasta cinco días y 20 para bloques mayores; esa anticipación es administrativa, no una condición legal para perder el derecho. El supervisor revisa cobertura y responde en cinco días hábiles. Una solicitud no se considera aprobada hasta que el portal muestre estado “aprobada”; si la fecha se acerca sin respuesta, RRHH debe ayudar a resolverla. Los cambios se acuerdan y se registran por escrito. Además, RRHH conserva fecha de adquisición, período, días reconocidos, disfrute y saldo, y entrega constancia escrita a solicitud.",
       "intencion": "mixta",
-      "estado": "parcial",
-      "citas": [],
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "3. Propuesta interna para solicitud y aprobación",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "dce25f66-6d63-590f-8e19-7ed1fd5b48d1",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "La persona colaboradora registra en el portal fechas solicitadas, tipo y días laborables estimados. Propuesta de anticipación: 10 días hábiles para bloques de hasta cinco días y 20 para bloques mayores. Esta anticipación es administrativa, no una condición legal para perder el derecho. El supervisor revisa cobertura y responde en cinco días hábiles. Una solicitud no se considera aprobada hasta que el portal muestre estado “aprobada”; si la fecha se acerca sin respuesta, RRHH debe ayudar a resolverla. Cambios se acuerdan y se registran por escrito."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "4. Disfrute, saldo y registro",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "d2ccd5bb-2c64-5cd1-9a72-0746f9e0a67a",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "RRHH conserva fecha de adquisición, período, días reconocidos, disfrute y saldo, y entrega constancia escrita a solicitud. Se planifica el disfrute efectivo y oportuno; no se promueve la acumulación. Solo se autorizará acumulación cuando corresponda a una excepción legal, documentando motivo y período. No se sustituye descanso por dinero salvo excepción legal aplicable."
+        },
+        {
+          "documento": "Politica de vacaciones",
+          "seccion": "1. Alcance y carácter",
+          "version": "0.1",
+          "drive_file_id": "1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs",
+          "fragmento_id": "a1020761-63c5-5779-a0b6-a64c8a7d43e0",
+          "enlace": "https://docs.google.com/document/d/1V1WoAbDOaFyfyLvu1YfHY9Qv5SF88-PkD4swPJ33VFs/edit?usp=drivesdk",
+          "fragmento": "________________\nEste documento contiene una propuesta académica de política interna para la empresa ficticia Bosque Claro Servicios Digitales S.A. (60 personas, Costa Rica). Versión 0.1, borrador no aprobado ni vigente en una empresa real. Si se aprobara, ninguna regla podría disminuir los mínimos legales. Las cifras personales que figuran en la base demo son simuladas y este documento no es su fuente."
+        }
+      ],
       "error_code": null,
-      "resultado": "bloqueada_respuesta_parcial"
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 31,
@@ -641,15 +1188,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D05-jornada-teletrabajo.md"
       ],
-      "http": 503,
-      "latencia_ms": 21,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3854,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La propuesta (borrador académico no aprobado) establece que las jefaturas aprueban el trabajo extraordinario antes de realizarlo, salvo emergencia, y documentan el motivo; además, siempre se paga el trabajo extra efectivamente exigible conforme a ley, aunque falte aprobación interna. También se indica que no se alteran las marcas para ocultar trabajo extra y que la persona reporta errores el mismo día. Como marco legal de referencia, el Código de Trabajo, arts. 135–152, regula el trabajo extraordinario; el trabajo ordinario más extraordinario no debe exceder el máximo legal diario (regla general 12 horas) y las horas extra se pagan con 50% adicional, con régimen propio para feriados.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "3. Horario propuesto y marcas",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "ee1c4db0-730f-58c6-9b34-b0b82fecec11",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Propuesta para puestos de oficina: lunes a viernes, 8:00–17:00 con una hora de descanso no computada como trabajo efectivo, sujeto al contrato individual y validación de jornada. El registro de inicio, pausas y cierre sirve para seguridad y planilla; no se alteran marcas para ocultar trabajo extra. La persona reporta errores el mismo día. Las jefaturas aprueban trabajo extraordinario antes de realizarlo salvo emergencia y documentan el motivo; siempre se paga el trabajo extra efectivamente exigible conforme a ley, aunque falte aprobación interna."
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "2. Jornada y descansos: marco legal",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "ca787b87-4773-5d73-84e5-26f925a4b5ae",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "El Código de Trabajo, arts. 135–152, regula jornadas diurnas, nocturnas, mixtas, descansos, trabajo extraordinario y feriados. La jornada diurna ordinaria general es hasta ocho horas diarias y 48 semanales; la mixta hasta siete diarias y 42 semanales; nocturna hasta seis diarias y 36 semanales, con límites y excepciones legales. La acumulación permitida depende de que el trabajo no sea peligroso ni insalubre y del límite semanal; no imponer una jornada excepcional por simple conveniencia. El trabajo ordinario más extraordinario no debe exceder el máximo legal diario (regla general 12 horas) y las horas extra se pagan con 50% adicional; los feriados tienen régimen propio."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 32,
@@ -660,15 +1232,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D06-politica-salarial.md"
       ],
-      "http": 503,
-      "latencia_ms": 49,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3954,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según la política salarial y de planilla propuesta (borrador académico no aprobado, versión 0.1), para reportar un error en las deducciones del recibo se debe enviar la consulta de planilla mediante el canal privado de Finanzas, identificando el período y el rubro; nunca incluir credenciales o datos bancarios en el chat RAG. Planillas confirma recepción en dos días hábiles como objetivo interno y corrige errores comprobados en la primera corrida viable, respetando obligaciones y autorización de deducciones. Asimismo, la persona recibe el desglose del período y puede solicitar revisión por canal privado.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "5. Consultas y correcciones",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "47b9d692-000c-587b-b76d-5f90c6e5c332",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "Enviar consulta de planilla mediante canal privado de Finanzas, identificando período y rubro; nunca incluir credenciales o datos bancarios en el chat RAG. Planillas confirma recepción en dos días hábiles como objetivo interno y corrige errores comprobados en la primera corrida viable, respetando obligaciones y autorización de deducciones.\nFuentes\n* Código de Trabajo, arts. 162–179, 193 y concordantes: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* Ley 2412, Aguinaldo en la Empresa Privada; MTSS FAQ: https://www.mtss.go.cr/temas-laborales/aguinaldo/preguntas_frecuentes.pdf\n* MTSS calculadora de salarios mínimos (usar tabla vigente): https://www.mtss.go.cr/temas-laborales/salarios/Lista_salarios.html\n* Consulta: 2026-11-17."
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "2. Remuneración y transparencia operativa",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "3878ad67-548a-51d8-bfde-f123f8723485",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "La oferta individual y contrato deben indicar salario, moneda, jornada y periodicidad conforme a ley. Planillas calcula salario ordinario, horas extra, feriados, deducciones legales autorizadas y comprobante individual. La persona recibe desglose del período y puede solicitar revisión por canal privado. No se publican salarios de compañeros ni datos salariales individuales en reportes o canales compartidos.\nLos salarios mínimos se actualizan por decreto del Consejo Nacional de Salarios y varían por categoría, ocupación y calificación. Antes de fijar una oferta, Planillas verifica el decreto vigente y la clasificación del puesto; este borrador no congela montos ni recomienda una cifra desactualizada."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 33,
@@ -679,15 +1276,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D05-jornada-teletrabajo.md"
       ],
-      "http": 503,
-      "latencia_ms": 34,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 5465,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el reglamento propuesto (borrador académico no aprobado), el teletrabajo es voluntario y se rige por acuerdo de partes; un acuerdo escrito debe definir puesto, lugar, herramientas, soporte, seguridad, evaluación, gastos y disponibilidad. La propuesta hipotética de hasta dos jornadas semanales está sujeta a elegibilidad del puesto, acuerdo y aprobación. No se especifica en los fragmentos una autoridad concreta distinta de las partes del acuerdo y la aprobación mencionada.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "4. Teletrabajo",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "69c7f07a-680e-55b8-87eb-038cb4876de0",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Ley 9738 aplica a empleos públicos y privados y considera el teletrabajo voluntario, regido por acuerdo de partes. Cuando se acuerda después del inicio, la ley regula posibilidad de revocación y aviso; si fue condición pactada desde el inicio, el retorno no es unilateral. Un acuerdo escrito debe definir puesto, lugar, herramientas, soporte, seguridad, evaluación, gastos y disponibilidad. No hay derecho general automático a dos días remotos: propuesta hipotética de hasta dos jornadas semanales, sujeta a elegibilidad del puesto, acuerdo y aprobación. La jornada sigue aplicando; enviar mensajes fuera de horario no convierte una disponibilidad permanente en obligación."
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "0826f996-3dd5-51c6-a9a3-bf13c9a370b3",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "Reglamento propuesto de jornada, asistencia y teletrabajo\n________________\nVersión: 0.1 · Responsable: RRHH y Operaciones · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        },
+        {
+          "documento": "Reglamento propuesto de jornada, asistencia y teletrabajo",
+          "seccion": "1. Estado",
+          "version": "0.1",
+          "drive_file_id": "19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8",
+          "fragmento_id": "00b9a65d-beab-538f-b800-bfa4885fff51",
+          "enlace": "https://docs.google.com/document/d/19UTTyVu66_oWB5CTsuL5_yTC6AkgiYQIcitikD7Tiz8/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica de Bosque Claro Servicios Digitales S.A., versión 0.1, borrador no aprobado. Horarios y días remotos abajo son propuestas internas, no hechos actuales de la empresa."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 34,
@@ -698,15 +1329,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D08-beneficios.md"
       ],
-      "http": 503,
-      "latencia_ms": 19,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 6597,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "En el Catálogo propuesto de beneficios (borrador, sección 3) se plantea como propuesta interna de capacitación: solicitar cursos relacionados con funciones al supervisor y RRHH; la aprobación depende de presupuesto anual y de un acuerdo de permanencia si jurídicamente válido. No se promete un monto anual. Además, en la Política de evaluación del desempeño y desarrollo (borrador, sección 4) se indica que el plan de mejora define objetivos alcanzables, capacitación, recursos, fechas de seguimiento y apoyos, y que es una herramienta de acompañamiento, no una sanción automática. Ambas son propuestas académicas no aprobadas.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Catálogo propuesto de beneficios",
+          "seccion": "3. Beneficios que se podrían evaluar",
+          "version": "0.1",
+          "drive_file_id": "1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg",
+          "fragmento_id": "e913dbd1-1a62-5194-982d-ba62998d0a2b",
+          "enlace": "https://docs.google.com/document/d/1Zc_QtYXG4-CdfwcPkLcu-WrrzskqI0rp1lI_D5Taqzg/edit?usp=drivesdk",
+          "fragmento": "Seguro médico complementario: “No confirmado. Pendiente de decisión, proveedor, cobertura, costo, exclusiones y autorización de presupuesto.” No presentar como prestación vigente.\nAsociación solidarista: “No existe constancia de asociación de Bosque Claro.” Una eventual creación requeriría personas fundadoras, estatutos, afiliación voluntaria y cumplimiento de Ley 6970.\nCapacitación: propuesta interna: solicitar cursos relacionados con funciones al supervisor y RRHH; aprobación depende de presupuesto anual y acuerdo de permanencia si jurídicamente válido. No se promete un monto anual.\nApoyo de bienestar: RRHH puede publicar servicios efectivamente contratados con alcance y contacto verificados. Este borrador no activa ninguno."
+        },
+        {
+          "documento": "Política de evaluación del desempeño y desarrollo",
+          "seccion": "4. Planes de desarrollo y mejora",
+          "version": "0.1",
+          "drive_file_id": "1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4",
+          "fragmento_id": "6a964514-ff20-5e80-99aa-3fa576b5c186",
+          "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+          "fragmento": "Plan de mejora es herramienta de acompañamiento, no sanción automática. Define objetivos alcanzables, capacitación, recursos, fechas de seguimiento y apoyos. Cualquier medida disciplinaria requiere un proceso separado, causal, audiencia y garantías correspondientes."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 35,
@@ -717,15 +1373,58 @@
       "fuentes_esperadas": [
         "docs/politicas/D12-privacidad.md"
       ],
-      "http": 503,
-      "latencia_ms": 17,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 3369,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el aviso propuesto de privacidad para colaboradores (borrador académico no aprobado), se proyecta tratar datos de contacto, identidad laboral, puesto, salario y registros de jornada, ausencias, solicitudes y evaluaciones necesarios para la relación laboral; los datos de salud y afiliación son sensibles o especialmente delicados y requieren tratamiento restringido, finalidad legítima y base jurídica aplicable. El chatbot del proyecto usa solo datos sintéticos y el agente RAG consulta políticas, no expedientes personales. Sobre el acceso: acceden RRHH, planillas y TI únicamente según sus funciones y necesidad; proveedores recibirían solo lo necesario bajo controles y contratos adecuados; no se publicarían salarios, diagnósticos ni evaluaciones en Qdrant o respuestas de políticas. Además, los documentos de política se indexan en Qdrant, las identidades y cifras personales se almacenan en MySQL, y la prueba usa personas y contraseñas sintéticas. Las evaluaciones son expediente laboral de acceso restringido y no se incorporan a colecciones RAG abiertas ni al reporte agregado sin anonimización y base apropiada. Se indica que antes de tratar datos reales con IA se debe evaluar necesidad, proveedores, transferencias, acceso, retención, seguridad y base jurídica, informar a titulares y excluir datos sensibles de prompts y vectores salvo análisis jurídico y autorización apropiados, con revisión profesional pendiente antes de tratamiento real.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Aviso propuesto de privacidad para colaboradores",
+          "seccion": "2. Responsable y datos tratados",
+          "version": "0.1",
+          "drive_file_id": "1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc",
+          "fragmento_id": "ac07c568-38f5-5c17-a43f-a098454acef2",
+          "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+          "fragmento": "Responsable hipotético: Bosque Claro Servicios Digitales S.A. Se proyecta tratar datos de contacto, identidad laboral, puesto, salario y registros de jornada, ausencias, solicitudes y evaluaciones necesarios para la relación laboral. Datos de salud y afiliación son sensibles o especialmente delicados y requieren tratamiento restringido, finalidad legítima y base jurídica aplicable. El chatbot del proyecto usa solo datos sintéticos y el agente RAG consulta políticas, no expedientes personales."
+        },
+        {
+          "documento": "Aviso propuesto de privacidad para colaboradores",
+          "seccion": "3. Finalidades y acceso",
+          "version": "0.1",
+          "drive_file_id": "1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc",
+          "fragmento_id": "9c6cb52f-3ae8-5a2f-89f5-f486961654f6",
+          "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+          "fragmento": "Finalidades propuestas: administrar contratación, nómina, beneficios confirmados, seguridad ocupacional, ausencias y obligaciones legales. Acceden RRHH, planillas y TI únicamente según sus funciones y necesidad. Proveedores recibirían solo lo necesario bajo controles y contratos adecuados. No se publicarían salarios, diagnósticos ni evaluaciones en Qdrant o respuestas de políticas. La Ley 8968 exige informar fines, destinatarios, tratamiento, derechos y responsable en el consentimiento informado cuando dicho consentimiento sea la base aplicable; no asumir que el consentimiento es la única base para toda gestión laboral."
+        },
+        {
+          "documento": "Aviso propuesto de privacidad para colaboradores",
+          "seccion": "6. Uso de IA en el portal académico",
+          "version": "0.1",
+          "drive_file_id": "1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc",
+          "fragmento_id": "b0a7303f-4cc0-52fa-a2f0-b6e068df4460",
+          "enlace": "https://docs.google.com/document/d/1Law4-1E_e2NOquyeCIt2ad6RSNRfvq8_EMAz3JwNwIc/edit?usp=drivesdk",
+          "fragmento": "Los documentos de política se indexan en Qdrant. Identidades y cifras personales se almacenan en MySQL. La prueba usa personas y contraseñas sintéticas. Antes de tratar datos reales con IA, se debe evaluar necesidad, proveedores, transferencias, acceso, retención, seguridad y base jurídica, informar a titulares y excluir datos sensibles de prompts y vectores salvo análisis jurídico y autorización apropiados.\nFuentes\n* Ley 8968, texto consolidado PGR/SCIJ: https://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=70975\n* Reglamento a Ley 8968, Decreto 37554-JP, SCIJ (confirmar versión vigente): https://www.pgrweb.go.cr/scij/Busqueda/Normativa/Normas/nrm_texto_completo.aspx?nValor1=1&nValor2=74352\n* PRODHAB: https://www.prodhab.go.cr/\n* Consulta: 2026-11-17. Revisión profesional pendiente antes de tratamiento real."
+        },
+        {
+          "documento": "Política de evaluación del desempeño y desarrollo",
+          "seccion": "6. Confidencialidad",
+          "version": "0.1",
+          "drive_file_id": "1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4",
+          "fragmento_id": "84bb2a9b-3339-5ca7-bb73-c83fd91a9fc4",
+          "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+          "fragmento": "Evaluaciones son expediente laboral de acceso restringido. No se incorporan a colecciones RAG abiertas ni al reporte agregado sin anonimización y base apropiada.\nFuentes\n* Código de Trabajo y reformas: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* Constitución Política, arts. 33, 56 y 68 (igualdad y trabajo); leyes especiales aplicables según caso.\n* Consulta: 2026-11-17. La ausencia de una frecuencia legal general no significa ausencia de obligaciones de igualdad y no discriminación."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 36,
@@ -736,15 +1435,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D11-conducta-denuncias.md"
       ],
-      "http": 503,
-      "latencia_ms": 18,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2702,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "El documento es un código de conducta y protocolo propuesto de denuncias, versión 0.1, borrador académico no aprobado. Respecto al hostigamiento sexual regulado por Ley 7476, el fragmento indica que el artículo 38, reformado por Ley 10029, fija un plazo de prescripción de ocho años en los supuestos regulados por ese artículo, y que no deben usarse referencias antiguas de dos años. También señala que el plazo de investigación administrativa no debe exceder tres meses. El documento aclara que se debe aplicar la ley y las reglas de procedimiento vigentes, y no importar reglas de reglamentos de instituciones públicas a esta empresa privada.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "3. Hostigamiento sexual: obligación legal",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "a0273e57-dbe5-5c2f-8db9-cdab8e0cd9dd",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "Ley 7476 exige al empleador una política y un procedimiento para recibir, investigar y sancionar denuncias de hostigamiento sexual en el empleo. La denuncia puede ser verbal o escrita y debe manejarse confidencialmente. La persona denunciante y testigos tienen protección contra represalias; el despido durante el fuero está sujeto a las condiciones legales y autorización previa de Inspección de Trabajo. El artículo 38, reformado por Ley 10029, fija un plazo de prescripción de ocho años en los supuestos regulados por ese artículo; no usar referencias antiguas de dos años. El plazo de investigación administrativa no debe exceder tres meses. Aplicar la ley y reglas de procedimiento vigentes; no importar reglas de reglamentos de instituciones públicas a esta empresa privada."
+        },
+        {
+          "documento": "Código de conducta y protocolo propuesto de denuncias",
+          "seccion": "1. Estado y alcance",
+          "version": "0.1",
+          "drive_file_id": "1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ",
+          "fragmento_id": "e1d67795-d53c-55ba-b9c4-a63554b199ea",
+          "enlace": "https://docs.google.com/document/d/1s-3Q40OdyfoU9IoZAf2BWYF7wtwEMpaIka2nMsR9iXQ/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica de código interno para Bosque Claro Servicios Digitales S.A., versión 0.1, borrador no aprobado. Distingue hostigamiento sexual regulado por Ley 7476 de otros conflictos o alegaciones de acoso laboral, cuyo tratamiento no debe inventar un tipo legal uniforme."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 37,
@@ -755,15 +1479,31 @@
       "fuentes_esperadas": [
         "docs/politicas/D02-feriados-2026.md"
       ],
-      "http": 503,
-      "latencia_ms": 18,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2327,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el borrador académico no aprobado del Calendario de feriados de Costa Rica 2026 (versión 0.1, vigencia propuesta solo simulación, sin adopción empresarial), la fila 20 registra: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio. Es decir, esa fecha figura como feriado no obligatorio en el calendario propuesto.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Calendario de feriados de Costa Rica 2026",
+          "seccion": "Hoja: Calendario de feriados de Costa",
+          "version": "0.1",
+          "drive_file_id": "1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU",
+          "fragmento_id": "c8f37b20-ba76-596e-bc97-09a5a507a77d",
+          "enlace": "https://docs.google.com/spreadsheets/d/1scM9Ru-4CHfkIo2ECC_YRPKIo_u-2hDpMJY0wgLZWKU/edit?usp=drivesdk",
+          "fragmento": "Fila 1: Título | Calendario de feriados de Costa Rica 2026\nFila 2: Versión | 0.1\nFila 3: Responsable | RRHH y Planillas\nFila 4: Fecha | 2026-11-17\nFila 5: Vigencia propuesta | 2026-11-17 (solo simulación; sin adopción empresarial)\nFila 6: Sección | Vacaciones y feriados\nFila 7: Estado | Borrador académico no aprobado\nFila 9: fecha | evento | dia_semana | tipo_feriado | nota | fuente_url\nFila 10: 2026-01-01 | Año Nuevo | Jueves | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 11: 2026-04-02 | Jueves Santo | Jueves | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 12: 2026-04-03 | Viernes Santo | Viernes | obligatorio | Feriado religioso | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 13: 2026-04-11 | Día de Juan Santamaría | Sábado | obligatorio | No se traslada según calendario MTSS 2026 | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 14: 2026-05-01 | Día Internacional del Trabajo | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 15: 2026-07-25 | Anexión del Partido de Nicoya | Sábado | obligatorio | La conmemoración y disfrute no se trasladan | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 16: 2026-08-02 | Día de la Virgen de los Ángeles | Domingo | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 17: 2026-08-15 | Día de la Madre y Asunción | Sábado | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 18: 2026-08-31 | Día de la Persona Negra y la Cultura Afrocostarricense | Lunes | no obligatorio | Disfrute en fecha | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 19: 2026-09-15 | Día de la Independencia | Martes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 20: 2026-12-01 | Abolición del Ejército | Martes | no obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf\nFila 21: 2026-12-25 | Navidad | Viernes | obligatorio | https://www.mtss.go.cr/temas-laborales/feriados/feriados_calendario_2026.pdf"
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 38,
@@ -774,15 +1514,58 @@
       "fuentes_esperadas": [
         "docs/politicas/D06-politica-salarial.md"
       ],
-      "http": 503,
-      "latencia_ms": 18,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 7970,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La política salarial y de planilla es una propuesta académica en versión 0.1, borrador no aprobado. Según el apartado 5, para solicitar revisión del recibo salarial debe enviar una consulta de planilla mediante el canal privado de Finanzas, identificando el período y el rubro; nunca debe incluir credenciales o datos bancarios en el chat RAG. Planillas confirma recepción en dos días hábiles como objetivo interno y corrige errores comprobados en la primera corrida viable, respetando obligaciones y autorización de deducciones. Además, el apartado 2 indica que la persona recibe el desglose del período y puede solicitar revisión por canal privado, y que no se publican salarios de compañeros ni datos salariales individuales en reportes o canales compartidos.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "5. Consultas y correcciones",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "47b9d692-000c-587b-b76d-5f90c6e5c332",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "Enviar consulta de planilla mediante canal privado de Finanzas, identificando período y rubro; nunca incluir credenciales o datos bancarios en el chat RAG. Planillas confirma recepción en dos días hábiles como objetivo interno y corrige errores comprobados en la primera corrida viable, respetando obligaciones y autorización de deducciones.\nFuentes\n* Código de Trabajo, arts. 162–179, 193 y concordantes: https://www.mtss.go.cr/elministerio/marco-legal/documentos/codigo_trabajo_cr.pdf\n* Ley 2412, Aguinaldo en la Empresa Privada; MTSS FAQ: https://www.mtss.go.cr/temas-laborales/aguinaldo/preguntas_frecuentes.pdf\n* MTSS calculadora de salarios mínimos (usar tabla vigente): https://www.mtss.go.cr/temas-laborales/salarios/Lista_salarios.html\n* Consulta: 2026-11-17."
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "2. Remuneración y transparencia operativa",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "3878ad67-548a-51d8-bfde-f123f8723485",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "La oferta individual y contrato deben indicar salario, moneda, jornada y periodicidad conforme a ley. Planillas calcula salario ordinario, horas extra, feriados, deducciones legales autorizadas y comprobante individual. La persona recibe desglose del período y puede solicitar revisión por canal privado. No se publican salarios de compañeros ni datos salariales individuales en reportes o canales compartidos.\nLos salarios mínimos se actualizan por decreto del Consejo Nacional de Salarios y varían por categoría, ocupación y calificación. Antes de fijar una oferta, Planillas verifica el decreto vigente y la clasificación del puesto; este borrador no congela montos ni recomienda una cifra desactualizada."
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "bae35d71-2277-5def-bb79-b09eb37f5275",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "Política salarial y de planilla\n________________\nVersión: 0.1 · Responsable: Planillas y Finanzas · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        },
+        {
+          "documento": "Política salarial y de planilla",
+          "seccion": "1. Propósito y carácter",
+          "version": "0.1",
+          "drive_file_id": "1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk",
+          "fragmento_id": "ef68eecd-3895-55c7-b86c-ad1819991ff7",
+          "enlace": "https://docs.google.com/document/d/1pbBZP0PFT7cpcHLHbJxyTswBD3NoY7-8DvrkwR9MPRk/edit?usp=drivesdk",
+          "fragmento": "________________\nPropuesta académica para la empresa ficticia Bosque Claro Servicios Digitales S.A. Versión 0.1, borrador sujeto a revisión y aprobación. No incluye salarios reales ni una tabla salarial; el dataset del proyecto es ficticio."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 39,
@@ -793,15 +1576,49 @@
       "fuentes_esperadas": [
         "docs/politicas/D09-ingreso-salida.md"
       ],
-      "http": 503,
-      "latencia_ms": 17,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2127,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "Según el Manual de ingreso y procedimiento de salida (documento propuesto, versión 0.1, borrador académico no aprobado), en el ingreso RRHH verifica identidad y requisitos laborales, entrega contrato y explica puesto, salario, jornada, supervisor, beneficios efectivamente aprobados, seguridad y protección de datos; TI habilita cuentas con mínimo privilegio y entrega activos mediante recibo; y la inducción registra fecha y módulos completados. Además, los datos simulados del portal no deben mezclarse con expedientes reales.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "2. Ingreso",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "835e833b-c94d-529d-9f49-9c7a1d8f6f45",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "RRHH verifica identidad y requisitos laborales, entrega contrato y explica puesto, salario, jornada, supervisor, beneficios efectivamente aprobados, seguridad y protección de datos. TI habilita cuentas con mínimo privilegio y entrega activos mediante recibo. La inducción registra fecha y módulos completados. Datos simulados del portal no deben mezclarse con expedientes reales."
+        },
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "be1aa145-629d-5836-9352-2587cbf08ae1",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "Manual de ingreso y procedimiento de salida\n________________\nVersión: 0.1 · Responsable: RRHH y Legal · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        },
+        {
+          "documento": "Manual de ingreso y procedimiento de salida",
+          "seccion": "1. Estado y alcance",
+          "version": "0.1",
+          "drive_file_id": "1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I",
+          "fragmento_id": "f822268a-04ca-5680-8d6b-0c1bfc79459f",
+          "enlace": "https://docs.google.com/document/d/1a4O__Y-QwEHKkynezZyxUvKL0u5F0B4r2ldaZ_0Y82I/edit?usp=drivesdk",
+          "fragmento": "________________\nManual propuesto, versión 0.1, borrador académico para Bosque Claro Servicios Digitales S.A. No reemplaza contrato ni determina liquidaciones individuales."
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 40,
@@ -812,15 +1629,40 @@
       "fuentes_esperadas": [
         "docs/politicas/D10-desempeno.md"
       ],
-      "http": 503,
-      "latencia_ms": 18,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
-      "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "http": 200,
+      "latencia_ms": 2057,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "intencion": true,
+        "fuente_documental": true,
+        "trazabilidad": true
+      },
+      "respuesta_obtenida": "La fuente indica que, en la política propuesta de evaluación del desempeño y desarrollo (borrador académico no aprobado), la persona puede adjuntar observaciones dentro de diez días hábiles, y que RRHH resuelve solicitudes de revisión de procedimiento en diez días hábiles como meta administrativa. No se detalla en los fragmentos un procedimiento adicional para solicitar la revisión.",
+      "intencion": "politica",
+      "estado": "respondida",
+      "citas": [
+        {
+          "documento": "Política de evaluación del desempeño y desarrollo",
+          "seccion": "3. Conversación y revisión",
+          "version": "0.1",
+          "drive_file_id": "1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4",
+          "fragmento_id": "04784f61-df68-5564-99d0-f59f2e0c6bf7",
+          "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+          "fragmento": "La jefatura comparte evidencia antes de la reunión y escucha comentarios. Después entrega resumen con fortalezas, objetivos y apoyos acordados. La persona puede adjuntar observaciones dentro de diez días hábiles. RRHH resuelve solicitudes de revisión de procedimiento en diez días hábiles como meta administrativa."
+        },
+        {
+          "documento": "Política de evaluación del desempeño y desarrollo",
+          "seccion": "Introducción",
+          "version": "0.1",
+          "drive_file_id": "1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4",
+          "fragmento_id": "5af08683-dfec-57f7-a95e-623b02d6e300",
+          "enlace": "https://docs.google.com/document/d/1pnY4By9jPcAqsoBmRaSJE-Tkdyz-QVPWzQbMWH6OQP4/edit?usp=drivesdk",
+          "fragmento": "Política de evaluación del desempeño y desarrollo\n________________\nVersión: 0.1 · Responsable: RRHH y líderes de área · Fecha: 2026-11-17\nVigencia propuesta: 2026-11-17 (solo simulación; sin adopción empresarial)\nEstado: borrador académico no aprobado"
+        }
+      ],
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     },
     {
       "id": 41,
@@ -832,7 +1674,7 @@
         "docs/contrato-api.md"
       ],
       "http": 403,
-      "latencia_ms": 11,
+      "latencia_ms": 32,
       "checks": {
         "http": true,
         "privacidad": true
@@ -854,7 +1696,7 @@
         "docs/contrato-api.md"
       ],
       "http": 403,
-      "latencia_ms": 12,
+      "latencia_ms": 20,
       "checks": {
         "http": true,
         "privacidad": true
@@ -876,7 +1718,7 @@
         "docs/contrato-api.md"
       ],
       "http": 403,
-      "latencia_ms": 12,
+      "latencia_ms": 20,
       "checks": {
         "http": true,
         "privacidad": true
@@ -898,7 +1740,7 @@
         "docs/contrato-api.md"
       ],
       "http": 200,
-      "latencia_ms": 17,
+      "latencia_ms": 38,
       "checks": {
         "http": true,
         "respuesta": true,
@@ -920,27 +1762,31 @@
       "fuentes_esperadas": [
         "docs/contrato-api.md"
       ],
-      "http": 503,
-      "latencia_ms": 21,
-      "checks": {},
-      "respuesta_obtenida": "El servicio de chat no está disponible temporalmente.",
-      "intencion": null,
-      "estado": null,
+      "http": 200,
+      "latencia_ms": 2069,
+      "checks": {
+        "http": true,
+        "respuesta": true,
+        "abstencion": true
+      },
+      "respuesta_obtenida": "No encontré información suficiente en los documentos de políticas disponibles. Puedes consultar a RRHH.",
+      "intencion": "politica",
+      "estado": "sin_respaldo",
       "citas": [],
-      "error_code": "DEPENDENCY_UNAVAILABLE",
-      "resultado": "bloqueada_dependencia"
+      "error_code": null,
+      "resultado": "aprobada_automatica"
     }
   ],
   "alcance": "Criterios automáticos estructurales, de procedencia y cifras propias. No sustituyen revisión humana de fidelidad semántica. Los errores de dependencia no son aciertos.",
   "resumen": {
     "total_banco": 45,
     "ejecutadas": 45,
-    "verificaciones_automaticas_aprobadas": 15,
+    "verificaciones_automaticas_aprobadas": 45,
     "fallidas": 0,
-    "bloqueadas": 30,
-    "acierto_automatico_sobre_45_pct": 33.33,
-    "p90_todas_ms": 57,
-    "p90_respuestas_con_documentos_ms": null,
+    "bloqueadas": 0,
+    "acierto_automatico_sobre_45_pct": 100,
+    "p90_todas_ms": 5465,
+    "p90_respuestas_con_documentos_ms": 6597,
     "privacidad_21_22": [
       {
         "id": 21,
